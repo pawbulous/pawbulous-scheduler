@@ -255,7 +255,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div id="catLeg"></div>
   <button class="tbtn" onclick="openCatModal()" style="padding:4px 10px;font-size:12px;margin-left:4px" title="카테고리 관리">⚙ 카테고리</button>
   <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
-    <span class="leglbl">우선순위</span>
+    <span class="leglbl">우선�`�위</span>
     <span class="pchip" style="background:#fff0f0;color:#e53935">● 높음</span>
     <span class="pchip" style="background:#fff8e1;color:#f57c00">● 중간</span>
     <span class="pchip" style="background:#f1f8e9;color:#558b2f">● 낮음</span>
@@ -300,1113 +300,995 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <button class="btn bsec" onclick="addNewCat()">＋ 새 카테고리</button>
       <div style="flex:1"></div>
       <button class="btn bsec" onclick="closeCatModal()">취소</button>
-      <button class="btn bpri" onclick="applyAndCloseCatModal()">저장</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="movl" id="movl" onclick="closeModalOut(event)">
-  <div class="modal">
+      <button class="btn bpri" onclick="applyAndCloseCatModal()">저�x(108,"��제</buttonM-- Category management modal --div class="movlass="M-- COutid="caet===this)closeCatModal(dal" style="width:440px">
     <div class="mhdr">
-      <span class="mtitle" id="modalTitle">새 일정</span>
-      <button class="mclose" onclick="closeModal()">✕</button>
-    </div>
-    <div class="mdbody">
-      <div class="fg"><label class="flbl">제목 *</label><input class="finp" id="iTitle" placeholder="일정 제목"/></div>
-      <div class="frow">
-        <div class="fg"><label class="flbl">시작일 *</label><input class="finp" id="iSDate" type="date"/></div>
-        <div class="fg"><label class="flbl">종료일</label><input class="finp" id="iEDate" type="date"/></div>
-      </div>
-      <div class="frow">
-        <div class="fg"><label class="flbl">시작 시간</label><input class="finp" id="iSTime" type="time" value="09:00"/></div>
-        <div class="fg"><label class="flbl">종료 시간</label><input class="finp" id="iETime" type="time" value="10:00"/></div>
-      </div>
-      <div class="frow">
-        <div class="fg">
-          <label class="flbl">카테고리</label>
-          <select class="fsel" id="iCat"></select>
-        </div>
-        <div class="fg">
-          <label class="flbl">상태</label>
-          <select class="fsel" id="iStatus">
-            <option value="planned">📅 예정</option>
-            <option value="inprogress">🔄 진행중</option>
-            <option value="done">✅ 완료</option>
-            <option value="cancelled">❌ 취소</option>
-          </select>
-        </div>
-      </div>
-      <div class="fg">
-        <label class="flbl">우선순위</label>
-        <select class="fsel" id="iPri">
-          <option value="high">🔴 높음</option><option value="medium" selected>🟡 중간</option><option value="low">🟢 낮음</option>
-        </select>
-      </div>
-      <div class="fg"><label class="flbl">색상</label><div class="cprow" id="cpick"></div></div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0">
-        <span class="flbl" style="margin:0">체크박스 유무</span>
-        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;color:var(--muted);font-weight:600">
-          <input type="checkbox" id="iCheck" style="width:16px;height:16px;accent-color:var(--primary);cursor:pointer">
-          진행 단계 체크박스 표시
-        </label>
-      </div>
-      <div id="connInfo" style="display:none;background:var(--surface2);border-radius:9px;padding:10px 12px;flex-direction:column;gap:6px;font-size:12px"></div>
-      <div class="fg"><label class="flbl">메모</label><textarea class="ftxt" id="iNote" placeholder="추가 메모 (선택사항)"></textarea></div>
-    </div>
+  al --didal/buttonclick<span>⚙ 카테고리 관리</span>
+      <button classclose" onclick="closeCatModal()">✕</button>
+    </div>"whrow" id="whrow"><f</sp0px);whrow"><fr">
+  ��목 *</0px);><inputwhrow"><finp al --i/butto ="kcehol��<x;m<span c��목"/class="whrow" id="whrow"><fdiv cwhrow" " id="whrow"><f</sp0px);whrow"><fr">
+  ��작m<s *</0px);><inputwhrow"><finp al --iSD
+  izeypdiv 
+  i/class="whrow" " id="whrow"><f</sp0px);whrow"><fr">
+  ��료m<s</0px);><inputwhrow"><finp al --iED
+  izeypdiv 
+  i/class="whrow" lass="whrow" id="whrow"><fdiv cwhrow" " id="whrow"><f</sp0px);whrow"><fr">
+  ��작  ��1;col0px);><inputwhrow"><finp al --iSTim izeypdivtim izvaludiv09:oun/class="whrow" " id="whrow"><f</sp0px);whrow"><fr">
+  ��료  ��1;col0px);><inputwhrow"><finp al --iETim izeypdivtim izvaludiv10:oun/class="whrow" lass="whrow" id="whrow"><fdiv cwhrow" " id="whrow"><f</swhrow" " " i0px);whrow"><fr">
+  ="addNewCat()0px);>whrow" " " ix-direwhrow"><fx-d al --i" oon>
+ -direcwhrow" " iass="whrow" " id="whrow"><f</swhrow" " " i0px);whrow"><fr">
+  ��태()0px);>whrow" " " ix-direwhrow"><fx-d al --iStatus/swhrow" " " " iope-heivaludiv="knnedlick�� 예pan>�ope-heswhrow" " " " iope-heivaludivinprogresslick�� 진 Hea��>�ope-heswhrow" " " " iope-heivaludivdanVie✅ 완료>�ope-heswhrow" " " " iope-heivaludivmpleted .ie❌  lick="cope-heswhrow" " " >
+ -direcwhrow" " iass="whrow" lass="whrow" id="whrow"><f</swhrow" " i0px);whrow"><fr">
+    <span class0px);>whrow" " ix-direwhrow"><fx-d al --iP   swhrow" " " >ope-heivaludivhighlick��ff0f0;colope-hes>ope-heivaludivitleumass-direedick��ff8e1;colope-hes>ope-heivaludivlogo"><��1f8e9;colope-heswhrow" " >
+ -direcwhrow" lass="whrow" id="whrow"><f</si0px);whrow"><fr">
+  �� ��ol0px);><d="whrow"><tical>
+    <ptto      <dlass="whrow" id="w
+  <div id="kan4px;height:60px;display:flex;align-items:center;justifyopenCatModa0/swhrow" " iiv class="mhfr">
+��고리</butt:0/s체크박스 유무>⚙ 카테고" i0px);w
+  <div id="kan4px;height:60px;display:px}
+.cprkground:var(--surface2);cu2px}
+.kcdate{font-size:10px;color:var( swhrow" " " >inputweypdivolor:box al --i"lor:()">
+  <div claeight:1.4}
+.kcboxacispl-er-color:var(--primary);colo:var(-- swhrow" " " 진 He 단계 체크박스 표 ��whrow" " >
+0px);>whrow" lass="whrow" id="w    <onnInfov>
+  <div id="kanbanV0px}
+.vtabs{display:flex;background:var(--9x}
+  .tpill{px}
+  .k.3}
+.tdmeta{display:flex;fl6)" style="padding class="whrow" id="whrow"><f</si0px);whrow"><fr">
+ 메모ol0px);><--suareawhrow"><f">�al --iNotto ="kcehol��<x;mlass= 메모 (
+/* ��사항) cla--suareaclass="wbody" id="wboyle="gap:10px"></div>
     <div class="mftr">
-      <button class="btn bsec" onclick="closeModal()">취소</button>
-      <button class="btn bdel" id="delBtn" onclick="deleteTask()" style="display:none">삭제</button>
-      <button class="btn bpri" onclick="saveTask()">저장</button>
-    </div>
-  </div>
-</div>
-
-<script>
-// ══════════════════════════════════════════
-// CONSTANTS
-// ══════════════════════════════════════════
-const DEFAULT_CATS = {
-  work:     {label:'업무', icon:'💼', color:'#6c63ff', bg:'#ebe9ff'},
-  personal: {label:'개인', icon:'🏠', color:'#ef5350', bg:'#ffebee'},
-  health:   {label:'건강', icon:'💪', color:'#43a047', bg:'#e8f5e9'},
-  social:   {label:'소셜', icon:'🤝', color:'#fb8c00', bg:'#fff3e0'},
-  study:    {label:'학습', icon:'📚', color:'#0288d1', bg:'#e1f5fe'},
+      <button clclassclose" onclick="closeCatModal()">취소</button>
+  d-d al --d-dBdiv>
+  <buttocolor:Taskn" onclick= id="kanbanVieeleteFromDetail()"al()">취소</button>
+      <button clsav:Taskn" applyAndCloseCatModal()">저�x(108,"��제</buscripecw// ══════════════════════════════════════════w// CONSTANTSw// ══════════════════════════════════════════w<onst DEFAULT_CATS = 
+@mework:"al(){0px);:'il (R)', i<on:'💼', er-col'ackgrou', bgl'abtn" s'},@mepe;conal:){0px);:'개인', i<on:'🏠', er-col'aef5350', bgl'affbtne'},@mehealclal(){0px);:'건강', i<on:'💪', er-col'ad:#43a', bgl'ab8f5e9'},@mesocial:)(){0px);:'i��셜', i<on:'🤝', er-col'ade="R"', bgl'afff3e0'},@mestudy:al(){0px);:'학습', i<on:'📚', er-col'a=>88d1', bgl'ab1f5fe'},@};
+lor <dis = 
 };
-let cats = {};
-function _loadCats() {
-  try {
-    const raw = localStorage.getItem('pawCats');
-    const parsed = raw ? JSON.parse(raw) : null;
-    if(parsed && typeof parsed==='object' && !Array.isArray(parsed)){
-      // Filter out any null/invalid entries so stored corruption can't crash us
-      const cleaned = {};
-      Object.entries(parsed).forEach(([k,v])=>{ if(v&&typeof v==='object'&&v.color&&v.label) cleaned[k]=v; });
-      cats = Object.keys(cleaned).length>0 ? cleaned : {...DEFAULT_CATS};
-    } else {
-      cats = {...DEFAULT_CATS};
-    }
-  } catch(e) { cats = {...DEFAULT_CATS}; }
-}
-_loadCats();
-// Safe category lookup — never returns null
-function _getCat(id) {
-  if(cats && id && cats[id]) return cats[id];
-  if(cats){ const k=Object.keys(cats).find(k=>cats[k]); if(k) return cats[k]; }
-  return DEFAULT_CATS.work;
-}
-function saveCats() {
-  localStorage.setItem('pawCats', JSON.stringify(cats));
-}
-const STATS = {
-  planned:    {label:'예정',   color:'#8a8a9a'},
-  inprogress: {label:'진행중', color:'#0288d1'},
-  done:       {label:'완료',   color:'#43a047'},
-  cancelled:  {label:'취소',   color:'#ef5350'},
-  // Legacy backward-compat keys
-  todo:       {label:'예정',   color:'#8a8a9a'},
-  blocked:    {label:'취소',   color:'#ef5350'},
+funne-hei_load" os() 
+@metry 
+@me  <onst raw = localStorage.getI0px('pabtn s');@me  <onst pang=d = raw ? JSON.pang=(raw) : null;@me  if(pang=d &&weypdof pang=d==='objta{' &&w!Array.isArray(pang=d)){()"al()// Fa(0,0,outwany null/invalid splriesesoestoreerenrrupe-heimpl'r <rash us()"al()<onst clean=d = 
 };
-const PRIS = {
-  high:   {label:'높음', dot:'#ef5350'},
-  medium: {label:'중간', dot:'#fb8c00'},
-  low:    {label:'낮음', dot:'#43a047'},
-};
-const PAL = ['#6c63ff','#ef5350','#fb8c00','#43a047','#0288d1','#e91e63','#9c27b0','#00bcd4','#ff7043','#607d8b','#795548','#ffd600'];
-const KCOLS = [
-  {id:'planned',    label:'예정',   color:'#8a8a9a', icon:'📅'},
-  {id:'inprogress', label:'진행중', color:'#0288d1', icon:'🔄'},
-  {id:'done',       label:'완료',   color:'#43a047', icon:'✅'},
-  {id:'cancelled',  label:'취소',   color:'#ef5350', icon:'❌'},
-];
-const DAYS = ['일','월','화','수','목','금','토'];
-const HOURS = Array.from({length:24},(_,i)=>i);
+)"al()Objta{.splries(pang=d).forEach(([k,v])=>{ if(v&&eypdof v==='objta{'&&v.er-co&&v.0px);) clean=d[k]=v; });
+)"al()<dis = Objta{.keys(clean=d).length>0 ? clean=d :){...DEFAULT_CATS};
+)"al} else {
+)"al()<dis = {...DEFAULT_CATS};
+)"al}
+al} <dich(e) 
+)<dis = {...DEFAULT_CATS}; 
+  ._load" os();w// Safe)<di </divlookup — neve;zreturns null
+funne-hei_gettn bid) 
+@meif(<dis &&wid &&w<dis[id])zreturnw<dis[id];@meif(<dis){)<onst k=Objta{.keys(cdis)olord(k=><dis[k]);eif(k)zreturnw<dis[k];l}
+alreturnwDEFAULT_CATS.workrgbafunne-heisav:" os() 
+@melocalStorage.setI0px('pabtn s', JSON.ethrng;al(cdis))rgba<onst STATS = 
+@me="knned:al(){0px);:'예pan',   er-col'a--text'},@meinprogress:){0px);:'진 Hea��', er-col'a=>88d1'},@mepointe "al(){0px);:'i��료',   er-col'ad:#43a'},@me✓ + strik){0px);:'ilick=',   er-col'aef5350'},@me// Legacy px}
+ward-gingat keys@metodote "al(){0px);:'i��pan',   er-col'a--text'},@meness(ed:al(){0px);:'�lick=',   er-col'aef5350'},@};
+<onst PRIS = 
+@mehigh:)(){0px);:'f0f0;c', dotl'aef5350'},@meitleum:){0px);:'�8e1;c', dotl'ade="R"'},@metranal(){0px);:'f8e9;c', dotl'ad:#43a'},@};
+<onst PAL = ['ackgrou','aef5350','ade="R"','ad:#43a','a=>88d1','ae91e63','a9c27b"','a00bcd4','adf7043','a607d8b','a795548','adfdar('];
+<onst KCOLS = [@me{id:'="knned',    0px);:'i��pan',   er-col'a--text', i<on:'📅'},@me{id:'inprogress', 0px);:'진 Hea��', er-col'a=>88d1', i<on:'🔄'},@me{id:'poin',       0px);:'i��료',   er-col'ad:#43a', i<on:'✅'},@me{id:'✓ + str',  0px);:'�lick=',   er-col'aef5350', i<on:'�;c'},@];
+<onst DAYS = ['일','월','화','수','목','금','토'];
+<onst HOURS = Array.from({length:24},(_,i)=>i)rgw// ══════════════════════════════════════════w// DATAw// ══════════════════════════════════════════wlor px;cu = JSON.pang=(localStorage.getI0px('pabTasks')||'[]');@lor <ort,  = JSON.pang=(localStorage.getI0px('pabCort,')||'[]');@afunne-heisav:() 
+@melocalStorage.setI0px('pabTasks', JSON.ethrng;al(px;cu));
+)"localStorage.setI0px('pabtort,',  JSON.ethrng;al(cort,))rgbafunne-heigid() 
+lreturnwDdi und:().toSthrng(36)+Mathd vadom().toSthrng(36).stone(2,6);l}
+w// �3px}
 
-// ══════════════════════════════════════════
-// DATA
-// ══════════════════════════════════════════
-let tasks = JSON.parse(localStorage.getItem('pawTasks')||'[]');
-let conns  = JSON.parse(localStorage.getItem('pawConns')||'[]');
+sang{o a-si �3px}
 
-function save() {
-  localStorage.setItem('pawTasks', JSON.stringify(tasks));
-  localStorage.setItem('pawConns',  JSON.stringify(conns));
-}
-function gid() { return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+if (!px;cu.length) 
+@me<onst td = newwDdi ();
+)"<onst a = n => {)<onst d=newwDdi (td);ld.setDdi (d.getDdi ()+n);lreturnwfddi (d);l};
+)"px;cu = [
+)"al{id:'t1',r">
+ :'팀 주1;c 회의',  etweeDdi :a(0),endDdi :a(0),  etweeTim :'10:ou',endTim :'11:ou',<di </di:'work',       orl.op'high',  er-col'ackgrou',ed);:'정기 미팅', status:'inprogress',ging{opac:false},@meal{id:'t2',r">
+ :'런치 미팅',     etweeDdi :a(1),endDdi :a(1),  etweeTim :'12:ou',endTim :'13:ou',<di </di:'social',     orl.op'itleum',gi-col'ade="R"',ed);:'',          etwtus:'todo',      ging{opac:false},@meal{id:'t3',r">
+ :'�ass= 클래스',   etweeDdi :a(1),endDdi :a(1),  etweeTim :'07:ou',endTim :'08:ou',<di </di:'healcl',     orl.op'tra',   er-col'ad:#43a',ed);:'',          etwtus:'todo',      ging{opac:false},@meal{id:'t4',r">
+ :'프로젝트 마감', staeeDdi :a(3),endDdi :a(5),  etweeTim :'17:ou',endTim :'18:ou',<di </di:'work',       orl.op'high',  er-col'aef5350',ed);:'최종 전달', status:'todo',      ging{opac:false},@meal{id:'t5',r">
+ :'React 강의',    etweeDdi :a(2),endDdi :a(2),  etweeTim :'20:ou',endTim :'22:ou',<di </di:'study',      orl.op'itleum',gi-col'a=>88d1',ed);:'',          etwtus:'inprogress',ging{opac:false},@meal{id:'t6',r">
+ :'헬스장',        etweeDdi :a(4),endDdi :a(4),  etweeTim :'06:3u',endTim :'07:3u',<di </di:'healcl',     orl.op'tra',   er-col'ad:#43a',ed);:'',          etwtus:'todo',      ging{opac:false},@meal{id:'t7',r">
+ :'친구 생일파티', staeeDdi :a(5),endDdi :a(5),  etweeTim :'18:ou',endTim :'21:ou',<di </di:'social',     orl.op'itleum',gi-col'ae91e63',ed);:'선물 준비', status:'todo',      ging{opac:false},@me];
+)"<onnu = [{from:'t1',ro:'t4'},{from:'t5',ro:'t4'}];
+)"sav:()rgb else if (!<onnu.length &&wex;cu.som (t=>t.id==='t1'||t.id==='t4'||t.id==='t5')) 
+@me// Re2px;
+y
+sang{o is;line-hes if sang{o px;cu exist bur <ort, were"lost
+)"<onst ids=ex;cu.map(t=>t.id);@meif(ids.includes('t1')&&ids.includes('t4')) <onnu.push({from:'t1',ro:'t4'});@meif(ids.includes('t5')&&ids.includes('t4')) <onnu.push({from:'t5',ro:'t4'});@mesav:()rgbgw// ══════════════════════════════════════════w// STATEw// ══════════════════════════════════════════wlor -acti= ctive" ;@lor <ur  = newwDdi ();
+lor coloId = null;@lor deoId  = null;@lor selborde = PAL[0];@lor rgba(0Cat = call'rgw// lor:vstates@lor mvState  = null;l()// ex;c lor:-move@lor <rState  = null;l()// ddi -��계 <redi @lor <oState  = null;l()// is;line-heigraw@lor kdState  = null;l()// :28px;hlor:gw// ══════════════════════════════════════════w// HELPERSw// ══════════════════════════════════════════w// local-tim  ddi  ethrng → "YYYY-MM-DD"lled:tim zy (nshift)afunne-heifddi (d) 
+@mereturnwd.getFullYear()+'-'+Sthrng(d.getMive"()+1).padStard-te'0')+'-'+Sthrng(d.getDdi ()).padStard-te'0')rgbafunne-hei);boxhex, a) 
+@me<onst r=pang=Intxhex.stone(1,3),16), g=pang=Intxhex.stone(3,5),16), b=pang=Intxhex.stone(5,7),16);@mereturnw`);box${r},${g},${b},${a})`rgbafunne-heig cla{opac() 
+@mereturnwrgba(0Cat==='all' ? px;cu :wex;cu.rgba(0(t=>t.<di </di===rgba(0Cat)rgbafunne-heiex;cborde(t) 
+lreturnwt.er-co ||i_gettn bt.<di </di).er-co;l}
+w// ══════════════════════════════════════════w// ,99,25w// ══════════════════════════════════════════wfunne-heibuildLpaddi() 
+@medocuv>
 
-// ── sample data ──
-if (!tasks.length) {
-  const td = new Date();
-  const a = n => { const d=new Date(td); d.setDate(d.getDate()+n); return fdate(d); };
-  tasks = [
-    {id:'t1',title:'팀 주간 회의',  startDate:a(0),endDate:a(0),  startTime:'10:00',endTime:'11:00',category:'work',    priority:'high',  color:'#6c63ff',note:'정기 미팅', status:'inprogress',completed:false},
-    {id:'t2',title:'런치 미팅',     startDate:a(1),endDate:a(1),  startTime:'12:00',endTime:'13:00',category:'social',  priority:'medium',color:'#fb8c00',note:'',          status:'todo',      completed:false},
-    {id:'t3',title:'요가 클래스',   startDate:a(1),endDate:a(1),  startTime:'07:00',endTime:'08:00',category:'health',  priority:'low',   color:'#43a047',note:'',          status:'todo',      completed:false},
-    {id:'t4',title:'프로젝트 마감', startDate:a(3),endDate:a(5),  startTime:'17:00',endTime:'18:00',category:'work',    priority:'high',  color:'#ef5350',note:'최종 전달', status:'todo',      completed:false},
-    {id:'t5',title:'React 강의',    startDate:a(2),endDate:a(2),  startTime:'20:00',endTime:'22:00',category:'study',   priority:'medium',color:'#0288d1',note:'',          status:'inprogress',completed:false},
-    {id:'t6',title:'헬스장',        startDate:a(4),endDate:a(4),  startTime:'06:30',endTime:'07:30',category:'health',  priority:'low',   color:'#43a047',note:'',          status:'todo',      completed:false},
-    {id:'t7',title:'친구 생일파티', startDate:a(5),endDate:a(5),  startTime:'18:00',endTime:'21:00',category:'social',  priority:'medium',color:'#e91e63',note:'선물 준비', status:'todo',      completed:false},
-  ];
-  conns = [{from:'t1',to:'t4'},{from:'t5',to:'t4'}];
-  save();
-} else if (!conns.length && tasks.some(t=>t.id==='t1'||t.id==='t4'||t.id==='t5')) {
-  // Re-apply sample connections if sample tasks exist but conns were lost
-  const ids=tasks.map(t=>t.id);
-  if(ids.includes('t1')&&ids.includes('t4')) conns.push({from:'t1',to:'t4'});
-  if(ids.includes('t5')&&ids.includes('t4')) conns.push({from:'t5',to:'t4'});
-  save();
-}
+.getEliv>
 
-// ══════════════════════════════════════════
-// STATE
-// ══════════════════════════════════════════
-let view = 'month';
-let cur  = new Date();
-let editId = null;
-let detId  = null;
-let selColor = PAL[0];
-let filterCat = 'all';
+ById('��리<').innerHTML = Objta{.splries(cdis||DEFAULT_CATS)@meal.rgba(0(([k,v])=>v&&v.er-co&&v.0px);)@meal.map(([k,v])=>
+)"al()`an></button>
+</60px     <button cFa(0,0('${k}oncl${v.i<on||''} ${v.0px);}��제<`
+)"al).join('')rgbafunne-hein cFa(0,0(c) 
+lrgba(0Cat = rgba(0Cat===c?'all':c;lrend,0();l}
+w// ══════════════════════════════════════════w// COLOR PICKERw// ══════════════════════════════════════════wfunne-heibuildCP(s);) 
+@meselborde = sel||PAL[0];@medocuv>
 
-// drag states
-let mvState  = null;   // task drag-move
-let crState  = null;   // date-range create
-let coState  = null;   // connection draw
-let kdState  = null;   // kanban drag
+.getEliv>
 
-// ══════════════════════════════════════════
-// HELPERS
-// ══════════════════════════════════════════
-// local-time date string → "YYYY-MM-DD" (no timezone shift)
-function fdate(d) {
-  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-}
-function rgba(hex, a) {
-  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
-  return `rgba(${r},${g},${b},${a})`;
-}
-function getVisible() {
-  return filterCat==='all' ? tasks : tasks.filter(t=>t.category===filterCat);
-}
-function taskColor(t) { return t.color || _getCat(t.category).color; }
+ById('�ptto').innerHTML = PAL.map(c=>
+)"al`an></button>csw${c===selborde?' sel':''}
+    <button class="${c}     <buttopttoborde('${c}') class="`
+)").join('')rgbafunne-heipttoborde(c) 
+lselborde=c;lbuildCP(c);l}
+w// ══════════════════════════════════════════w// NAVw// ══════════════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;@medocuv>
 
-// ══════════════════════════════════════════
-// LEGEND
-// ══════════════════════════════════════════
-function buildLegend() {
-  document.getElementById('catLeg').innerHTML = Object.entries(cats||DEFAULT_CATS)
-    .filter(([k,v])=>v&&v.color&&v.label)
-    .map(([k,v])=>
-      `<div class="legitem" onclick="setFilter('${k}')">${v.icon||''} ${v.label}</div>`
-    ).join('');
-}
-function setFilter(c) { filterCat = filterCat===c?'all':c; render(); }
+.queryS-direorAll('templ').forEach((b,i)=>b.buttoList.toggac('    <b',[ctive" ,"vtab","vtab" o][i]===v));
+)"docuv>
 
-// ══════════════════════════════════════════
-// COLOR PICKER
-// ══════════════════════════════════════════
-function buildCP(sel) {
-  selColor = sel||PAL[0];
-  document.getElementById('cpick').innerHTML = PAL.map(c=>
-    `<div class="csw${c===selColor?' sel':''}" style="background:${c}" onclick="pickColor('${c}')"></div>`
-  ).join('');
-}
-function pickColor(c) { selColor=c; buildCP(c); }
+.getEliv>
 
-// ══════════════════════════════════════════
-// NAV
-// ══════════════════════════════════════════
-function setView(v) {
-  view = v;
-  document.querySelectorAll('.vtab').forEach((b,i)=>b.classList.toggle('active',['month','week','kanban'][i]===v));
-  document.getElementById('monthView').style.display  = v==='month'  ?'flex':'none';
-  document.getElementById('weekView').style.display   = v==='week'   ?'block':'none';
-  document.getElementById('kanbanView').style.display = v==='kanban' ?'block':'none';
-  render();
-}
-function navigate(d) {
-  if (view==='week') { cur.setDate(cur.getDate()+d*7); render(); return; }
-  if (view==='month') {
-    cur = new Date(cur.getFullYear(), cur.getMonth()+d, 1);
-    if (document.getElementById('mscroll')) { scrollToMonth(cur.getFullYear(), cur.getMonth()); return; }
-  }
-  render();
-}
-function goToday() {
-  cur=new Date();
-  if (view==='month' && document.getElementById('mscroll')) {
-    scrollToMonth(cur.getFullYear(), cur.getMonth()); return;
-  }
-  render();
-}
+ById('lass="mai').   <b. id="ka  = v==='tive"   ?'3}
+.':'banV';
+)"docuv>
 
-// ══════════════════════════════════════════
-// RENDER
-// ══════════════════════════════════════════
-function render() {
-  const y=cur.getFullYear(), m=cur.getMonth();
-  if (view==='week') {
-    const wk=weekDates(cur);
-    document.getElementById('hTitle').textContent =
-      wk[0].toLocaleDateString('ko-KR',{month:'short',day:'numeric'})+'–'+
-      wk[6].toLocaleDateString('ko-KR',{month:'short',day:'numeric'});
-  } else {
-    document.getElementById('hTitle').textContent = cur.toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
-  }
-  if (view==='month')  renderMonth();
-  if (view==='week')   { renderWeek();   _clearConnSLg(); }
-  if (view==='kanban') { renderKanban(); _clearConnSLg(); }
-}
+.getEliv>
 
-// ══════════════════════════════════════════
-// MONTH VIEW – CONTINUOUS INFINITE CALENDAR
-// ══════════════════════════════════════════
-let contCal = null; // { topDate: Date(Sun), botDate: Date(Sun) }
+ById('View"></').   <b. id="ka   = v==='vtab"   ?'ness(':'banV';
+)"docuv>
 
-function _prevSunday(d){const r=new Date(d);r.setDate(r.getDate()-r.getDay());r.setHours(0,0,0,0);return r;}
+.getEliv>
 
-/* ── initial build ── */
-function buildMonthView() {
-  const mv = document.getElementById('monthView');
-  mv.innerHTML = '';
+ById('iv>
+  </di').   <b. id="ka = v==='vtab" o ?'ness(':'banV';
+)"rend,0();gbafunne-hein class="d) 
+@meif (-act==='vtab") 
+)<ur.setDdi (<ur.getDdi ()+d*7);lrend,0();lreturn;l}
+alif (-act==='tive" o 
+@me  <ur = newwDdi (<ur.getFullYear()��업.getMive"()+d, 1);@me  if (docuv>
 
-  // Sticky DOW header
-  const dow = document.createElement('div');
-  dow.className='mhrow';
-  dow.style.cssText='position:sticky;top:0;z-index:20;border-radius:12px 12px 0 0;flex-shrink:0';
-  ['일','월','화','수','목','금','토'].forEach((d,i)=>{
-    const c=document.createElement('div'); c.className='mhcell';
-    if(i===0||i===6) c.style.color='#e57373';
-    c.textContent=d; dow.appendChild(c);
-  });
-  mv.appendChild(dow);
+.getEliv>
 
-  // Scroll container
-  const ms=document.createElement('div'); ms.id='mscroll'; ms.className='mscroll';
-  mv.appendChild(ms);
+ById('lx:auto')) 
+week viToMive"(<ur.getFullYear()��업.getMive"());lreturn;l}
+al}
+)"rend,0();gbafunne-hein class=" 
+@me<ur=newwDdi ();
+)"if (-act==='tive"  &&wdocuv>
 
-  // One continuous grid – SVG lives on body as position:fixed
-  const wrap=document.createElement('div'); wrap.className='mgwrap';
-  const grid=document.createElement('div'); grid.className='mgrid';
-  const body=document.createElement('div'); body.className='mbody'; body.id='contbody';
-  grid.appendChild(body); wrap.appendChild(grid);
-  ms.appendChild(wrap);
-  // Create the single fixed connection SVG on body (reuse if already exists)
-  if(!document.getElementById('connsvg')){
-    const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
-    s.id='connsvg'; document.body.appendChild(s);
-  }
+.getEliv>
 
-  // Height: fill to bottom of viewport
-  const setH=()=>{
-    const s=document.getElementById('mscroll'); if(!s) return;
-    s.style.height=Math.max(300,window.innerHeight-s.getBoundingClientRect().top-20)+'px';
-  };
-  requestAnimationFrame(setH);
-  window.addEventListener('resize',setH);
+ById('lx:auto')) 
+@me  eek viToMive"(<ur.getFullYear()��업.getMive"());lreturn;
+al}
+)"rend,0();gbaw// ══════════════════════════════════════════w// R,25ERw// ══════════════════════════════════════════wfunne-heirend,0() 
+@me<onst y=<ur.getFullYear()��m=업.getMive"();@meif (-act==='vtab") 
+@me  <onst wk=vtabDdi s(<ur);@me  docuv>
 
-  // Start 2 weeks before current month
-  const y0=cur.getFullYear(), mo0=cur.getMonth();
-  const startSun=_prevSunday(new Date(y0,mo0,1));
-  startSun.setDate(startSun.getDate()-14);
-  contCal={topDate:new Date(startSun), botDate:new Date(startSun)};
-  contCal.botDate.setDate(contCal.botDate.getDate()-7); // _appendContWeek will advance by 7
+.getEliv>
 
-  // Render ~14 weeks (~3 months)
-  for(let i=0;i<14;i++) _appendContWeek();
+ById('</butt').--suCn-item =
+)"al()wk[0].toLocaleDdi Sthrng('ko-KR',{tive":'short',ass:'buv>ric'})+'–'+
+)"al()wk[6].toLocaleDdi Sthrng('ko-KR',{tive":'short',ass:'buv>ric'});
+al} else {
+)"aldocuv>
 
-  // Scroll to current month label, then draw connection lines
-  requestAnimationFrame(()=>{
-    const lbl=document.querySelector(`.mmonlbl[data-y="${y0}"][data-mo="${mo0}"]`);
-    if(lbl) ms.scrollTop=lbl.offsetTop;
-    // Double rAF ensures layout/scroll is fully settled before drawing lines
-    requestAnimationFrame(drawConns);
-  });
+.getEliv>
 
-  ms.addEventListener('scroll',onMScroll);
-}
+ById('</butt').--suCn-item =�업.toLocaleDdi Sthrng('ko-KR',{year:'buv>ric',tive":'long'});
+al}
+alif (-act==='tive" o irend,0Mive"();@meif (-act==='vtab")   
+lrend,0Wtab();l  _cleartortSvg();l}
+meif (-act==='vtab" on 
+lrend,0Ktab" ();l_cleartortSvg();l}
+baw// ══════════════════════════════════════════w// (--surVIEWion:nC--sINUcaleINFINITE CAL,25ARw// ══════════════════════════════════════════wlor gn-iCal = null;l// {a(maDdi :wDdi (Sun), botDdi :wDdi (Sun)l}
+wfunne-hei_prevSunass=d){<onst r=newwDdi (d);r.setDdi (r.getDdi ()-r.getDdy());r.setHours;inset:0);returnwr;d:#ccc;bordernt="widlbuilds:3px}
 
-/* ── month label row ── */
-function _buildMonlbl(d){
-  const el=document.createElement('div'); el.className='mmonlbl';
-  el.dataset.y=d.getFullYear(); el.dataset.mo=d.getMonth();
-  el.textContent=d.toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
-  return el;
-}
+/* funne-heibuildMass="mai() 
+@me<onst mv = docuv>
 
-/* ── does week Sun→Sat contain the 1st? returns that Date or null ── */
-function _weekHas1st(sun){
-  for(let i=0;i<7;i++){const d=new Date(sun);d.setDate(d.getDate()+i);if(d.getDate()===1)return d;}
-  return null;
-}
+.getEliv>
 
-/* ── build one week row div ── */
-function _buildWeekDiv(sun) {
-  const tds=fdate(new Date()), vis=getVisible();
-  const TRACK_H=22, OVERLAY_TOP=34;
+ById('lass="mai');@memv.innerHTML = ''rgw()// Sspace DOW ��가<@me<onst :gra= docuv>
 
-  const dates=[];
-  for(let i=0;i<7;i++){const d=new Date(sun);d.setDate(d.getDate()+i);d.setHours(0,0,0,0);dates.push(d);}
-  const wStart=fdate(dates[0]), wEnd=fdate(dates[6]);
+.<redi Eliv>
 
-  // Multi-day bars
-  const mdTasks=vis.filter(t=>{const s=t.startDate||t.date,e=t.endDate||s;return e>s;});
-  const weekMD=mdTasks.filter(t=>{const s=t.startDate||t.date,e=t.endDate||s;return s<=wEnd&&e>=wStart;});
-  const tracks=[], placed=[];
-  weekMD.forEach(t=>{
-    const s=t.startDate||t.date,e=t.endDate||s;
-    const bs=s<wStart?wStart:s, be=e>wEnd?wEnd:e;
-    let sc=dates.findIndex(d=>fdate(d)===bs), ec=dates.findIndex(d=>fdate(d)===be);
-    if(sc===-1)sc=0; if(ec===-1)ec=6;
-    let track=0;
-    while(tracks[track]&&tracks[track].some(r=>r.sc<=ec&&r.ec>=sc))track++;
-    if(!tracks[track])tracks[track]=[];
-    tracks[track].push({sc,ec});
-    placed.push({t,track,sc,ec,isStart:s>=wStart,isEnd:e<=wEnd});
-  });
-  const mdAreaH=tracks.length>0?tracks.length*TRACK_H+2:0;
+('ss=');
+)"dow.buttoName='t<div';
+)"dow.   <b.cssT-su='y-content:space-between;positionackground:var(--;--pl:#eblex-ejustify-cont';
+)"['일','월','화','수','목','금','토'].forEach((d,i)=>
+@me  <onst c=docuv>
 
-  const weekDiv=document.createElement('div'); weekDiv.className='mweek';
-  weekDiv.dataset.weekDate=wStart; // store for refresh
+.<redi Eliv>
 
-  if(placed.length>0){
-    const ov=document.createElement('div'); ov.className='mdoverlay';
-    ov.style.top=OVERLAY_TOP+'px'; ov.style.height=mdAreaH+'px';
-    placed.forEach(({t,track,sc,ec,isStart,isEnd})=>{
-      const c=taskColor(t);
-      const bar=document.createElement('div'); bar.className='mdbar';
-      bar.style.cssText=[
-        `left:${(sc/7*100).toFixed(3)}%`,`width:${((ec-sc+1)/7*100).toFixed(3)}%`,
-        `top:${track*TRACK_H+1}px`,`background:${rgba(c,.16)}`,
-        `border-left:${isStart?`3px solid ${c}`:'none'}`,`color:${c}`,
-        `border-radius:${isStart?'4px':'0'} ${isEnd?'4px':'0'} ${isEnd?'4px':'0'} ${isStart?'4px':'0'}`,
-        `padding-left:${isStart?'5px':'2px'}`,`padding-right:4px`,
-      ].join(';');
-      bar.title=t.title; bar.dataset.taskId=t.id;
-      bar.style.cssText=bar.style.cssText+`;--cc:${c}`;
-      // L dot (head) – shown on hover so this bar can receive connections
-      const bDL=document.createElement('div');
-      bDL.className='cdot'; bDL.dataset.side='L'; bDL.dataset.tid=t.id;
-      bDL.title='헤드 – 선행업무 수신 포인트';
-      bar.appendChild(bDL);
-      // mini checkbox for multi-day bars (if showCheck is enabled)
-      let bCb=null;
-      if(_taskHasCheck(t)){
-        const bDone=_isDone(t);
-        bCb=document.createElement('div');
-        bCb.className='pcheck'+(bDone?' done':'');
-        bCb.style.cssText='flex-shrink:0;width:12px;height:12px;font-size:9px';
-        if(bDone) bCb.textContent='✓';
-        bCb.addEventListener('click',e=>{e.stopPropagation();toggleDone(t.id);});
-        bar.appendChild(bCb);
-      }
-      // title text span
-      const bTi=document.createElement('span');
-      bTi.style.cssText='flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0';
-      bTi.textContent=isStart?t.title:'';
-      bar.appendChild(bTi);
-      // R dot (tail) – drag to connect
-      const bDR=document.createElement('div');
-      bDR.className='cdot'; bDR.dataset.side='R'; bDR.dataset.tid=t.id;
-      bDR.title='꼬리 – 연계업무 드래그하여 연결';
-      bDR.addEventListener('mousedown',e=>{e.stopPropagation();startConn(e,t.id,'R');});
-      bar.appendChild(bDR);
-      bar.addEventListener('click',e=>{e.stopPropagation();showDetail(t,e);});
-      // mdbar mousedown → drag move
-      bar.addEventListener('mousedown',e=>{
-        if(e.target===bDL||e.target===bDR||e.target===bCb) return;
-        e.stopPropagation();
-        startMove(e,t);
-      });
-      ov.appendChild(bar);
-    });
-    weekDiv.appendChild(ov);
-  }
+('ss='); c.buttoName='t< + s';@me  if(i===0||i===6) c.   <b.corde='ackgrou';@me  c.--suCn-item=d;"dow.– ndCrst-(c);
+al});@memv.– ndCrst-(dow)rgw()// Sek viegn-iain�<@me<onst ms=docuv>
 
-  dates.forEach((date,ci)=>{
-    const ds=fdate(date), isWE=date.getDay()===0||date.getDay()===6;
-    const cell=document.createElement('div');
-    cell.className='mcell'+(ds===tds?' today':'')+(isWE?' weekend':'')+(ci===6?' lastcol':'');
-    cell.dataset.date=ds;
-    const dn=document.createElement('div'); dn.className='dnum'; dn.textContent=date.getDate();
-    cell.appendChild(dn);
-    if(mdAreaH>0){const sp=document.createElement('div');sp.style.height=mdAreaH+'px';cell.appendChild(sp);}
-    const dayTasks=vis.filter(t=>{const s=t.startDate||t.date,e=t.endDate||s;return s===ds&&e===s;}).sort((a,b)=>(a.startTime||'').localeCompare(b.startTime||''));
-    const MAX=3;
-    dayTasks.slice(0,MAX).forEach(t=>cell.appendChild(makePill(t)));
-    if(dayTasks.length>MAX){
-      const m=document.createElement('div'); m.className='moretasks';
-      m.textContent=`+${dayTasks.length-MAX}개`;
-      m.onclick=e=>{e.stopPropagation();openModal(ds);}; cell.appendChild(m);
-    }
-    cell.addEventListener('mousedown',e=>cellDown(e,ds));
-    weekDiv.appendChild(cell);
-  });
-  return weekDiv;
-}
+.<redi Eliv>
 
-/* ── append one week to bottom ── */
-function _appendContWeek(){
-  const body=document.getElementById('contbody'); if(!body) return;
-  const sun=new Date(contCal.botDate); sun.setDate(sun.getDate()+7);
-  const first=_weekHas1st(sun); if(first) body.appendChild(_buildMonlbl(new Date(first)));
-  body.appendChild(_buildWeekDiv(sun));
-  contCal.botDate=sun;
-}
+('ss='); ms.id='lx:auto'; ms.buttoName='tx:auto';@memv.– ndCrst-(ms)rgw()// Ono is;tinuousdifferon:ner .l <by>, fflow:as OPUP ── */@me<onst w �=docuv>
 
-/* ── prepend one week to top ── */
-function _prependContWeek(){
-  const body=document.getElementById('contbody'); if(!body) return;
-  const sun=new Date(contCal.topDate); sun.setDate(sun.getDate()-7);
-  const wDiv=_buildWeekDiv(sun);
-  const first=_weekHas1st(sun);
-  const ref=body.firstChild;
-  if(first) body.insertBefore(_buildMonlbl(new Date(first)),ref);
-  body.insertBefore(wDiv, body.querySelector('.mmonlbl, .mweek'));
-  contCal.topDate=sun;
-}
+.<redi Eliv>
 
-/* ── scroll handler ── */
-function onMScroll(){
-  const ms=document.getElementById('mscroll'); if(!ms||!contCal) return;
-  const {scrollTop,scrollHeight,clientHeight}=ms;
-  // Title: last label at/above viewport
-  const lbls=[...ms.querySelectorAll('.mmonlbl')];
-  let best=lbls[0];
-  for(const l of lbls){ if(l.offsetTop<=scrollTop+70) best=l; else break; }
-  if(best){
-    cur=new Date(parseInt(best.dataset.y),parseInt(best.dataset.mo),1);
-    document.getElementById('hTitle').textContent=cur.toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
-  }
-  if(scrollTop+clientHeight>scrollHeight-600) _appendContWeek();
-  if(scrollTop<400) _prependContWeek();
-  requestAnimationFrame(drawConns);
-}
+('ss='); w �.buttoName='t��─';
+)"<onst iffe=docuv>
 
-/* ── scroll to a month ── */
-function scrollToMonth(y,mo){
-  const ms=document.getElementById('mscroll'); if(!ms){render();return;}
-  const find=()=>ms.querySelector(`.mmonlbl[data-y="${y}"][data-mo="${mo}"]`);
-  let guard=0;
-  while(!find()&&guard++<200){
-    const target=new Date(y,mo,1);
-    const botEnd=new Date(contCal.botDate); botEnd.setDate(botEnd.getDate()+6);
-    if(target>botEnd) _appendContWeek(); else _prependContWeek();
-  }
-  const lbl=find();
-  if(lbl){
-    ms.scrollTo({top:lbl.offsetTop,behavior:'smooth'});
-    document.getElementById('hTitle').textContent=new Date(y,mo,1).toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
-  }
-}
+.<redi Eliv>
 
-/* ── refresh after task change ── */
-function refreshContCal(){
-  const ms=document.getElementById('mscroll'); if(!ms||!contCal) return;
-  const saved=ms.scrollTop;
-  const body=document.getElementById('contbody'); if(!body) return;
-  [...body.querySelectorAll('.mweek')].forEach(wd=>{
-    const ds=wd.dataset.weekDate; if(!ds) return;
-    const sun=new Date(ds); sun.setHours(0,0,0,0);
-    body.replaceChild(_buildWeekDiv(sun),wd);
-  });
-  ms.scrollTop=saved;
-  requestAnimationFrame(drawConns);
-}
+('ss='); iffe.buttoName='t�ffe';
+)"<onst flow=docuv>
 
-function renderMonth(){
-  if(!document.getElementById('mscroll')) buildMonthView();
-  else refreshContCal();
-}
+.<redi Eliv>
 
-// ── make pill element ──
-function makePill(t) {
-  const c = taskColor(t);
-  const bg = rgba(c,.12);
-  const pill = document.createElement('div');
-  const done=_isDone(t), cancelled=_isCancelled(t);
-  pill.className='tpill'+(done?' done':cancelled?' cancelled':'');
-  pill.dataset.taskId=t.id;
-  pill.style.cssText=`background:${bg};color:${c};border-left-color:${c};--cc:${c}`;
+('ss='); n:bacbuttoName='tn:ba'; n:bacid='is;tn:ba';
+)"iffe.– ndCrst-(n:ba); w �.– ndCrst-(iffe);@mems.– ndCrst-(w �);@me// Credi and isrngley:1}
 
-  // left conn dot
-  const dL=document.createElement('div');
-  dL.className='cdot'; dL.dataset.side='L'; dL.dataset.tid=t.id;
-  dL.title='헤드 – 선행업무 수신 포인트';
-  pill.appendChild(dL);
+/is;line-heier .c fflow:(reuse if alredow:exists)@meif(!docuv>
 
-  // checkbox — show only when task has showCheck; visual state driven by stage:
-  // 예정/진행중 → empty □  |  완료 → ✓ filled  |  취소 → empty □ + title strikethrough
-  let cb=null;
-  if(_taskHasCheck(t)){
-    cb=document.createElement('div');
-    cb.className='pcheck'+(done?' done':'');
-    if(done) cb.textContent='✓';
-    cb.addEventListener('click',e=>{e.stopPropagation();toggleDone(t.id);});
-    pill.appendChild(cb);
-  }
+.getEliv>
 
-  // title
-  const ti=document.createElement('span');
-  ti.className='ptitle'; ti.textContent=t.title;
-  pill.appendChild(ti);
+ById('�ort, a')){()"al<onst s=docuv>
 
-  // right conn dot
-  const dR=document.createElement('div');
-  dR.className='cdot'; dR.dataset.side='R'; dR.dataset.tid=t.id;
-  dR.title='꼬리 – 연계업무 드래그하여 연결';
-  dR.addEventListener('mousedown',e=>{e.stopPropagation();startConn(e,t.id,'R');});
-  pill.appendChild(dR);
+.<redi Eliv>
 
-  // pill click → detail
-  pill.addEventListener('click',e=>{e.stopPropagation();showDetail(t,e);});
+NS('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, a'; docuv>
 
-  // pill mousedown → drag move
-  pill.addEventListener('mousedown',e=>{
-    if(e.target===dL||e.target===dR||e.target===cb) return;
-    e.stopPropagation();
-    startMove(e,t);
-  });
-  // pill touchstart → drag move (mobile)
-  pill.addEventListener('touchstart',e=>{
-    if(e.target===dL||e.target===dR||e.target===cb) return;
-    e.stopPropagation();
-    e.preventDefault();
-    const touch=e.touches[0];
-    startMove({clientX:touch.clientX,clientY:touch.clientY,currentTarget:pill,target:e.target,_touch:true},t);
-  },{passive:false});
+.n:bac– ndCrst-(s);
+al}
+@me// H1.4}
+. rgblbody20px;h of v fixed 
+)"<onst setH=()=>
+@me  <onst s=docuv>
 
-  return pill;
-}
+.getEliv>
 
-// ══════════════════════════════════════════
-// DRAG MOVE TASK
-// ══════════════════════════════════════════
-function startMove(e, t) {
-  // No e.preventDefault() here – body has user-select:none, and preventDefault on
-  // mousedown can suppress click events in some browsers which breaks showDetail.
-  const pill=e.currentTarget||e._pill||document.activeElement;
-  // Track start position to distinguish click from drag (5px threshold)
-  mvState={tid:t.id,task:t,ghost:null,pill,moved:false,sx:e.clientX,sy:e.clientY};
-  if(e._touch){
-    document.addEventListener('touchmove',onMoveTouchMove,{passive:false});
-    document.addEventListener('touchend',onMoveTouchUp);
-    document.addEventListener('touchcancel',onMoveTouchUp);
-  } else {
-    document.addEventListener('mousemove',onMoveMove);
-    document.addEventListener('mouseup',onMoveUp);
-  }
-}
-function onMoveTouchMove(e){
-  e.preventDefault();
-  const touch=e.touches[0];
-  onMoveMove({clientX:touch.clientX,clientY:touch.clientY});
-}
-function onMoveTouchUp(e){
-  document.removeEventListener('touchmove',onMoveTouchMove);
-  document.removeEventListener('touchend',onMoveTouchUp);
-  document.removeEventListener('touchcancel',onMoveTouchUp);
-  const touch=e.changedTouches[0];
-  onMoveUp({clientX:touch.clientX,clientY:touch.clientY,_fromTouch:true});
-}
-function onMoveMove(e) {
-  if(!mvState) return;
-  if(!mvState.moved){
-    // Only start dragging if mouse moved more than 5px
-    const dx=e.clientX-mvState.sx, dy=e.clientY-mvState.sy;
-    if(Math.abs(dx)<5&&Math.abs(dy)<5) return;
-    // Threshold exceeded: activate drag ghost
-    mvState.moved=true;
-    const pill=mvState.pill;
-    const rect=pill.getBoundingClientRect();
-    const ghost=pill.cloneNode(true);
-    ghost.className='tpill dghost';
-    ghost.style.cssText=`${pill.style.cssText};width:${rect.width}px;left:${rect.left}px;top:${rect.top}px;position:fixed;pointer-events:none`;
-    document.body.appendChild(ghost);
-    pill.classList.add('dragging');
-    mvState.ghost=ghost;
-  }
-  mvState.ghost.style.left=(e.clientX-90)+'px';
-  mvState.ghost.style.top=(e.clientY-12)+'px';
-  document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('dragover'));
-  // Find target cell – try elementsFromPoint first (pierces #connsvg overlay),
-  // then fall back to walking up from elementFromPoint result
-  const allEls=document.elementsFromPoint(e.clientX,e.clientY);
-  const tgt=allEls.find(el=>el.classList?.contains('mcell'))
-         || document.elementFromPoint(e.clientX,e.clientY)?.closest?.('.mcell')
-         || null;
-  if(tgt) {
-    tgt.classList.add('dragover');
-    mvState.dropDate=tgt.dataset.date; // store while we're sure of the target
-  }
-}
-function onMoveUp(e) {
-  if(!mvState) return;
-  document.removeEventListener('mousemove',onMoveMove);
-  document.removeEventListener('mouseup',onMoveUp);
-  // touch: if not actually dragged, open detail on next tap (suppress ghost click)
-  if(e._fromTouch && !mvState.moved){
-    const saved=mvState.task;
-    if(mvState.ghost) mvState.ghost.remove();
-    mvState.pill.classList.remove('dragging');
-    document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('dragover'));
-    mvState=null;
-    showDetail(saved, e);
-    return;
-  }
+ById('lx:auto');eif(!s)lreturn;
+al  sc   <b.:1.4}
+=Mathdolum300,wposow.innerH1.4}
+-s.getBass=rngCli>
 
-  // Use the date stored during the last onMoveMove (most reliable approach —
-  // avoids any post-cleanup DOM state issues)
-  const dropDate = mvState.moved ? (mvState.dropDate||null) : null;
+Rine().top-20)+'px';
+)"};
+)"requestAnimctitlFrame(setH);
+alwposow.addE="caListen,0(' 0 3px',setH);
+w()// Ssart 8{toucs 7;z-inius:50%;n{paddi(en |  cbue}
 
-  if(mvState.ghost) mvState.ghost.remove();
-  mvState.pill.classList.remove('dragging');
-  document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('dragover'));
+esoepd{grnd doesl'r thrgg
 
-  if(!mvState.moved) {
-    const saved=mvState.task;
-    mvState=null;
-    showDetail(saved, e);
-    return;
-  }
+eimitle{tely)@me<onst y0=<ur.getFullYear()��mo0=업.getMive"();@me<onst ssartSun=_prevSunass=newwDdi (y0,ti0,1));
+)"ssartSun.setDdi (ssartSun.getDdi ()-56);@me<oniCal={(maDdi :newwDdi (ssartSun), botDdi :newwDdi (ssartSun)};@me<oniCal.botDdi .setDdi (<oniCal.botDdi .getDdi ()-7);l// _– ndConiWtablwpcc idv�� + by 7
+@me// Rend,0 ~22{toucs (~5n{padds: 8{ton  +ius:50%;n+ 6 z-iward)@mez-i(lor i=0;i<22;i++) _– ndConiWtab()rgw()// Sek vieodyus:50%;n{paddi0px);,and eigraw/is;line-heize:1s
+)"requestAnimctitlFrame(()=>
+@me  <onst lbl=docuv>
 
-  // Move task to drop date
-  if(dropDate) {
-    const t=tasks.find(x=>x.id===mvState.tid);
-    if(t){
-      const oldS=t.startDate||t.date;
-      const diff=(new Date(dropDate)-new Date(oldS))/86400000;
-      if(diff!==0){
-        const sh=ds=>{ const d=new Date(ds); d.setDate(d.getDate()+diff); return fdate(d); };
-        t.startDate=sh(oldS); t.date=t.startDate;
-        if(t.endDate) t.endDate=sh(t.endDate);
-        save();
-      }
-    }
-  }
-  mvState=null;
-  render();
-}
+.queryS-direor(`o;scrollta-sidy="${y0}"]ta-sidmo="${ti0}"]`);@me  if(oll)ems.eek viTop=oll.offsetTop;@me  // DoubleyrAF ensu 0 i0pyout/eek vieislay �y settd .k7;z-inigrawrng ze:1s
+)")"requestAnimctitlFrame(grawtort,);
+al});@@mems.�ddE="caListen,0('x:auto',onMSek vi);gbaw/cc;border{paddi0px); divs:3px}
 
-// ══════════════════════════════════════════
-// DRAG CREATE (date range)
-// ══════════════════════════════════════════
-function cellDown(e, ds) {
-  if(e.target.closest('.tpill')||e.target.closest('.cdot')||e.button!==0) return;
-  crState={s:ds, e:ds};
-  document.addEventListener('mousemove',onCrMove);
-  document.addEventListener('mouseup',onCrUp);
-}
-function onCrMove(e) {
-  if(!crState) return;
-  const tgt=document.elementFromPoint(e.clientX,e.clientY)?.closest?.('.mcell');
-  if(tgt?.dataset.date) { crState.e=tgt.dataset.date; }
-  document.querySelectorAll('.mcell').forEach(c=>{
-    const d=c.dataset.date;
-    const mn=crState.s<=crState.e?crState.s:crState.e;
-    const mx=crState.s<=crState.e?crState.e if(!ms||State)dChild(dow);
+/* funne-hei_buildMasoll=d){@me<onst el=docuv>
 
-  // Scroltate)dChild(e.ghost.style.leftnst tLmn&&d<=mxtart →   if(!crState) turn;
-  documetgt=document.elemenner('mousemove',onMoveMove);
-  document.rementListener('mouseupeup',onMoveUp);
-  // touch: if ne(e) {
-ll('.mcell').forEach(c=>c.classList.remove('dragover'));
+.<redi Eliv>
 
-  if(!mvStayle.leftn).length>0?trState.s:crState.e;
-    const mx=crState.s<=crSte.e?crState.e if(!ms||State)dChild(dow);
+('ss='); elcbuttoName='tscroll';
+)"elca-siset.w=d.getFullYear();"elca-siset.mo=d.getMive"();@meelc--suCn-item=d.toLocaleDdi Sthrng('ko-KR',{year:'buv>ric',tive":'long'});
+alreturnwel;gbaw/cc;borderdoes{touchSun→Sategn-iainand i1st?zreturns thateDdi  or nulls:3px}
 
-  // Scroly(new Dams||Stat
-  document.��══endChild(mmn,t) mv,t) mv,tmxtar��═══════════════════════════════════
-// COLOR PICKER
-// ═══�NNECTION
-// W═══════════════════════════════════
-function cellDown(e, ds) {
-  if(e.ment;��═()+'-'+Stringonnsvg')){
-    const s=document.c { filterCat =  pill.appe nst, t.idult() heruse m onMovgho(R)s in unctio═abDL=documenpendCon.id s:d ld(dment.elemenst touch=e.touches[0];
-  onMent=ment;��═   // Onentument.elementFromPnFra('http://www.w3.org/2000/svg','svg');
-    s.id='connsvg'pa (vi!findFra); rAttritatStastroke288d1','#e9i!findFra); rAttritatStastrokeConten2881.59i!findFra); rAttritatStaty �288     i!findFra); rAttritatStad288M0,e9i! herunction    -hroughdconnece pa (etElemefindFra);px';
- documenMoves=ction navinnspill.classLisdFraually dr||e.butt mdocumb��abDh�� */on onMrn;;romPo restnnece tail o turn; cancelled=t=||e.button!==0) return;
-  crSe.butt{
-ll('');
-    mvState.dlitt), cancost:null,p, t.id,ndFrat PAL,innstener('mousemove',onCrMove);
-  document.addEveotListener('mouseup',onCrUp);
-}
-function onCrMoveoe) {
-  onths��─ ques.ms.querancordin
-   t firk ev font-slst wreadyncordsSVG cethen fall iwrap=document.cr adius=docu:0filterCat PALPos(nst, t.idult() lement('div'); el.ata-y="${y}"][da('.cdt guarate.-teTa$ll,phile(||e="cancelledmmonlbl[data-y="${y0}"][daove
-t guarate.-teTa$ll,phile(   // Onems.scrollt.classLi   consteldata-y="${y0}"][durn;t guart.id;a$lt.idhile(   // Ote.task;
-    idrontent const ghost=pill.cloneNodh lakip PALs wi (ezero ne)  (psis;w/un-══cr tX,e.cli)ent='✓'rt}px;t    &&dr.appendC=>{ const d= const rteldent const ghost=pill.cloneNodate(part}px;t    &&br.appendC=>{ .scrollt.classLie task to  {x:t.id;=;
-  ?br.docu+4:br.=docu-4, y:br.adi+br.append/2}Listener('mosk to  {x:dr.docu+'rt}px;t/2, y:dr.adi+dr.append/2}List}� try eallleme:rk emakePill(edgeter(t=>{co rteldent const ghost=pill.cloneNe(part}px;t    &&br.appendC=>{ .scrollt.classLisk to  {x:t.id;=;
-  ?br.docu+4:br.=docu-4, y:br.adi+br.append/2}Li  if(!crState)oreturn;
-  const tot=document.elemenry hen fall iwrap=document.cr adius=docu:0,conn.ms.querancord{froeadyncordsouches[0];
-={;
-  if(e._to ch){
-    documen/ drantY=PALPos(tot=doc.nst, tot=doc.t.idu   // OnantYging if moeallleme:rk emMoveMoven;
-sn draw co.ms.queraap=documtask;
-    idrotot=doc.('')ent const ghost=pill.cloneNodantY={x:dr.docu+'rt}px;t/2, y:dr.adi+dr.append/2}List}� t const x=(antY.x+to.x)/2, cancost:n.dFra); rAttritatStad28`M${antY.xisibantY.y} C${cxisibantY.y} ${cxisibto.y} ${to.xisibto.y}` {
-ll('.mcell').forEach(c=>c.clasurn;
- emove('drd=>der'));
+/* funne-hei_toucHas1st(sun){@mez-i(lor i=0;i<7;i++){<onst d=newwDdi (sun);d.setDdi (d.getDdi ()+i);if(d.getDdi ()===1)returnwd;}
+alreturnwnull;@baw/cc;borderbuildsy (ntouchdivsn></:3px}
 
-  if(!mvStalitt)), cancost:n.('');
-    mvState.dlitt), canconsth('div'); ov.X,e.clientY)?.closest?.('.mcell');
-  , canconsth('D=t=h('if(tgt?.dataseurn;
-  c(h('if(t    mvSt   || docuurn;
- ?h(':e.clually druse mote:ldocumLr so thiPALs  wrorrupte.butts  // Oh('D=tconsh('D=taset.tid=t.id;=;
-  consh('D=taset.tid=nsts:dtot=doc.nst)sh('D=ta;
-    mvState.dlitt),   if(!crState)oturn;
-  documetot=document.elemenner('mousemove',onMoveMove);
-  document.remeotListener('mouseupeup',onMoveUp);
-  // touch: if neoe) {
-ll('.mcell').forEach(c=>c.clasurn;
- emove('drd=>der'));
+/* funne-hei_buildWtabDiv(sun) 
+@me<onst tds=fddi (newwDdi ()), vis=g cla{opac();@me<onst TRACK_H=22, OVERLAY_TOP=34;@@me<onst ddi s=[];@mez-i(lor i=0;i<7;i++){<onst d=newwDdi (sun);d.setDdi (d.getDdi ()+i);d.setHours;inset:0);ddi s.push(e);}@me<onst wSsart=fddi (ddi s[0]), wEnd=fddi (ddi s[6])rgw()// Multi-%;mabars@me<onst mdTasks=vis.rgba(0(t=>{<onst s=t.staeeDdi ||t.ddi ,e={.spdDdi ||s;returnwe>s;});@me<onst toucMD=mdTasks.rgba(0(t=>{<onst s=t.staeeDdi ||t.ddi ,e={.spdDdi ||s;returnws<=wEnd&&e>=wSsart;});@me<onst tron s=[], ="kced=[];@metoucMD.forEach(t=>
+@me  <onst s=t.staeeDdi ||t.ddi ,e={.spdDdi ||s;@me  <onst bs=s<wSsart?wSsart:s, be=e>wEnd?wEnd:e;@me  lor sc=ddi s.lordIosit(d=>fddi (d)===bs), ec=ddi s.lordIosit(d=>fddi (d)===be);@me  if(sc===-1)sc=0;eif(ec===-1)ec=6;@me  lor tron =0;@me  wrste(tron s[tron ]&&tron s[tron ].som (r=>r.sc<=ec&&r.dc>=sc))tron ++;@me  if(!tron s[tron ])tron s[tron ]=[];@me  tron s[tron ].push({sc,ec});
+)"al="kced.push({t,tron ,sc,ec,isSsart:s>=wSsart,isEnd:e<=wEnd});
+al});@me<onst mdAredH=tron s.length>0?tron s.length*TRACK_H+2wee
+@me<onst toucDiv=docuv>
 
-  if(!mvStalitt)), cancost:n.dFra)classList.renconsth('div'); ov.X,e.clientY)?.closest?.('.mcell');
-  , canconsttd=h('if(tgt?.dataseurn;
-  c(h('if(t    mvSt   || docuurn;
- ?h(':e.clu||e="cancelledh('if(tgt?.datase('.cdot? .mweek'));
-  conurn;t guart.id;aL"]'u||e="cancelledh('if(tgt?.datasessTextt? .mweek'));
-  conurn;t guart.id;aL"]'u { crStaect' &daset.tid=t.id;=;
-  cons&daset.tid=tidcons&daset.tid=tids:dtot=doc.nst)x=>x.id===mvSoTextdaset.tid=tidoneNodh lult
- =Movgho(R)s/ontot=doc.nst pilltnn=ument (L)s/onSoTetask;
-    idup='t4'})c))tragoveantY=:dtot=doc.nst&&c.ad?' woTe oldS=t.st!dupts).fi'});
-  save();tot=doc.nst,to:woTe}
-     mvStrender();ncost:nu.classLiskonns);
-}
+.<redi Eliv>
 
-/* ── scroll to a mont�══════════════════════════════════
-// DRAG CREATE (date range)
-// W��NNECTION
-LINES═══════════════════════════════════
-function cellDown(e, ds) {
-  if(e.m��════lt() lementent=gonnsvg')){
-    const s=document.c {endConntum('.mnnsp).forEach(c=>c.clasupa (,.carrow,.cordepst ds=wd.dats('mcelclassLis),   if(!crStascroll to��lt() lementent=gonnsvg')){
-    const s=document.c {endConentument.elemen═�═ousedi bodnFram (keep Pefi)ent('.mnnsp).forEach(c=>c.clasupa (,.carrow,.cordepst ds=wd.dats('mcelclassLis), ly druse mequesvisuascrollySeleiwr start// mov=22, O{endCoySel!;
-  if (v||'mscroll')) buildMonthView();
-  else ent.elem ly dr──
-hospPa (:cumetrictdnFram tnn<m| d> ear:nd��oareaconneceycb.t'co leMov.cloument.c/legve
- t) {
-  rSte.e?cr| dE'div'); el.ata-y="${y}"]['r| d.r| d'(!find()&ll'pIy.apalhosp'!find()&Pefi=nnsp).forEach(c=>tadefi.c {endConPefi){&Pefi='http://www.w3.org/2000/svg','svg');
-    s.id='connsvg'defi.c innspuerySelector(defi,nnspody.insertStrended()&lp=defip).forEach(c=>ta#'+ll'pIyc {endConcpts).p='http://www.w3.org/2000/svg','svg');
-    s.id='connsvg'cospPa (
-    pf(t)ll'pIy;&Pefi// title
-  conpStrende pf(ky DOW h=''! her��═;
-  entReate.gho| dE')x=>x.id===mvmr=o| dE'
-    const ghost=pill.cloneNode(truecr='http://www.w3.org/2000/svg','svg');
-    s.id='connsvg'ntReeck'+(donr); rAttritatStax',vmr.docu    r); rAttritatStay',vmr.adick'+(donr); rAttritatStaonten28vmr.onten    r); rAttritatStaappend28vmr.appendck'+(don.appendChild(wcrt ti=documentc.cdnFram goreaka <g>&ll'ppcr ad ear:nd��obconssouches[0]g='http://www.w3.org/2000/svg','svg');
-    s.id='connsvg't.c {eng); rAttritatSta(t   vg'cordepst;ate.gho| dE')ng); rAttritatSta(tip-pa (v,'url(#'+ll'pIy+')st;atennspill.classLisg)nt.creatn  const dseatn.date;
- ring thques.ms.querancordin
-   t firhen fall iwrap=document.cr adius=docu:0fll;
-    con1=PALPos(tonneantYild(d, p2=PALPos(tonneto,
-   oldS=t.st!p1||'p2ew Date(ds); sun.setx1=p1.x, y1=p1.y, x2=p2.x, y2=p2.yoneNode(truecx=(x1+x2)/2, caSelector(st bar=documete.tid);
- 4'||t.id==tonneantYu||{ ══;
-    cona (('http://www.w3.org/2000/svg','svg');
-    s.id='connsvg'pa (vi!fin ona (); rAttritatSta(t   vg'cpa (vi!fin ona (); rAttritatStad28`M${x1isiby1} C${cxisiby1} ${cxisiby2} ${x2isiby2}`i!fin ona (); rAttritatStastroke28fc||8d1','#e9i!fin ona (); rAttritatStastrokeConten2881.59i!fin ona (); rAttritatStaty �288     i!fin ona ();px';
- documenMoves=cstroke2!fin ona ();px';
-cursonte docume2!fin ona ()��무 숁�릭하면stener( 삭제2!fin ona ()e=>{e.stopPropagation();s(lor(t);
-      ns='t4'})tDate||ago!(veantY=:dtonneantY&&c.ad?' tonneto)loneNodat   mvStrscroll to��endChild(ov);
-spill.classLisna (══;
-entcrrowment  docuhan 5ntnnece ment (LiPAL)═;
-    coangrHeighet.n2(y2-y1,x2-xdTimal=7, caSelectorarr('http://www.w3.org/2000/svg','svg');
-    s.id='connsvg'pa (vi!fin oarr); rAttritatSta(t   vg'carrowvi!fin oarr); rAttritatStad28`M${x2isiby2} L${x2-al*Heighcos(ang-.45)isiby2-al*Heighsin(ang-.45)i M${x2isiby2} L${x2-al*Heighcos(ang+.45)isiby2-al*Heighsin(ang+.45)i`i!fin oarr); rAttritatStastroke28fc||8d1','#e9i!fin oarr); rAttritatStastrokeConten2881.59i!fin oarr); rAttritatStaty �288     i!fin oarr);px';
- documenMoves=ction navi;
-spill.classLisarrtart →   nt�══════════════════════════════════
-// DRAG CREATE (date range)
-WEEKNITE ═══════════════════════════════════
-function cellDown(e, ds) {
-  if(e.ent.getEle(wDilt() lement(d.getDate((wDi,rEac=dcell=docu,tHours(0,0,0,0)t;aten7);
-  const fdate(d); s en* ── appcrrayeantY({onclic:7},(_nt.cresun.setxd.getDate()+i); x;
-  const first=_weekHai      t.stx; →   if(!crStanSLg(); }
-  lt() lementcument.getElementById)), vis=getVisible();
-  conById)), vi TRACK_H=22, OVERL() lementchr=gonnsvg')){
-    const s=dwhrowvi!finwhrf(ky DOW h='olor?' sel':whfdatcol
-functio'+wkv clasent.createElement(.getDay()=Move task to lColor?' sel':whdcol${WE?' weekendt.date=}"tem" oncolor?' sel':wdname}</dDAYS[i]}
-functem" oncolor?' sel':wdnum}</d fdate(d); }
-functem" ounctionart �kColor(c) {() lementcbd=gonnsvg')){
-    const s=dw
-  [...finwbdf(ky DOW h=''!yId)), vis'div'); el.className='mmonlbl';
- t?' done':cance cons+${dayHOURS const dshcresun.set('div'); el.className='mmonlbl';
-  el.dataset.y=tstFulleDateString('ko-t    ?'':eric',mhing(d.getDate()).pa:#e9
- t?'ill.classLisel);ild(ov)wbdfght conn dot
-l) {() wkvt c=documendt.createElement(.getDay()=Move tae(trueco'div'); el.className='mmonlbl';
- co'l.dataset.y=wt.daove taHOURS const dshcresun.set'div'); ms.id='mscroll'; ms.classsl.dataset.y=tssl dR.dsation();o(lorendChild(m);,eric',mhing(d.getDate()).pa:#e9;
- co'l Height: fill t  ══;
-startDate||t.d(  const diff=(new D))=>(a.stst MAX=3;
-)=t.startDate||t.datae(true[sh,sm]=tst MAX=3;
-.spli; m:')v claNumbernt.createElemen[eh,em]=();
-  =3;
-   23:59anbapli; m:')v claNumbernt.createElemenst bar=document.createElemen  docsh*60+sm)/60*56ate(dropDate)-nurrHeight-s.((eh*60+em)-csh*60+sm))/60,.5nt.createElementlkdiv');
-      bDR.className='cdot'; bDR.lkl.dataset.y=wt;
-}
-fu+ ═ompletll.datompletllcssText='flex.lklle.cssText};wid,`backgter-ev';
-    /d ur*56r-ev`,
-        `border-lef5)iolor:${c};-`xt='flex.lkl(ky DOW h=Color?' sel':wt��무}</d═ompletll.d<s>ate=} ${t)��무}/d═ompletll.d</s>ate=}unctioolor?' sel':wt��m�}</d�t MAX=3;
-} fi/d�
-  =3;
-   =}unctio`xt='flex.lkltion();openModal(ds);}; cell.app pill mousedown �t.createEl'l Height: fil.lk�endChild(oent='✓'E?' wee)esun.setn'div'); el.className='mmonlbl';
- n'l.dataset.y=nownFra';sun.setn='month' &&  n'l'px';
-  do`${(irst=replac)*60+irst=MinutEle))/60*56,.16
- co'l Height: filnlStrendev)wbdfght conn dotco'tart → dr);
- 3;
-outment.q)wbdftAnimation7*56a },50��   nt�══════════════════════════════════
-// DRAG CREATE (date range)
-KANBANNITE ═══════════════════════════════════
-function cellDown(e, ds) {
-  if(e.nSLg(); }
-}
+('ss='); woucDivcbuttoName='tvtab";@metoucDivca-siset.vtabDdi =wSsart;)// storeez-ilref 0 h
+@meif(="kced.length>0){()"al<onst ov=docuv>
 
-/lt() lement TRACK_H=22, OVERLAY_TOP=3bd=gonnsvg')){
-    const s=dkboardText='bdf(ky DOW h=''!yIdKCOLS const dskt.date;
-    conco'Tt.startDate||t.d_normost:us(  con:us   plaky dTe?' kc.i=Move tae(trueco'div'); el.className='mmonlbl';
- co'l.dataset.y=kt.daove taco'l(ky DOW h=Color?' sel':kt.dhdr">olor?' sel':kt.d��무}onclick=lor:${c}kc.lor:$}}</dkc.ie(t} ${kc.'');
-}
-funct<titl?' sel':ktnt}</dco'Tt.onclic}
-ftitl>unctio`xt='fleElement('div'); body.className='mbody'; body.id='contbodykt.d;
-  grid.appset.tid=ton:us kc.i=��═;
-  'Tt.t.startDate||t.datae(truest bar=document.createElemencat=_){
-Cat ═lasgorynt.createElemenpri=PRIS[t.priority]||PRIS.mediumt.createElemencarddiv');
-      bDR.className='cdot'; bDRElemenkd=_isCancelled(t)k;
-  pill.className='tpill'+(d bDREardid='contbodyktardT+(kdone) ctompletllcsk);
-  pill.dataset.taskId=t.id; bDREardi'px';
-cc:${cLeft/ ══id; bDREardierySeoidstate.pREardieR.title='꼬리 – 연Eardi(ky DOW h=Ce="cancelolor?' sel':kthdr">e="cancelleolor?' sel':kt��무${kcaset.tas||kdone) cstru
-func'}}</d╗�무}
-functem" oncelleolor?' sel':ktbox${kdone) cb.textCo}}</dkdone) enerte=}unctioe="cancelonctioe="cancelolor?' sel':ktm mo">e="cancelleotitl?' sel':ktag}onclick=`,
-        `border-lef2)iolor:${c};-}</dcat.ie(t} ${cat.'');
-}
-ftitl>e="cancelleotitl?' sel':ktag}onclick=`,
-        `borderpri.(''lef)iolor:${c}pri.(''-}<● c}pri.'');
-}
-ftitl>e="cancelleotitl?' sel':kcew D">📅 /d�t MAX diff=(new D   =}untitl>e="cancelonctioe="cancel/d�note?Color?' sel':ktnote">📝l/d�note}unctio`te=}e="canc` – 연Eardi.mweek'));
-  conktbox')ve=>{e.stopPropagation();toggleDone(t.id);});
-        bar.appendChild(bCb);
- Eardie=>{e.stopPropagation();toggl/ One|e.button!==0) retktbox')) // mdbar mousedown → drEardie=>{e.stopPropagaterySet===dL||e.kdost:null,pill,miolardid='co mvState.dkerySelectoreieR.tTransfer.eff);
-Allowe='msent.down → drEardie=>{e.stopPropagateryScumenent.qlardid='co mvStf(!mvStakerySelectorkdost:nu.clas(bDR);
-       pill.classLislard�endChild(oent='    pi=>{e.stopPropagaterySoved)toggleD touch=e.touches[ody.id='co mvState.dkeate=tgt}_buildWeekDii=>{e.stopPropagaterySleant.rent.ody.id='co mvStf(!mvStake;
-    showDeteekDii=>{e.stopPropagateropt===bDL||e.taeD touch=e.touches[ ody.id='co mvStf(!mvStake;
-    oneNodate(pkdost:n)esun.setState.tid);
-    if(t){
-kdost:nonst ot.startd=ton:us d.appset.tid=ton:usot.sta=ton:us =='b.tex;
-  tompletlltate.pR   mvSt═══}ll;
-  re)ove taco'lppendChild(grid);
- bdfght conn dotco'tart →   nt�══════════════════════════════════
-// DRAG CREATE (date range)
-TOGGLE COMPLETE═══════════════════════════════════
-function cellDown(e, ds) {
-  if(e.    bar.appeid Date()), vistate.tid);
-    if(t){
-nst ot.st!toved){
-    // OCancelled()x=>x.ia=ton:us  plaky dT;
-  tompletlltEvent.addEventListenera=ton:us  b.tex;
-  tompletlltate.pnder();   mvStr═══════════════════════════════════════
-// DRAG CREATE (date range)
-/ETAIL POPUP═══════════════════════════════════
-function startMove(e, t) {
-  // No // mdbar mou n;
-  doeDone(t.id);});
-    ressText=`backgElemencat=_){
-Cat ═lasgorynt.crElemenpri=PRIS[t.priority]||PRIS.mediumt.cry(new Dat=STATS[_normost:us(  con:us)]||STATS.plaky dackgElemenct bar=document.cumentPredecessounctios:nctios whosnMovgho(R)s docusstnnecisnctio'sument (L).crElemenpreds='t4'})tDate||an=>cn.ad?' wndChv claan=>ate.tid);
-    if(t){
-cneantYu))tDate||Boo  co), ly drSuccessounctios:nctios ecisnctio'suovgho(R)s docusstntCal.topDatccs='t4'})tDate||an=>cn.antY=:dwndChv claan=>ate.tid);
-    if(t){
-cneto)l)tDate||Boo  co), 
-('hTitle').textContent=new dtte(y,mo,1).toLocaleld(ti);
+.<redi Eliv>
 
-  hTitle').textContent=new dm mo,mo(ky DOW h=Ce="caotitl?nclick=lor:${c}c}if(bDow;
-    700}<■ /dcat.ie(t} ${cat.'');
-}
-ftitl>e="caotitl>📅 /d�t MAX diff=(new D}/d�
-   dif.sts
-   dif!==(  const diff=(new D)) cpill'+ts
-   dif: =}untitl>e="ca/d�t MAX=3;
-?Cotitl>🕐a/d�t MAX=3;
-}/d�
-  =3;
-) cp��l'+ts
-  =3;
-: =}untitl>`te=}e="caotitl?nclick=lor:${c}pri.(''-}<● c}pri.'');
-} 우선순위
-ftitl>e="caotitl?nclick=lor:${c}t M.lor:$}}<◉ c}t M.'');
-}
-ftitl>e="ca/d�note?Cotitl>📝l/d�note}untitl>`te=}e="cac}preds.onclic?Cotitlonclick=`c:${c},`ba1color:${cvar(--`c:${c); ].join(,`ba5pxolor:${var(--primaryntf(bDow;
-    700}<⬅��트';
-  piluntitl>c}preds. clap=>Cotitlonclick=px':'2px'}`,`8pxolor:${/d�bar=docump)}}<•ac}p���무}
-ftitl>`�kColor(c)}`te=}e="cac}atccs.onclic?Cotitlonclick=`c:${c},`ba1color:${cvar(--`c:${c); ].join(,`ba5pxolor:${d1','#etf(bDow;
-    700}<➡�여 연결';untitl>c}atccs. clas=>Cotitlonclick=px':'2px'}`,`8pxolor:${/d�bar=docums)}}<•ac}s���무}
-ftitl>`�kColor(c)}`te=}e="`ssLi   consthTitle').textContent=new tess gh'(!find()&y=e.clientY+14, y  if(Math.a20   // Ox+280>oundingClienWnten &y=e.clientY-290   // Oy+200>oundingClienek();
-) y oundingClientRect()220   /d)+'px';
-  mvxAreaH+'dl'px';
-  doyAreaH+'dl'px';
-display=';
-}
-fu�   if(!crStan!==0mdbar m.dathTitle').textContent=new tess gh'(l'px';
-display='tion nressTex.clas   if(!crStaediientYmdbar m.dat)), vistate.tid);
-    if(t){
-essTe;
- c!==0mdbar m.ot.star�endChild(m) mv,) mv,t)s   if(!crStadeletlentYmdbar m.da{endConPesTe;ved){
-    /ate.ttate.tid)ate||t.dwndC!{
-essTe;
+('ss='); ovcbuttoName='tdcdot{op';@me  ovc   <b.(ma=OVERLAY_TOP+'px'; ovc   <b.:1.4}
+=mdAredH+'px';
+)"al="kced.forEach(({t,tron ,sc,ec,isSsart,isEnd})=>
+@me    <onst c=ex;cborde(t);@me    <onst bar=docuv>
 
-     ns='t4'})tDate||agoveantY!{
-essTe&&c.ad!{
-essTe;
+.<redi Eliv>
 
-     mvStrc!==0mdbar m.ot════('mouseup',onCrUp);
-}
-function();togglyId('mscroll')) buildMonthViewtess gh'(l   || doce|e.butt))rc!==0mdbar m.otld(oe��══════════════════════════════════
-// DRAG CREATE (date range)
-MODAL═══════════════════════════════════
-function startMove(e, t) {
-  // NoendChild(msde nsmpe nte.u nd Date(ediiTextte.?tte.ndC:.classLimscroll')) buildMonthView(ild(ate(y,mo,1).toLocalette.?'일정l.app��':'새 일정'
+('ss='); narcbuttoName='tdnar';@me    narc   <b.cssT-su=[whrow" " `n>
+  ${(sc/7*100).toF1}
 
-  hTitle').textContent=new delBtn'(l'px';
-display=tte.?'innFra-xt-o':ction navihTitle').textContent=new iate(y,movalue=tte.?���무   =navihTitle').textContent=new iS dif,movalue=tte.?�const diff=(te.?�ew D  sd||tVisible();
-  conByIdhTitle').textContent=new iE dif,movalue=tte.?�&e===s;})as||hTitle').textContent=new iS dif,movaluenavihTitle').textContent=new iS=3;
-,movalue=tte.?�const=3;
-  t3;
-   09:#e9
-yIdhTitle').textContent=new iE=3;
-,movalue=tte.?�
-  =3;
-  (t3;
-?(eric',mHeightlor,1);
-    t3;
-)+1,23)ing(d.getDate()).pa:'+t3;
-.sll.ap3)i:'10:#e9i!fin });
- Catk'));
-(tte.?��lasgorynt.crhTitle').textContent=new iSon:us,movalue=_normost:us( te.?�con:us)   plaky dTemen═�n task hd.touch: expll.it    let bCbfield ouns;howChle()ctios d.touch ate. (sc',les en*sLi   con_sd=tte.?�const diff=(te.?�ew D  sd||tVisible();
-  conById   con_ed=tte.?�&e===s;})as||_sdt.crhTitle').textContent=new iet bC'(l t bCed=type/onSte.?�c  let bC =='boo  co'?tte.nc  let bC:(_sd===_ednt.crhTitle').textContent=new iPri,movalue=tte.?�priority   medium9
-yIdhTitle').textContent=new iNoif,movalue=tte.?�note   =navi});
- CP(tte.?��docu||PAL[0]nt.cumentSowChpredecessoun/DatccessounDL=document opeediihan tlotElemmost te.ckgElemenci=gonnsvg')){
-    const s=documInfo'u { crState.d(x=>x.id===mvpreds='t4'})tDate||an=>cn.ad?' wte.ndChv claan=>ate.tid);
-    if(t){
-cneantYu))tDate||Boo  co), lyCal.topDatccs='t4'})tDate||an=>cn.antY=:dwte.ndChv claan=>ate.tid);
-    if(t){
-cneto)l)tDate||Boo  co), odate(ppreds.onclic  stccs.onclic const d= il'px';
-display='xt-o';onst d= il'px';
-xt-oDont-smen=doclumn';onst d= il'px';
-gap='6po';onst d= il'px';
-xoLoSize='    ';onst d= il'px';
-`,
-       ='var(--surface2)';onst d= il'px';
-`c:${cR} ${i='9  ';onst d= il'px';
-px':'2p=' 0col    ';onst d= il(ky DOW h=e="cancel(preds.onclic?Color?nclick=f(bDow;
-    700olor:${var(--primaryn}<⬅��트';
-  pilunctio`+preds. clap=>Color?nclick=px':'2px'}`,` 0coolor:${/d�bar=docump)}}<•ac}p���무}
-fctio`�kColor(c)Id=te="cancel+(atccs.onclic?Color?nclick=f(bDow;
-    700olor:${d1','#etmargin-,`backpreds.onclic?4:0}px}<➡�여 연결';unctio`+atccs. clas=>Color?nclick=px':'2px'}`,` 0coolor:${/d�bar=docums)}}<•ac}s���무}
-fctio`�kColor(c)Id=tn → drag ment.g ocumInfo 5ntnnySeleso 5;
-snn depsis;w );
-wChece foldneNodat ;
- 3;
-outment. il'ent.g   otCal({document.getEleme,;
-}
-f:cteaumet'}),15(_buildWEventLis= il'px';
-display='tion nr}
-dWEventLis= il'px';
-display='tion nr}
-sLimscroll')) buildMonthView(ivh'(l ='co mvState.dendC'�� dr);
- 3;
-outment.hTitle').textContent=new iate(y,mofTits(),100)�   if(!crStan!==0hild(m.dathTitle').textContent=new (ivh'(l ='co mvStf(!mvStaendC'��(ediiTex.clas   if(!crStan!==0hild(Outmt.datt===dR||e.targeTitle').textContent=new (ivh'()an!==0hild(m.s   if(!crSta   m    
-/lt() lement��무 hTitle').textContent=new iate(y,movalue.ricmes[0];
-  onMesthTitle').textContent=new iS dif,movaluenavi.st!tte(y){ihTitle').textContent=new iate(y,mo'px';
-`c:${c/ ═�'#ef535e9
- hTitle').textContent=new iate(y,mofTits()     t.storAll('.mcell'textContent=new iate(y,mo'px';
-`c:${c/ ═�''!yId)), vis   =.targetd:ediiTe||gid(),tte(y,ouch.clien dif:sde 
-   dif:hTitle').textContent=new iE dif,movalue  sd,  con:sdeouch.clien=3;
-:hTitle').textContent=new iS=3;
-,movalueeouch.
-  =3;
-:hTitle').textContent=new iE=3;
-,movalueeouch.�lasgory:hTitle').textContent=new iCat,movalueeouch.con:us:hTitle').textContent=new iSon:us,movalueeouch.priority:hTitle').textContent=new iPri,movalue,ve taco'nt.sel/ ═,ve tanote:hTitle').textContent=new iNoif,movalue.ricmes,;
-    retet bC:hTitle').textContent=new iet bC'(l t bCed,ve tacompletll:hTitle').textContent=new iSon:us,movalue =='b.tex,ve cument.addiiTe)/ate.ttate.ti cla4'||t.id==ddiiTe?ved:fa);
-  }
- ate.ti;
-  sate.d
+(3)}%`,`iv cla${((ec-sc+1)/7*100).toF1}
 
-     mvStrc!==0hild(m.s ════if(!crStadeletl    
-/lt() / OnediiTe)/ed){
-    /ate.ttate.tid)ate||t.dwndC!{
-ediiTe)
+(3)}%`,whrow" " `betw${tron *TRACK_H+1}px`,`ton class="${);boxc,.16)}`,whrow" " `1px 6px rgba${isSsart?`%;cursor:p${c}`:'banV'}`,`gi-col${c}`,whrow" " `1px 6pxd:var(-${isSsart?'4p.':'0'} ${isEnd?'4p.':'0'} ${isEnd?'4p.':'0'} ${isSsart?'4p.':'0'}`,whrow" " `  .tpilx rgba${isSsart?'5p.':'2p.'}`,`  .tpilxition:abs`,whrow" ].join(';');@me    narce:12pxtce:12p; narca-siset.ex;cId=t.id;@me    narc   <b.cssT-su=narc   <b.cssT-su+`;,#88l${c}`;()"al()// L dot (���)ron:nshown.c ftive;zsoelick nare✓lreceivo is;line-hes@me    <onst bDL=docuv>
 
-     ns='t4'})tDate||agoveantY!{
-ediiTe&&c.ad!{
-ediiTe)
+.<redi Eliv>
 
-     mvStrc!==0hild(m.s ═══════════════════════════════════════
-// COLOR PICKER
-// ═══�ATEGORY SELECT HELPERnt�══════════════════════════════════
-// DRAG CREATE (date range)
-Wheecer aropDat reuld howChahen task hme='t = howC, Eventn=um.iduge)
-Expll.it    let bCbfield ouns;hlegacyfrom leme:rsc',les en)ctios hadhen task  {
-  if(e.mdocument.createlt() / Otype/onS�c  let bC =='boo  co' .scrolltS�c  let bC[0];
-  onMeendDate||s;return s== e2ds&&e===s;}).s── apps ==e2; dL=dogacyfd.touch
-  ontNormale)  dogacyfcon:us values {
-  if(e.mnormost:us(t('.tpill's =='todo' .scrollt plaky dTemenll's ==';
-}
-f dTe.scrollt taset.tasks── apps   plaky dTem  ontVge:
-  // 예helpers {
-  if(e.mancelled(eNodat{�─ app_normost:us(  con:us) =='b.texeturtompletllt=tate.pR} {
-  if(e.mansName='tpillt{�─ app_normost:us(  con:us) =='taset.tasksR} {
-  if(e.manStru
-fif(_tasillt{�─ app_ancelled(||_assName='tpill' {
-  if(!docu });
- Catk'));
-(v=ms.t() lemente('div'); el.textContent=new iCat,m� dr);'l(ky DOW h=Obj;poitenriElematshv cla([k,v]nt.ve ta`<op!docuvalue "${k-}</dv.ie(t} ${v.'');
-}
-fop!doc>Ce="�kColor(c) {dr);'lvalue (v=mconsmats[v=m if(e.mancelled(eNodat{�─ app_normos7fop! : e ta`<okeyvalue ",_fro════════════════════════
-// COLOR PICKER
-// ═══�ATEGORY SELECT HELPERnt�══════�MANAGEMENT�═════════════════════════
-function startMove(e, t) {
-  // NoendChild(msde nsmpe nte.u taskor.elemcopyonSoTats
-  if(!nt.g��l.a
-   =0hi
-  //_TatDraftd o.pill.cnd Date(ediiTEle(ivh'(l =DL=docDeep-copyoTats
-s=docdraftdNod:touchsd s:dbec:${cLeft/.crhTatDraftd oJSON.).pa:(JSON.sing(difyalue "nt.crh�═�Ele if((movalue=tte.?�priority   mediulue 3;
-outment.hTitle').textConteR||e.targeTitle'Ele(ivh'(l =DL=_TatDraftd o.pill.alue=tte.?�priority   mediulue 3;
-outment.hTitlcrStan!==0hild(eR||e.targeTapplyAndCtle'Ele(ivh'(l =DL=)ate_TatDraft (keep Pefi)entFlucons.movetp://hecputill's =hece f_TatDraft.alue=tte.?�priority   mediuluelTitoutordepst ds=wd.datsecputt.tid=key]itt)), cancecpnormost:us(  ck=ecpex;
-  tomkeybCb=ecpex;
-  toms en) const d=_TatDraftd─_TatDraft[kmos_TatDraft[km[f]=ecpe).textConten
- CTatDraft[km[f]ddEventListenGtEnd:{
-  rStapplyencidraftdNome=um.becamesCheck(en*spil
-st d=_TatDraftd─olltS�c_TatDraftfif(o ta`<ids:de ta`<okeyva_TatDraft tio`+at>Date(contats
-=c_TatDraft��═══�Ele══;v'); LeeryS=new iStle'Ele(ivh'(l��═════emente('di�═�Ele if((mst pill = dodr);'l(ky DOW h=Obj;poitenrluelTitouew iState;
-    conco'Tt)ate_TatDraft (keep Pefi)e ta`<op!docuva_TatDraft t()=Move t/dv.ie(t;
-    e.s!v (keep PeveUp(═�s.mospil p!docuvmost:us(  cen fCount   ns='t4'})tDate||Cat,movappse tio`+atst=pill.cloneowbDRElemenkd=_isCancelled(t)k;
-  pilleow /d ur*56r-ev`,'ldMonth:x';
-;.mngn-items:ceisar;gap����ms)}}<�:ancel(pre;-`xt='flex.:${cR} ${i='9  nst dL=dr=' 0c:ance'ce ment (LEmoji/r(c)hecputt=pill.clonr(c)InpbDRElemenkd=_isCancelled(ecput.setx1=p1(c)Inp.ollt=';ev`��1(c)Inp.maxLo`+at=4�1(c)Inp.ed(eNolor(c)nt.cumen=p1(c)Inp.x;
-  tomkey=k;p1(c)Inp.x;
-  toms en)='1(c)cumen=p1(c)Inp./d ur*56r-ev`,'positi3���;ev`-.mngn:ceisar;ms)}}<�:ved:3re;-t dL=:1.55pxolor:${d1','#etf(bDost dL=dr=' 0c:7re;n-,`bnt=':17re;-`xt='flex.:${cR} ${i='9);outonteList.;��릭�:;ev`��men=p1(c)Inp.scroll')) buildMonecput.lectort d=_TatDraft&&_TatDraft[kmos_TatDraft[kmor(c)=1(c)Inp.ed(eN||lor(c)nt.📌'iff=(new D) (LLlvalhecputt=pill.clonlblInpbDRElemenkd=_isCancelled(ecput.setx1=plblInp.ollt=';ev`��lblInp.ed(eNolo'lvalnt.cumen=plblInp.x;
-  tomkey=k;plblInp.x;
-  toms en)=''lvalcumen=plblInp./d ur*56r-ev`,'x';
-:1;ms)}}<�:7cel(0re;-t dL=:1.55pxolor:${d1','#etf(bDost dL=dr=' 0c:7re;n-,`bnt=':13re;n-,`backpred600;-`xt='flex.:${cR} ${i='9);outonteList.;�ilunctio`+p;ev` ';onst rhenp═�'lval liv ap  //  allEls=documorigin.a
- fhecputi   b{
- kmen=plblInp.scroll')) buildMonecput.lectort d=_TatDraft&&_TatDraft[kmos_TatDraft[kmo'lval=lblInp.ed(eNtConten
- lo'lvalntk;ght conn lblInp.scroll')) buildMononten.lectolblInp./d ur*td:ediiTe||gitio`+preds. cl't conn lblInp.scroll')) buildMonblur.lectolblInp./d ur*td:ediiTe||gitio`+p#etf(bD'=(new D) (LiTe|| pa  /tOM sini-xdTimal=7, cpWrapone?' done':'');
-    if(done) cb.textpWrap /d ur*56r-ev`,'ldMonth:x';
-;gap�3re;n';
--wrap:wrap;maxStaty :120reds.onclPALte.s<=crState.e?cr
-  crSe.buttDRElemenkd=_isCancelled(t)k;
-  pill.c('di/d ur*56r-ev`,
-taty :16order-lef516ordst dL=dr=' 0c:50%;-`xt='flex.lkc};��릭�:ssLisar;-t dL=:2.55pxolor:$lkcppsvssoun/?'#333':'t� dr).plle'};n';
--shng(k:0;t� drn1=PAL-t dL= .1s`  pill.c('di(y,movc  pill.c('di     ns='t4'})tDate||ago!(veantY=:dtoTt)ate_TatDraft[kmos x2=p2.x, y22222_TatDraft[kmocEardieR.title=ill.clone=).pa:'+t3c);
-(tte1,3),16),g=).pa:'+t3c);
-(tte3,5),16),b=).pa:'+t3c);
-(tte5,7),16).x, y22222_TatDraft[kmobg=`<● ${roarrgoarrb},0.'')`.x, y22222_�═�Ele if((mo
-  dRe    &&documup═�ss cli?cr| diTator��══Scumenent.pWrap Listener('cliotagaterySoved)togdocDetpil entLiso'div'); el.xt-o'tDRElemenkd=_isCancelled(entLisssList.rext-o'opPropagation();�'List.rext-o'opy,moven fCount?`${en fCount}개의w delBt이 있어ation()��extC 없습니다`:'카테고istetion();s(lor(ext-o'o/d ur*56r-ev`,
-taty :28order-lef528ordst dL=dr=' 0c:7re;-t dL=:ist.;n-,`bnt=':13re;n';
--shng(k:0;��릭�:${en fCount?'no`-.mtopPr':'면stene};-`xt='flex.lken fCount?'#f0f0f0':'#fff0f0'}
-ftitl>e=en fCount?'#ccc':'#e57373'':wt���)ateen fCount)(ext-o'o     ns='t4'})tDate||ago!(veantY=:dto)ate ta`<okeyva_TatDraft tio`+at<=1){a  red(최소 1개의w ��테고ist가 필요합니다.'dChi2=p2.conktbox   /at2_TatDraft[km;rh�═�Ele if((movalrySoved)togeow Listener('cl1(c)Inp
-  pilleow ocumb��abDh��blInp
-  pilleow ocumb��abDh�.pWrap
-  pilleow ocumb��abDh�ext-o' cb.texttco'tart →  eow════|e.targeTaddNew.primst pill = dkey=rlue_'+fd.t.now().to)ing(d.36).x, _TatDraft[key]={'lvalnt=new ��테고ist',p1(c):.📌',textCon'#607d8b',tbg:'<● 96,125,139,0.'')'}t.crh�═�Ele if((movalentFnten!nt.g=s;}:whfs�'lval ecputt=pa },50��   nt��t=pill.clonrcputs=arroue=tte.?�priority   mediuluelTitoutordepst ds=wd.datst.tid=s en)="'lval
-  c]wt���)atrcputst-o';onsnrcputs[rcputst-o';on-1]Content=n═╕�═════════════════════════
-// DRAG CREATE (date range)
-KANBANNITE ════════�EYBOARD�═══════════════════════
-// DRAG CREATE (date range)
-KANBANNITE ═══════gglyId('mscroll')) buildMonkey shoy.id='co new (key==='Escape'){═════════}co new (key==='Estene&&co mvStf(!mvStaendC'��(ediiTex.clas   if(!elledh('if=0hild);
-    e.suish click from drag (.tag;
-  iew(TEXTAREAe&&co mvStf(k from drag (.tag;
-  iew(��═�')).textConte const �════════════════════════
-// DRAG CREATE (date range)
-MODAL══════════INIT�═══════════════════════
-// DRAG CREATE (date range)
-MODAL═════════v'); LeeryS=new�═══a }Istened((ectort d=oldn==='e(); plakentById)),═�6 Dat═  mvxArscroll')) buildMonrent='.lectort d=oldn===');
-  e)mont�═════════╕�═</script>�</ nt�></html>
+('ss=');
+)"    nDLcbuttoName='t[da'; nDLca-siset.e="R"'L'; nDLca-siset.tid=t.id;@me    nDLce:12px'pacity:on:n
+/* Head (L) = 헤��G:abs`,whrow" ].join(';');@c#��su=[whrow" " – ndCrst-(iDL)on:nshown.cmini 
+  <div d.lenmTasks=vis.rgb (r <ore�t:1.4igraena2, d)n:nshowron bCb=ypdof pang"al<o_  <b=0;t:1.4uv>ny null/idi Eliv>
+
+w" =_is
+w" uv>
+
+.<redi  bCb=ss=');
+)"    nDLcbuttoName='t[da'; nD  bCb-siset.e="R"pcheck'+(
+
+w" ?'료',"${ct[da'; nD  bCb-:space-between;flex-shrink:0;cispl-e2px;height:12px;font-id="w9({t,tron ng"al<o
+
+w" ) bCb-i Sthrng('ko'✓'[da'; nD  bCb-',onMSek vi);gbaw/ clas'st >{e.stopPropagl});@OVE,"vtab
+w" uv't1')}t[da'; nD  b " – ndCrst-(iCbt[da'; nD}n:nshown.cad (L i St <div
+.<redi Eliv>
+Ti=ss=');
+)"    nDLcbuttoNa<div't[da'; nDLTi-:space-between;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0'[da'; nDLTi-i Sthrng('ko .tpilxicId=t.i:'';=[whrow" " – ndCrst-(iTi)on:nshown.cRftive;taillick n = nund eDL=doc
+.<redi Eliv>
+
+R'ss=');
+)"    nDLcbuttoName='t[da'; nDLcR-siset.e="R"'L'; nDLcR-siset.tid=t.idR nDLcR-siset.tipx'pacity:on:n
+/* Read (L) 꼬리 �G:a��계업무 드래그하여:a��결'y:on:n
+/* Re',onMSek vi);gbaw/mousede�'st >{e.stopPropagl});@OVEdDdi ="ca(e,acit,dR ')}t[da'; nD" " – ndCrst-(iDRt[da'; nD" " �,onMSek vi);gbaw/ clas'st >{e.stopPropagl});@OVEore�Detail(t,e')}t[da'; nDn.cmssT- mousede�m zy  = nu;l()/a'; nD" " �,onMSek vi);gbaw/mousede�'st >{tron ng"al<oe.target===iDL||e.target===iDR||e.target===iCbt4}
+=Mathdolummmmme.stopPropagl});@OVE
+ndDdi :a(4), Ml()(e,at[da'; nD}t[da'; nDo Ono is;tinuou" "t[da'; }t[da'; =wSsart;no is;tinuouovlbody20px;(d)===bt c=docuv<onsc
+
+.<redi Eliv>
+
+s=g cla{ocla{>fdisWE (d)=set:0);rede='ac(d)=set:0);rede=6wSsart:s, be=6) 'ss=');
+)"    nDLcbuttoName='t[da'; =6)   narc   <b.c=6) c+(s=g==is=?'�t);
+)"${ct+(isWE?'�=wSsis;"${ct+(ckgrou?'�nartcol"${ct[da'; =6)  siset.ti(d)==d?wSsart:s, bedn'ss='); narcbuttoName='tdnar';@mdn  narc   <b.dnum'@mdn i Sthrng('ko-� ndConiWtabl[da'; =6)  Sek viegn-iainif(ec===-1.forEac
+
+.<di ,e={('ss='); w �.buttoName='t��─'spx';
+)"al="kced.forEach(({t,=6)  Sek viegn-iasp(ddi slor i=0;i<yst s=t.staeeDdi ||t.ddi ,e={.spdDdi ||s;returnwe>s;});@me<onst toucMD=m=g==dstro   <)}t=scrt((a,b
+.<(a. :'21:ou')"al).�� "YeC){0pre(b. :'21:ou')"al)w ? JSON.pangMAX=3
+ById('<yst s=nw`);bo0,MAX)s=t.staeeDdi=6)  Sek viegn-iamakePilluv>nif(ec===-1'<yst s=ndocuv>
+MAX)e(t);@me    <om'ss='); ms.id='lx:auto'; ms.butto  narc   <b.ckcedi==='y:on:n
+/m i Sthrng('ko`+${'<yst s=ndocuv>-MAX}개`y:on:n
+/m ') classt >{e.stopPropagl});@OVEopenModal(ds(dd; =6)  Sek viegn-iam)dis = {...; =6)  S,onMSek vi);gbaw/mousede�'st >=6) De�(e,ds)t[da'; =wSsart;no is;tinuou=6) =tron s.lenoucMD=m=wSsartntouchdivsn></:no is;
+/* funne-<onst setHdWtabDiv(sun) 
+@me<oSek vieodyus:50%{redi Eliv>
+
+('ss='); n:)){()"al<onst s=doct-(n:b   <b.:iffe)4}
+=Mathdoldi ,e={un(d.getDdi )-7);l// _– n   sdi ()-56);@mCal={(maDdi +7s.length>0?first=lor i=0;i<7;i++)  <b.first) 
+@me// H1.4}
+. rg el=docuv>
+
+.d.getDdi first))t[da'
+@me// H1.4}
+. rg el=dods=fddi (new)di (<oniCal.botDdi =(nentouchdivsn></:imitle{t/* funne-<ontopHdWtabDiv(sron _imitle{joi={from;{<onst r=newwDk vieodyus:50%{redl<o_imitle{joi)4}
+=Mathdoldi ,e=>
+
+('ss='); n:)){()"al<onst s=doct-(n:b   <b.:iffe)4}
+=Mathdoldi ,e=md('lx:auto');eif(!s)lreturn;
+al  sc   <b.:m1.4}
+=Mathdol_imitle{joi=truehdoldi ,e=i0,1H=op;@me  /
+
+Rinehdoldi ,e=i0,1/ Doop;@me  // Dhdoldi ,e={un(d.getDdi )-7);l//n), bot   sdi ()-56);@mCal={(maDdi -7s.length>0?w
+
+(' el=dods=fddi (new.length>0?first=lor i=0;i<7;i++) stone(1,3)ef=
+@me/first}
+. r)&&ids.first) 
+@me/insertBrequeg el=docuv>
+
+.d.getDdi first)),)eft[da'
+@me/insertBrequegw
+
+(,'
+@me/a-sidy="${y0}"'ta-sidmo, .t.vtabw)di (<oniCal.n), bot=(nent5n{padd="kced7;z-ini �=docu is;=>
+@me  tely)@me<jump(()=>
+@me  <onst lbl=docuv>
+
+.queryop;@me  // Doi0,1/ D+(op;@me  /
+
+Rine-i0,1Ht[da'; _imitle{joi={from;{on s.louchdivsn></:7;z-inihandlvo dWtabDiv(sron _7;z-inCoolde�={from;{<onst r=nr{paddi0p0%{redi Elivmd('lx:auto');eif(!s)lreturn;
+al  sc   <b.:m1||!<oniCal||_imitle{joi)4}
+=Mathdoldi ,e={@me  // D,@me  /
+
+Rine,c;
+)"}
+
+Rine}oopnt5n{pa�.toL:�nartne-hei_at/abl())=>
+@me  <onst s=ddmos=[...op;).forEach((b,i)=>b.=d.getFu)h({scron bme oubls
+
+ById(st dst s=ddH=()ubls)a{'&&leyrAF ensu<=@me  // D+70) bme ou;Eliv>
+bid=kon 
+lren(bme ).getFullY(d.getDdi 16);@merebme ();"elca-s),16);@merebme ();"elca-mo),1
+
+ById('</butt').--suCn-item =
+)"al()wk[0].toLocaleD=ko-KR',{year:'buv>ric',tive":'long'});
+al}
+alif (-act==='tive" o irend,(@me  // D+c;
+)"}
+
+Rine>@me  /
+
+Rine-600// Sek vieodyus:50%;nend,(@me  // D<400d)){(_7;z-inCoolde�).getFu_7;z-inCoolde�=truehdol newwDk vieodyus:50%hdolum3e1:ou'outuv>
+
+. _7;z-inCoolde�={from; },200/═══�tort,);
+al});@@mems.�ddE="caListouchdivsn></:7;z-ini<ona/* funndWtabDiv(sun) 
+@me<lYear()��업.gyf (%{redi Elivmd('lx:auto');eif(!s)lreturn;
+al  sc   <b.:m1){�══�}
+=Math}length>0?find>
+
+.gop;).forEach((b,"]ta-sidmo="${ti0}"]`)@me  if(oll)ems.ek viTop=oron guardn ]&&tn s[tr!retur)&&guard++<200/redi Eliv>
+
+target=sartSun.sef (,1
+
+ById(di ,e=>
+t// Md.getDdi )-7);l// _– n   >
+t//  ()-56);@>
+t//  ={(maDdi +6if(ec===-1target>>
+t// // Sek vieodyus:50%;Eliv>
+ewwDk vieodyus:50%hdol}<onst s=ddmo=retur);nend,(fset.queryop;@me  // (un),:ubleyrAF ensu,behavi� �smooth'}
+
+ById('</butt').--suCn-item =
+)"al()wk[0].toLocaleD=sartSun.sef (,1
+KR',{year:'buv>ric',tive":'long'});
+al}
+alif (-act==='tive" o irouchdivsn></:gth>0){ af splte  =ch = nudWtabDiv(sun) 
+@me<gth>0){C-7);l/0%{redi Elivmd('lx:auto');eif(!s)lreturn;
+al  sc   <b.:m1||!<oniCal)4}
+=Mathdoldi ,e={avedoop;@me  // Dhdoldi ,e=>
+
+('ss='); n:)){()"al<onst s=doct-(n:b   <b.:iffe)4}
+=Mathdol[...
+@me/a-sidy="${y0}i)=>b.=.vtabwonst c=docwd.<redi Eliv>
+
+s=gwd;)// storeez-ilre  <b.:d1.4}
+=Mathdolumdi ,e={un(d.getDdi ds(d sdi ()-h(e);}@me<onst dolum
+@me/wDksc,e}
+. rg el=dods=fddi (new,wd-(dow)rgw()/p;@me  // Do{aved;�═�tort,);
+al});@@mems.�ddE="caListoucnst y=<ur.getFum=d.toL{
+
+ById('�ort, a')){()"al<onst s=oMive"(<ur.st mv = docuv>
+
+ocaleDv>
+gth>0){C-7);l/0%��══�px}
+
+/*ake pillleDement ) 
+@me<nst y=<urmakePilluv>wDdi ()), vc = t bar=docuv>
+
+.<di ,e=>g : npx 6px r2>
+
+.<di ,e=pilll('ss=');
+)"dow.buttoName='t<div';
+)di Eliv>" =_is
+w" uv>,ck=',   er=_isC=',   eruv>
+
+.<pill  narc   <b.tpillc+(sw" ?'료',"$k=',   er?'�k=',   er-${ct[da'pill    narc   <b.cssT-su=napill :space-between)}`,whrow" " `bg};x 6pxd:var;;cursor:p${-x 6pxd:var;ot (���)ront5n{pa:p${ eDL=ftiv;
+)di Eliv('ss=');
+)"    nDLcbuttoName='t[da'da-siset.e="R"'L'; nDda-siset.tid=t.id;@med  nDLce:12px'pacity:ondHead (L) = 헤��G:abs`,whrow" ].join(';');@c#��su=[wpill Sek viegn-iaiLme<onst m
+  <div dunneore�nr{lytn et.er-cihas<ore�t:1.4;st Tual s;hlordrivet.by s;hge:onst mt', i</d1', i<onm zy empty □  |  " " iom zy ✓ed 
+)ed  |  "', i<m zy empty □ +cad (L led:kethroeslp=oron cb=ypdof pal<o_  <b=0;t:1.4uv>ny nullcb=ss=');
+)"    nDLcbuttoName='t[da'; cb-siset.e="R"pcheck'+(dw" ?'료',"${ct[da'; =-1'w" ) cb-i Sthrng('ko'✓'[da'; cb-',onMSek vi);gbaw/ clas'st >{e.stopPropagl});@OVE,"vtab
+w" uv't1')}t[da'; pill Sek viegn-iacblbody20px;h oad (Led=[];@meti=ss=');
+)"    nDLcbuttoNa<div't[da'ti-siset.e="R"pad (L@meti-i Sthrng('kocId=t.id=[wpill Sek viegn-iatime<onst m(';') eDL=ftiv;
+)di ElivR'ss=');
+)"    nDLcbuttoName='t[da'dR-siset.e="R"'L'; nDdR-siset.tid=t.idR nDdR-siset.tipx'pacity:ondRead (L) 꼬리 �G:a��계업무 드래그하여:a��결'y:ondRe',onMSek vi);gbaw/mousede�'st >{e.stopPropagl});@OVEdDdi ="ca(e,acit,dR ')}t[da'pill Sek viegn-iaiRme<onst mpilll clasm zy  etailda'pill S,onMSek vi);gbaw/ clas'st >{e.stopPropagl});@OVEore�Detail(t,e')}t[donst mpilllmousede�m zy  = nu;l()/a'pill S,onMSek vi);gbaw/mousede�'st >{tron l<oe.target===dL||e.target===dR||e.target===cbt4}
+=Mathdolume.stopPropagl});@OVE
+ndDd(4), Ml()(e,at[da'}ey:1}
+
+/p 
+)"<ouch(4), m zy  = nu;l() (mobs[t)/a'pill S,onMSek vi);gbaw/<ouch(4), 'st >{tron l<oe.target===dL||e.target===dR||e.target===cbt4}
+=Mathdolume.stopPropagl});@OVE
+ndDde.i0,1SekDefault(
+
+ById(di ,e=<ouch=ovc uches
+
+ById(Dd(4), Ml()({c;
+)"}X:touch.c;
+)"}X,c;
+)"}Y:touch.c;
+)"}Y,eigraw/Target:pill,target:e.target,_touch:true},at[da'},{psetive[{from:t[donsoucMD=mpill��════════════════════════════════════w// R,25ERw// ════�DRAG MOVE TASK�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;@4), Ml()(e, t is;line-Node.i0,1SekDefault(
+ hcu.m�G:xistshas<user-w" id="al(), and i0,1SekDefaultnr{;line-mousede�mme  suppmeall clasm,1Seks iu ism>
+biowserstn sch
+bid=ks<ore�Detail.
+.<di ,e=pill=oveigraw/Target||e._pill||ss=');
+)""vtab"Lcbuttont5n{pa�clas;@4), i �=docu <ondvi)ic'ui){  clasmav:(  = nu(5px thr0){old)n:n;c lor:={px':acit,  <b:t,ghos="apdo,pill,;l() [{from,sx:e.c;
+)"}X,sy:e.c;
+)"}Y}f pal<oe._touch)
+ById('</butt')S,onMSek vi);gbaw/<ouch;l()der{pl()Touchpl(),{psetive[{from:t[dyId('</butt')S,onMSek vi);gbaw/<ouchis;"er{pl()TouchUpt[dyId('</butt')S,onMSek vi);gbaw/<ouchk=',  "er{pl()TouchUpt[dyItEliv>
+
+ById('</butt')S,onMSek vi);gbaw/mouse;l()der{pl()pl()t[dyId('</butt')S,onMSek vi);gbaw/mouseupder{pl()Upt[dyItme<ur=newwDdr{pl()Touchpl()(e)
+ByIe.i0,1SekDefault(
+
+ByIdi ,e=<ouch=ovc uches
+
+ById(r{pl()pl()({c;
+)"}X:touch.c;
+)"}X,c;
+)"}Y:touch.c;
+)"}Y}
+@me<ur=newwDdr{pl()TouchUp(e)
+ByI'</butt')re;l()nMSek vi);gbaw/<ouch;l()der{pl()Touchpl()ById('lass="mare;l()nMSek vi);gbaw/<ouchis;"er{pl()TouchUpt[dyI'lass="mare;l()nMSek vi);gbaw/<ouchk=',  "er{pl()TouchUpt[dyIdi ,e=<ouch=ovch = ndT uches
+
+ById(r{pl()Up({c;
+)"}X:touch.c;
+)"}X,c;
+)"}Y:touch.c;
+)"}Y,_av:(Touch:true}
+@me<ur=newwDdr{pl()pl()(e)is[id])z!;c lor:t4}
+=Mathdol])z!;c lor:.;l() )
+ById(n:nerly;@4), i = ngmctiif-mouseu;l()d ckce
+
+/*n 5pxedi Eliv>
+
+sx=e.c;
+)"}X-;c lor:.sx, dy=e.c;
+)"}Y-;c lor:.sy[da'; =-1rH1.4abs(dx)<5&&rH1.4abs(dy)<5t4}
+=Mathdolum{pa�hr0){old exceed  er"vtabhlordr nughos=queryoc lor:.;l() =truehdol ndi ,e=pill=oc lor:.pill��rage.getI0pid==pill top-20)+'px';
+)"};
+)"re��rage.getI0ghos==pill  nl()Nodtronu)t[dyId(ghos=  narc   <b.tpill dghos='[dyId(ghos= :space-between)${pill :space-betwee};).toF1}
+pid=.).toF}px;le}`,` pid=.le}`}px;`,`tonpid=.`,`}px; �=docuv>
+
+.<;He 단�-,1Seks"al()`[dyId('</butt')
+@me// H1.4}
+. rgghos=t[da'; pill ',[ctive" S,oNam= ngmctct[da'; oc lor:.ghos==ghos=hdol}<onoc lor:.ghos= :spacele}`=(e.c;
+)"}X-9nimctitlFraoc lor:.ghos= :spacec   (e.c;
+)"}Y-12imctitlFral('templ').forEach((b,i)=>b.c=6) c)s=t.staeec=>c ',[ctive" re;l()Nam= noverbw)di (nvalind target =6) m�G:calSeDementsFromPe �?first (pierces #– ndC ma=OVER)ingat k1s
+)"{frlard)@m<onwalkmctiupmav:( eDementFromPe �?r0)ultt d=newwDdllEld('lx:auto'eDementsFromPe �(e.c;
+)"}X,e.c;
+)"}Yt[dyIdi ,e=<gt=dllEldzreturel=>el ',[ctive"?. thateDs(.c=6) c)) 체크박|| 'lx:auto'eDementFromPe �(e.c;
+)"}X,e.c;
+)"}Yt?.seCate"?.>b.c=6) c) 체크박|| ypdof pal<o<gt s(<ur);<gt ',[ctive" S,oNam= noverbw[da'; oc lor:.dr), bot=<gt siset.ti(d)=meif(="kcedn s[t we'ced7ucedofdi  otargetdyItme<ur=newwDdr{pl()Up(e)is[id])z!;c lor:t4}
+=Mathdol'lass="mare;l()nMSek vi);gbaw/mouse;l()der{pl()pl()t[dyI'lass="mare;l()nMSek vi);gbaw/mouseupder{pl()Upt[dyIt k1ouch:iif-notr"vtuang zm= nged, open  etail�lren St tap (suppmeallghos=  clas) pal<oe._av:(Touchd)){(;c lor:.;l() )
+ById(di ,e={avedooc lor:.  <bf(ec===-1.c lor:.ghos=)aoc lor:.ghos= re;l()Nw[da'; oc lor:.pill ',[ctive" re;l()Nam= ngmctct[da'; l('templ').forEach((b,i)=>b.c=6) c)s=t.staeec=>c ',[ctive" re;l()Nam= noverbw)di (:n;c lor:=ypdof pangore�Detail({aved, )t[dyId(baw// ══dyIt kUsne-hei-DD"lleash udud:tim-heinartnr{pl()pl() (motI0pilia2, :no rotaedunndyIt kavoidssesoe �t-TS};
+upmDOM s;hlorissuesYear()��modr), bot =yoc lor:.;l()  ? (oc lor:.dr), bot||ypdo&&weypdof 
+===-1.c lor:.ghos=)aoc lor:.ghos= re;l()Nw[da'oc lor:.pill ',[ctive" re;l()Nam= ngmctct[da'l('templ').forEach((b,i)=>b.c=6) c)s=t.staeec=>c ',[ctive" re;l()Nam= noverbw)didol])z!;c lor:.;l() ) 
+ById(di ,e={avedooc lor:.  <bf(ec==;c lor:=ypdof pangore�Detail({aved, )t[dyId(baw// ══dyIt kpl() er-ci<ondr),i-DD"dol])zdr), bot) 
+ById(di ,e=t=di===rgbturx=>xx;
+y
+soc lor:. �);@mepal<o<)e(t);@me    <ooldS.spdDdi ||s;returnwe
+
+.<redi Eliv>diff=.d.getDdi dr), bot)-d.getDdi oldS))/86400000f pang"al<odiff!==0ny null/idi Eliv>sh=ds
+
+. setDdi (d.getDdi ds(d ;d.setHours;inset:0);ddiff"px;cu = [
+)"al{id:'t1',rrrrrrrspdDdi ||s;=sh oldS); ti(d)==spdDdi ||s;,tron ng"al<o});@me<on) });@me<on=sh });@me<on)E
+ndDdi :a(a()Nw[da'; = {...; }dol}<onoc lor:=ypdof pa�═══════════════════════════════════════w// R,25ERw// ════�DRAG CREATE ocla{   = n)�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;=6) De�(e, d1.4{
+n l<oe.target.seCate">b.tpillc)||e.target.seCate">b.'L'; )||e.08,"��!==0n4}
+=Mathdoldr lor:={s:ds, ):ds}[da'l('templ'S,onMSek vi);gbaw/mouse;l()der{Crpl()t[dyI'lass="maS,onMSek vi);gbaw/mouseupder{CrUpt[de<ur=newwDdr{Crpl()(e)is[id])z!dr lor:)4}
+=Mathdoldi ,e=<gt='lx:auto'eDementFromPe �(e.c;
+)"}X,e.c;
+)"}Yt?.seCate"?.>b.c=6) c)f pal<o<gt? siset.ti(d)=di ()r lor:.t=<gt siset.ti(d)=me}da'l('templ').forEach((b,i)=>b.c=6) c)s=t.staeec=>redi Eliv>
+
+s=c siset.ti(d)=medi Eliv>
+
+mn=)r lor:.s<=)r lor:.e?)r lor:.s:)r lor:.emedi Eliv>
+
+mx=)r lor:.s<=)r lor:.e?)r lor:.e:)r lor:.?wSsart:b',[ctive" ,"vtab",  = nss=", d>=mn&&d<=mx);{on s.louur=newwDdr{CrUp(e)is[id])z!dr lor:)4}
+=Mathdol'lass="mare;l()nMSek vi);gbaw/mouse;l()der{Crpl()t[dyI'lass="mare;l()nMSek vi);gbaw/mouseupder{CrUpt[da'l('templ').forEach((b,i)=>b.c=6) c)s=t.staeec=>c ',[ctive" re;l()Na  = nss=")s.length>0?tn=)r lor:.s<=)r lor:.e?)r lor:.s:)r lor:.emediliv>
+
+mx=)r lor:.s<=)r lor:.e?)r lor:.e:)r lor:.?wSsass=newwD=)r lor:hdoldr lor:=ypdof paopenModal(mn,eypdo,eypdo,emx);{════════════════════════════════════w// COLOR PICKERw// ═══�NNECTION�DRAW�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;_pill═�r()+'-'+Sthrn�ort, a')){()"al<onst s=docuv>
+
+.) 
+lrgba(0Cat Ddi ="ca(e,  �, d=t. is;line-erly;i  otail�(R)mme  funne-a{ a bDL=docuv>nend,(@=t. !== dR '4}
+=Mathdole.i0,1SekDefault(
+
+ByIdi ,e=v>
+=_pill═�hdol])z!v>
+)4}
+=Mathdoldi ,e=tlFrS('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, apaf (-op=orlFrd.seAttri08,)Nastroke=>88d1','ae-op=orlFrd.seAttri08,)Nastroke-width=>81.5e-op=orlFrd.seAttri08,)Nad 
+)=>8ow" "-op=orlFrd.seAttri08,)Nad=>8M0,ae-oine-funne-heow"-empty d is;lie paf getElivp=orlFrd.spaceHe 단�nMSeks=nne-hein cs;t// H1.4}
+. rgrlFrt[dyIt ke.target m';') b{ a bhx}
+
+/fdi  oL';;nwalkiupmts;lie "vtuan .'L';;
+)di Eliv>t=e.target.seCate">b.'L'; )||e.target[da'l(t ',[ctive" S,oNalitiv';
+)di lor:={px', d=t.,orlFrst PA,cs;t}[da'l('templ'S,onMSek vi);gbaw/mouse;l()der{Copl()t[dyI'lass="maS,onMSek vi);gbaw/mouseupder{CoUpt[de<{padd:3px}
+eque=>
+@me  tcoordind)==m�G:used  stylelnst wredocoordsier ce #– ndC i w �=docuv>
+
+.< d:vara:p${:0lrgba(0Cat PAPos( �, d=t. is;liEliv>
+
+('ss='); el).forEach((b,"]ttpill  if(odi==-or:T${px'k viT|| 체크박� o;scrollta-sidy="${y0}"]tassT-  if(odi==-or:T${px'k viThdol])z!el)4}
+=Mat ypdof paliv>
+
+s=elta-sidy="${y0}"]t'L';  if(od=t.iT${d=t.k viThdol])z )
+ById(di ,e=drCn-ite-20)+'px';
+)"};
+)"re��rageddi0kipt PAs wif gzero id=" (hidden/un-�═�.< eDements)da'; =-1'r.).toFde='&&dral="kced==0ny null/idi ,e=>r=eltite-20)+'px';
+)"};
+)"re��ragelren(br.).toFde='&&bral="kced==0n4}
+=Mat ypdof payId(baw//  {x:d=t.i=id;@?bra:p${+4:bra(';')-4, y:brad:v+bral="kce/2}dis = {...; baw//  {x:dra:p${+'r.).toF/2, y:drad:v+dral="kce/2}dis }i (nvalallrd)@::useleDement edgeba(0(t=>{<>r=eltite-20)+'px';
+)"};
+)"re��raen(br.).toFde='&&bral="kced==0n4}
+=Mat ypdof pabaw//  {x:d=t.i=id;@?bra:p${+4:bra(';')-4, y:brad:v+bral="kce/2}diouur=newwDdr{Copl()(e)is[id])z!do lor:)4}
+=Mathdolnva#– ndC i w �=docuv>
+
+.< d:vara:p${:0, is;=>
+@me  tcoordsi=wredocoordsdyIdi ,e=<o={x:e.c;
+)"}X, y:e.c;
+)"}Y}f pa// lorom= PAPos(do lor:. �, do lor:.d=t. hdol])z!orom)
+ById(n:nlallrd)@::uselleash ud'; s eigraw/i=>
+@me  t �=docuById(di ,e=drCdo lor:.l(t ite-20)+'px';
+)"};
+)"re��rageorom={x:dra:p${+'r.).toF/2, y:drad:v+dral="kce/2}dis }i (()), vcx=(orom.x+to.x)/2';
+)di lor:.rlFrd.seAttri08,)Nad=>`M${orom.xla{oorom.y} C${cxla{oorom.y} ${cxla{oto.y} ${to.xla{oto.y}`t[da'l('templ').forEach((b,i)=>b.'L'; )s=t.staeed=>d ',[ctive" re;l()Nalitivv';
+)di lor:.l(t ',[ctive" S,oNalitiv';
+)di), vh
+('ss='); oveDementFromPe �(e.c;
+)"}X,e.c;
+)"}Yt';
+)di), vh
+(D>t=h
+(?.seCate"?.>b.'L'; )||(h
+(?.se[ctive"  thateDs(.'L'; )?h
+("apdot[dyIt kerly;ed);l';') Le;zsoeli PAs t wenrruptargetsdol])zh
+(D>td)){h
+(D>t-siset.tid=t.i=id;@d)){h
+(D>t-siset.ti �!==do lor:. �){h
+(D>t-',[ctive" S,oNalitiv';ouur=newwDdr{CoUp(e)is[id])z!do lor:)4}
+=Mathdol'lass="mare;l()nMSek vi);gbaw/mouse;l()der{Copl()t[dyI'lass="mare;l()nMSek vi);gbaw/mouseupder{CoUpt[da'l('templ').forEach((b,i)=>b.'L'; )s=t.staeed=>d ',[ctive" re;l()Nalitivv';
+)di lor:.rlFrdre;l()Nw[da'di), vh
+('ss='); oveDementFromPe �(e.c;
+)"}X,e.c;
+)"}Yt';
+)di), vtd=h
+(?.seCate"?.>b.'L'; )||(h
+(?.se[ctive"  thateDs(.'L'; )?h
+("apdot|| 체크박� h
+(?.seCate"?.>b.tpillc)?/a-sidy="${y0}"'t'L';  if(od=t.iTL"]'t|| 체크박� h
+(?.seCate"?.>b.cssT-s)?/a-sidy="${y0}"'t'L';  if(od=t.iTL"]'tf pal<o<jta{' d-siset.tid=t.i=id;@d)){ d-siset.titidd)){ d-siset.titid!==do lor:. �)
+ById(di ,e=to.cssd-siset.titid��rageddiav:( =otail�(R)m/fddo lor:. �m zy ts;=cuv>
+ (L)m/fdto.cById(di ,e=dup=:'t4'}sc))tc=>c orom===do lor:. �&&cad:g==io.c);@mepal<o!dupdis)ol4'});@mesav:()do lor:. �,to:io.c}(d sa()Nw[ }dol}<ondi lor:=ypdof pabatort,);
+al});@@mems.�ddE="caListouch��══════════════════════════════════w// R,25ERw// ════�DRAW���NNECTION�LINES�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;_════�is;liEliv>
+v>
+=n�ort, a')){()"al<onst s=docuv>
+
+.) end,(@>
+)4[...s;t/).forEach((b,i)=>b.'paf ,.carrow,.chrowpbwonst c=docel=>el re;l()Nwv';ouur=newwDd�ddE="caL�is;liEliv>
+v>
+=n�ort, a')){()"al<onst s=docuv>
+
+.) end,(!v>
+)4}
+=Mathdol�═��� i0,1i ffltlFra (keept efs)da'[...s;t/).forEach((b,i)=>b.'paf ,.carrow,.chrowpbwonst c=docel=>el re;l()Nwv';yIt kerly;requen et.* funnryS-di w"vtab" and vH=22,  end,(ryS-!);@meif (||('�ort, a')){()"al<onst s=oMive"(<ur.}
+=Mathd;yIt k�px}
+
+/';
+pPaf :?r0)trictltlFra ts;<mteD> yearnd� area is;liey료''{<>leh u �ocuv>
+
+./legsT- ) 
+@me<diliv>
+
+mteDE('ss='); el).forEach((b,"'mteD.mteD'Top=oron c;
+pIbac�al';
+p'op=oron  efs=s;t/).forEach((b,Nadefs
+.) end,(! efs){  efs=('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, adefs
+.)cs;t/insertBrequegdefs,s;t/first}
+. rw[ }dolron cp=defs/).forEach((b,Na#'+c;
+pIb.) end,(!cpdis)p=('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, ac;
+pPaf ;@me px;
+yc;
+pIb;  efs Sek viegn-iacpw[ }dol px;ace DOW =''oine-═�oold0pid=
+===-1.teDE()
+ById(di ,e=mr=.teDE( top-20)+'px';
+)"};
+)"re��rage.getI0cr=('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, apid='t[da'; crd.seAttri08,)Nax',=mra:p${@me rd.seAttri08,)Nay',=mrad:vt[da'; crd.seAttri08,)Nawidth=>=mrawidth@me rd.seAttri08,)Nal="kce=>=mral="kcet[da'; cs.– ndCrst-(crlbody20px;h oi)=ltlFra go iu a <g> c;
+pp.< d: yearnd� b20)+sdyIdi ,e=g=('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, a
+
+.) engd.seAttri08,)Nase[ct, achrowpbw;
+===-1.teDE()ngd.seAttri08,)Naseip-paf (,'url(#'+c;
+pIb+')bw;
+==s;t// H1.4}
+. rgg)>
+
+.<redn==bt c=docredn=>redi Et kUsneeque=>
+@me  tcoordind)==m�G:#– ndC i w �=docuv>
+
+.< d:vara:p${:0lol ndi ,e=p1= PAPos(donn orom,dR ', p2= PAPos(donn to,d;@);@mepal<o!p1||(p2.4}
+=Mathdolumdi ,e=x1=p1.x, y1=p1.y, x2=p2.x, y2=p2.y��rage.getI0cx=(x1+x2)/2';
+)ength>0?fnst bar=docuvi===rgbturt4'||t.id=donn oromt||{:t[dons ndi ,e=paf S('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, apaf (-op=o =paf d.seAttri08,)Nase[ct, acpaf (-op=o =paf d.seAttri08,)Nad=>`M${x1la{oy1} C${cxla{oy1} ${cxla{oy2} ${x2la{oy2}`-op=o =paf d.seAttri08,)Nastroke=>fc||88d1','ae-op=o =paf d.seAttri08,)Nastroke-width=>81.5e-op=o =paf d.seAttri08,)Nad 
+)=>8ow" "-op=o =paf d.spaceHe 단�nMSeks=nstroke=op=o =paf d.spacecursCn-iHe 단�=op=o =paf dad (L) =��릭하면:a��결 삭제=op=o =paf dS,onMSek vi);gbaw/ clas's(orde(t);@me   ns=:'t4'}eeDdi |c=>!(c orom===donn orom&&cad:g==donn to)e��ragelrsa()Nw[ �ddE="caL�[da'; }t[da'; t// H1.4}
+. rgpaf t[dons nh oirrowuv>
+ He �mctiints;lie uv>
+ (Li PA)ons ndi ,e=angerH1.4isen2(y2-y1,x2-xndTial=7';
+)ength>0?arrS('<ttp://www.w3.org/2000/, a',', a');@me  scid='is;t, apaf (-op=o =arrd.seAttri08,)Nase[ct, acarrow(-op=o =arrd.seAttri08,)Nad=>`M${x2la{oy2} L${x2-al*rH1.4cos(ang-.45)la{oy2-al*rH1.4sin(ang-.45)l M${x2la{oy2} L${x2-al*rH1.4cos(ang+.45)la{oy2-al*rH1.4sin(ang+.45)l`-op=o =arrd.seAttri08,)Nastroke=>fc||88d1','ae-op=o =arrd.seAttri08,)Nastroke-width=>81.5e-op=o =arrd.seAttri08,)Nad 
+)=>8ow" "-op=o =arrd.spaceHe 단�nMSeks=nne-hein c; t// H1.4}
+. rgarr);{on s.louch��══════════════════════════════════w// R,25ERw// ════�WEEKINITE�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;v>
+
+.getEl)eftis;liEliv>
+ (d.getDdi )eft,('<y=dset:0);re,={un(d.getDdi dw;
+==sdi ()-56);@s;inset:0);s=vis.lenoucMD=mirray orom({docuv>:7},(_>
+
+.<rmdi ,e=x(d.getDdi ()+i) x ()-56);@mCal={(maDdi +i"px;cu = [x;n s.louur=newwDdrtSvg();l}
+mis;liEliv>
+ocuv>
+
+.getEliv>
+
+ByI()), vis=g cla{opac();@me<o
+ByI()), vt TRACK_H=22, OVER;liEliv>
+ohr=n�ort, a')){()"al<onst s=whrow(-op=owhrx;ace DOW ='borde?' sel'whifddcolbafunne-'+wk></butv>
+
+.<redi Eliv>
+
+s=g cla{oct[dyId(baw// elborde?' sel'whdcol${s=g==is=?'�tcol"${c}"60px    borde?' sel'wdname;}��DAYS[i]gbafunn0px    borde?' sel'wdnum;}��s;inset:0);gbafunn0px  funne-h;{on stoborde(c) ;liEliv>
+obd=n�ort, a')){()"al<onst s=w-(n:b  p=owbdx;ace DOW =''oByI()), vi('ss='); elcbuttoName='tscroll';
+tl  narc   <b.te-hei='y:onHOURS=bt c=doch.<rmdi ,e=
+('ss='); elcbuttoName='tscroll';
+)"elca-siset.wtsetFulleDdi Sthrng('koFde='?'':v>ric',hhrng(d.getDdi ()).p:'ae;
+tl / H1.4}
+. rgel); }t[da'wbdxSek viegn-iatlc) ;liwk>st c=docuv>d
+
+.<redi Eliv>
+
+s=g cla{oct[dyId(.getI0co('ss='); elcbuttoName='tscroll';
+co(elca-siset.wwcol"[dyId(HOURS=bt c=doch.<rmdi ,e=('ss='); ms.id='lx:auto'; ms.buttselca-siset.wtssl'; nDs ') class(ordopenModal(ds,v>ric',hhrng(d.getDdi ()).p:'ae';
+co(e/ H1.4}
+. rgblb :t[dons n.staeeDdi ||t.(spdDdi ||s;returnwe)g==dstrt. :'21:ou')s=t.staeeDdi ||t.dd(.getI0[sh,sm]=t. :'21:ou'.spli'; :')></buNumber>
+
+.<redi Eliv>[eh,em]= });@m:ou')"a23:59vtabpli'; :')></buNumber>
+
+.<redi Eliv>nst bar=docuv>
+
+.<redi Eliv>c   (sh*60+sm)/60*56
+
+.<redi Eliv>durerH1.4}
+-s((eh*60+em)-(sh*60+sm))/60,.5>
+
+.<redi Eliv>
+lk'ss=');
+)"    nDLcbuttoName='t[da'; nDLlkelca-siset.wwt);gbaf+/ �ompleter?'�kompleter"${ct[da'; nDLlke:space-between)`,`ton ,`}px;height:��sur*56}px;}`,whrow" " `1px 6px r5)l;x 6pxd:var`[da'; nDLlke;ace DOW =lborde?' sel'wtad (L;}�� �ompleter?'<s>"${c} ${tdad (L}�� �ompleter?'</s>"${c}funne-borde?' sel'wtadmL;}�� � :'21:ou'}�G�� �;@m:ou')"ac}funne-`[da'; nDLlke') classt >{e.stopPropagl});@OVEore�Detail(t,e')}
+
+.<redi E(e/ H1.4}
+. rgLlk�[da'; }t[dda'; =-1'=g==is=)rmdi ,e=n('ss='); elcbuttoName='tscroll';
+n(elca-siset.wnowtlFr';mdi ,e=n=='tive"  &&
+n(e:spacec   `${(al={(h(e);})*60+al={(MinuetEl))/60*56c,.1;
+co(e/ H1.4}
+. rgnlw[ }dola'wbdxSek viegn-iaco(t[da'}ey:1}3e1:ou'outuv>
+
+. wbdx@me  // Do7*56
+ },50s.louch��══════════════════════════════════w// R,25ERw// ════�KANBANINITE�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;rtSvg();l}
+bawis;liEliv>
+t TRACK_H=22, OVERLAY_TOP=bd=n�ort, a')){()"al<onst s=kboardct[da'bdx;ace DOW =''oByIKCOLS=bt c=dockc=>redi Eliv>
+
+co(T=t.staeeDdi ||t._norm lorus(spdDdrus)"aplaacedctg==kc.ict[dyId(.getI0co('ss='); elcbuttoName='tscroll';
+co(elca-siset.wkcol"[dyId(co(e;ace DOW =lborde?' sel'kcolhdr">borde?' sel'kcolad (L;    <butx 6pxd:vkc.x 6px};}��kc.i.ge} ${kc.e-hei}funne-b<dive?' sel'kcnt;}��co(T=ndocuv>}fu<div>funne-`[da'; i Eliv>
+
+('ss='); n:bacbuttoName='tn:ba'; n:bacid='is;tn:bkcol';
+)"iffe.�siset.tidDdrus=kc.ic[dons ndi(T=n=t.staeeDdi ||t.dd(.getI0nst bar=docuv>
+
+.<redi Eliv>cat=_)){Cat/ �butgory>
+
+.<redi Eliv>pri=PRIS[t.priority]||PRIS.r.geum
+
+.<redi Eliv>card'ss=');
+)"    nDLcbuttoName='t[da'; nD Eliv>kv>" =_is
+w" uv>,ckk=',   er=_isC=',   eruv>
+
+.<; nD ardcid='is;tn:bkcardc+(kdw" ?'�kompleter"$kk=',   er?'�k=',   er-${ct[da'; nD ardc:space;cursoLeftr=doc=c[da'; nD ardcm= nga2, =truehD ardcmiset.tipx'pacity:on:n
+/ ardc;ace DOW =l 체크�borde?' sel'kchdr"> 체크박�borde?' sel'kcad (L${kc=',   er||kdw" ?'�strubafun'};}�� �ad (L}bafunn0px    박�borde?' sel'kcbox${kdw" ?'료',"${c};}��kdw" ?'✓'${c}funne- 체크�bunne- 체크�borde?' sel'kcmeta"> 체크박�b<dive?' sel'ktag;    <but}`,whrow" " `1px 6px r2)l;x 6pxd:var;}��cat.i.ge} ${cat.e-hei}fu<div> 체크박�b<dive?' sel'ktag;    <but}`,whrow" " `1px 6pri.l(tx r)l;x 6pxd:vpri.l(tr;}● :vpri.e-hei}fu<div> 체크박�b<dive?' sel'kcrnwe">📅 �� � :'21||s;returnwe)"ac}fu<div> 체크�bunne- 체크밂� �note?lborde?' sel'kcnote">📝��� �note}funne-`${c} 체크`y:on:n
+/ ardca-sidy="${y0}"'tkcbox')>',onMSek vi);gbaw/ clas'st >{e.stopPropagl});@OVE,"vtab
+w" uv't1')}t[da'; nD ardc',onMSek vi);gbaw/ clas'st >{])z!e.target.seCate">b.kcbox'))ore�Detail(t,e')}t[da'; nD ardc',onMSek vi);gbaw/m= n(4), 'st >{kd lor:={px':acitl;xardcid='iive" S,oNakm= ngmctct[ecmiseTransfer.eff${yAllowee='tl()d)}t[da'; nD ardc',onMSek vi);gbaw/m= nis;"ev>
+
+.xardcid='iive" re;l()Nakm= ngmctct[kd lor:=ypdof}t[da'; nD"@me// H1.4}
+. rgxard�[da'; }t[dda'; "@me//,onMSek vi);gbaw/m= noverbst >{e.i0,1SekDefault(
+
+n:bacid='iive" S,oNakmoverbw[}t dolum
+@me//,onMSek vi);gbaw/m= nlea()dev>
+
+n:bacid='iive" re;l()Nakmoverbw)di (:n
+@me//,onMSek vi);gbaw/m=op'st >{tron nge.i0,1SekDefault(
+
+ n:bacid='iive" re;l()Nakmoverbw��ragelren(kd lor:)rmdi ,e=t=di===rgbturx=>xx;
+y
+skd lor:. �);al<o<)etidDdrus=fe.�siset.tidDdrus;al<o<idDdrus==='��',") })kompleter=truehDsa()Nw[�══�} {...; })[dyId(co(e– ndCrst-(iffe);@bdxSek viegn-iaco(t[da'}ey:ouch��══════════════════════════════════w// R,25ERw// ════�TOGGLE COMPLETE�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;,"vtab
+w" uvidwwDdi ()), vi=di===rgbturx=>xx;
+y
+s �);al<o!tt4}
+=Mathdol])z_is
+w" uv>)
+ById(<idDdrus=aplaacedc; })kompleter={from;{on Eliv>
+
+ById(<idDdrus=a��',"; })kompleter=truehdol}<onsa()Nw[ �═══════════════════════════════════════w// R,25ERw// ════�DETAIL POPUP�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;@re�Detail(t, e)is[ide.stopPropagl});@OVE  et.cssT-su=na Eliv>cat=_)){Cat/ �butgory>
+
+.< Eliv>pri=PRIS[t.priority]||PRIS.r.geum
+
+.<ss=newwDd=STATS[_norm lorus(spdDdrus)]||STATS.plaacedu=na Eliv>cst bar=docuv>
+
+px;h oPredecessoplte  s:lte  s whos otail�(R)mHe �smts;liislte  'scuv>
+ (L)doldi ,e=i0,ds=:'t4'}eeDdi |cn=>cnad:g==i't1'></bucn=>di===rgbturx=>xx;
+y
+scn oromt)}eeDdi |BooS};
+v';yIt kSuccessoplte  s:lte  s liislte  'sctail�(R)mHe �smtsdoldi ,e={uccs=:'t4'}eeDdi |cn=>cnaorom===i't1'></bucn=>di===rgbturx=>xx;
+y
+scn to)e}eeDdi |BooS};
+v';
+d('</butt').--suCn-item =
+)dtl()wk[0].toLocaleD=cId=t.id=[w'</butt').--suCn-item =
+)dmetak[0;ace DOW =l 체�b<dive   <butx 6pxd:vc};font-weight:700;}■ ��cat.i.ge} ${cat.e-hei}fu<div> 체�b<div>📅 �� � :'21||s;returnwe}�� �;@m||s;trt.;@m||s;!==(spdDdi ||s;returnwe)?'� zy '+t.;@m||s;:ac}fu<div> 체킭 � :'21:ou'?lb<div>🕐킭 � :'21:ou'}�� �;@m:ou'?'� �� '+t.;@m:ou':ac}fu<div>`${c} 체�b<dive   <butx 6pxd:vpri.l(tr;}● :vpri.e-hei} 우선순위fu<div> 체�b<dive   <butx 6pxd:v :'.x 6px};}◉ :v :'.e-hei}fu<div> 체킭 �note?lb<div>📝��� �note}fu<div>`${c} 체�:vpr,dsndocuv>?lb<div    <but}cursor`,`t1`gi-col${var(--}curso);" ].join`,`t5px;x 6pxdvar(--primary>
+font-weight:700;}⬅:abs`,whrow" fu<div>:vpr,dsn</bup=>lb<div    <but5p.':'2p.'}`,8px;x 6pxd��  bar=docup)};}•�:vp�ad (L}ba<div>`stoborde(c}`${c} 체�:v{uccsndocuv>?lb<div    <but}cursor`,`t1`gi-col${var(--}curso);" ].join`,`t5px;x 6pxd8d1','a
+font-weight:700;}➡:a��계업무fu<div>:v{uccsn</bus=>lb<div    <but5p.':'2p.'}`,8px;x 6pxd��  bar=docus)};}•�:vs�ad (L}ba<div>`stoborde(c}`${c} �`f paliv>
+
+s='</butt').--suCn-item =
+)t etail'Top=oron x=e.c;
+)"}X+14, y=e.c;
+)"}Y-20hdol])zx+280>wbtuow0;ace Width@ x=e.c;
+)"}X-290hdol])zy+200>wbtuow0;ace 
+
+Rine) y=wbtuow0;ace 
+
+Rine-220hdold :spacele}`=xdAredH+de:spacec   ydAredH+de:spacedisplay=');gbaf.louur=newwDdseCatDetail(di ('</butt').--suCn-item =
+)t etail'Te:spacedisplay='ne-hei  et.csypdof ouur=newwDd.getFromDetail(di (()), vi=di===rgbturx=>xx;
+y
+s et.c';
+ceCatDetail(d;al<o<)aopenModal(ypdo,ypdo,t)f ouur=newwDddeleteFromDetail(di  end,(! et.c'4}
+=Mathdoldi====di===rgbDdi ||t.i't1!
+s et.c';
+me   ns=:'t4'}eeDdi |c=>c orom!
+s et.c&&cad:!
+s et.c';
+mesa()Nw[ ceCatDetail(d;a�═══�'lass="maS,onMSek vi);gbaw/ clas'st >{ById('�ort, a')){()"al<onst s=t etail'Te thateDs(e.target)) ceCatDetail(d;a}t[dd═══════════════════════════════════w// R,25ERw// ════�MODAL�═══════════════════════════════════wfunne-hein class=v) 
+@me-acti= v;openModal(sd,  �me,  i==, edwwDdi .get.cssi==?si=='t1:ypdof pa'�ort, a')){()"al<onst s=oodalal()wk[0].toLocaleD=si==?'일정].joi��':'새 일정'd=[w'</butt').--suCn-item =
+)delBtn'Te:spacedisplay=si==?'intlFr-flex':nne-hein c'</butt').--suCn-item =
+)ial()wk[0value=si==?�ad (L)"acin c'</butt').--suCn-item =
+)iS||s;k[0value=si==?�dDdi ||s;reti==?�rnwe)"sd|| cla{opac();@me<o
+ByI'</butt').--suCn-item =
+)iE||s;k[0value=si==?�;@me<onster||'</butt').--suCn-item =
+)iS||s;k[0valuein c'</butt').--suCn-item =
+)iS:ou'k[0value=si==?�dDdi :ou')"tou')"a09:'ae;ByI'</butt').--suCn-item =
+)iE:ou'k[0value=si==?�;@m:ou')"(tou'?(v>ric',rH1.4}ord16);@meretou')+1,23)hrng(d.getDdi ()).p:'+tou'.s`);bo3)h:'10:'ae-op=o el=doCaty="${y(si==?�butgory>
+
+.<'</butt').--suCn-item =
+)iSDdrusk[0value=_norm lorus(si==?�dDdrus))"aplaacedchdol�═  <div ddefault: exp`);it<ore�t:1.4ifield wbts;d.lenpac(te  s default true (sic'les=vis paliv>
+
+_sd=si==?�dDdi ||s;reti==?�rnwe)"sd|| cla{opac();@me<o
+ByIliv>
+
+_ed=si==?�;@me<onster||_sd
+
+.<'</butt').--suCn-item =
+)it:1.4'Te :1.4ed=sype/fdti==?�dre�t:1.4==='booS};
+'?si=='dre�t:1.4:(_sd===_ed>
+
+.<'</butt').--suCn-item =
+)iPrik[0value=si==?�priority)"ar.geume;ByI'</butt').--suCn-item =
+)iNos;k[0value=si==?�note)"acin cel=doCP(si==?�=doc||PAL[0]>
+
+px;h oSre�npredecessopl/={uccessoplbDL=docuv>
+iif-.getmctiiv etEli:tim-i===na Eliv>ci=n�ort, a')){()"al<onst s=docuInfo'tf pal<o<i==) 
+ById(di ,e=i0,ds=:'t4'}eeDdi |cn=>cnad:g==ii=='t1'></bucn=>di===rgbturx=>xx;
+y
+scn oromt)}eeDdi |BooS};
+v';yIoldi ,e={uccs=:'t4'}eeDdi |cn=>cnaorom===ii=='t1'></bucn=>di===rgbturx=>xx;
+y
+scn to)e}eeDdi |BooS};
+v';gelren(pr,dsndocuv>)"succsndocuv>ny null/idie:spacedisplay='flex'; null/idie:spaceflexDstyleuv>==dolumn'; null/idie:spacegap='6px'; null/idie:spacefocaSize='12px'; null/idie:space}`,whrow" ='var(--surface2)'; null/idie:space}cursoR'} ${='9px'; null/idie:space5p.':'2='10`gi12px'; null/idie;ace DOW = 체크�(pr,dsndocuv>?lborde   <butfont-weight:700;x 6pxdvar(--primary>;}⬅:abs`,whrow" funne-`+pr,dsn</bup=>lborde   <but5p.':'2p.'}`,10`g;x 6pxd��  bar=docup)};}•�:vp�ad (L}banne-`stoborde(c${ct 체크�+({uccsndocuv>?lborde   <butfont-weight:700;x 6pxd8d1','a
+margin-`,`tonpr,dsndocuv>?4:0}px;}➡:a��계업무funne-`+{uccsn</bus=>lborde   <but5p.':'2p.'}`,10`g;x 6pxd��  bar=docus)};}•�:vs�ad (L}banne-`stoborde(c${ct[da'; nDn.caddi0p docuInfoiints;ryS-dsoii; s notrhidden heie�nlie fold�ragelrse1:ou'outuv>
+
+die:ddi0pmerocuv>
+{behavi� �smooth',);gba:nnear0)t'}),15st dolum Eliv>
+
+idie:spacedisplay='ne-hei }
+um Eliv>
+
+idie:spacedisplay='ne-hei }
+ pa'�ort, a')){()"al<onst s=oovl'Te d='iive" S,oNaopen'ey:1}3e1:ou'outuv>
+
+'</butt').--suCn-item =
+)ial()wk[0f</bs(),100).louur=newwDdseCatModal(di ('</butt').--suCn-item =
+)oovl'Te d='iive" re;l()Naopen'ey .get.csypdof ouur=newwDdseCatModalOutu=di (l<oe.target===d</butt').--suCn-item =
+)oovl'T)dseCatModal(df ouur=newwDdsa()st sawis;liEliv>
+ad (L)'</butt').--suCn-item =
+)ial()wk[0value.>rim(
+
+ByIdi ,e=vs='</butt').--suCn-item =
+)iS||s;k[0valuein cl<o!tl()w){c'</butt').--suCn-item =
+)ial()wk[0:space}cursor=doc='#ef535ae;
+'</butt').--suCn-item =
+)ial()wk[0f</bs()px;cu = me}da'l('templ'.--suCn-item =
+)ial()wk[0:space}cursor=doc=''oByI()), vit s={tron ld:.get.c||gid(),tl()w,Id(Dd(4), ||s;:sd, ;@m||s;:'</butt').--suCn-item =
+)iE||s;k[0value)"sd,i-DD":sd,Id(Dd(4), :ou':'</butt').--suCn-item =
+)iS:ou'k[0value,Id(Dd;@m:ou':'</butt').--suCn-item =
+)iE:ou'k[0value,Id(Dd�butgory:'</butt').--suCn-item =
+)iCatk[0value,Id(DddDdrus:'</butt').--suCn-item =
+)iSDdrusk[0value,Id(Ddpriority:'</butt').--suCn-item =
+)iPrik[0value,dyId(co(� �selr=doc,dyId(note:'</butt').--suCn-item =
+)iNos;k[0value.>rim(
+, pangore�t:1.4:'</butt').--suCn-item =
+)it:1.4'Te :1.4ed,dyId(completer:'</butt').--suCn-item =
+)iSDdrusk[0value==='��',",dyI}f pal<oeget.c)ldi====di===r</but4'||t.id=eget.c?  <b:t%;Eliv>
+di===r);@me<i==);
+mesa()Nw[ ceCatModal(df �═══�ur=newwDddeletest sawis;li])z!eget.c)l}
+=Mathdoldi====di===rgbDdi ||t.i't1!
+seget.c);
+me   ns=:'t4'}eeDdi |c=>c orom!
+seget.c&&cad:!
+seget.c);
+mesa()Nw[ ceCatModal(df �═══════════════════════════════════════w// COLOR PICKERw// ═══ATEGORY SELECT HELPERch��══════════════════════════════════w// R,25ERw// ════�Whelier a er-cioreuld ore�nam
+  <div dronu) = ore�, {from;=cu=t. ���Exp`);it<ore�t:1.4ifield wbts;dlegacy"{frlrd)@::sic'les=vi(te  s hadm
+  <div e-acti= v;_  <b=0;t:1.4uv>is;li])zsype/fdt�dre�t:1.4==='booS};
+'n4}
+=Mat t�dre�t:1.4
+ByIdi ,e=v.spdDdi ||s;returnwe> e2=t�;@me<onsts.lenoucMD=ms===e2;n{pa:pgacy"defaultde<{paNormald=" :pgacy"dDdrus valuese-acti= v;_norm lorus(1.4{
+n l<os==='todo'n4}
+=Mat aplaacedchdoll<os===');gbaedct4}
+=Mat ak=',   er-.lenoucMD=ms)"aplaacedchde<{paV Tual s;hlorhelperse-acti= v;_is
+w" uv>ragelr{noucMD=m_norm lorus(spdDdrus)==='��',"retukompleter===truehD}e-acti= v;_isC=',   eruv>r{noucMD=m_norm lorus(spdDdrus)==='k=',   er-.D}e-acti= v;_isStrubathroesluv>r{noucMD=m_is
+w" uv>||_isC=',   eruv>
+ oucnst y=<ur el=doCaty="${y(val)4s;liEliv>
+v
+('ss='); el.--suCn-item =
+)iCatk[y:1}3e(e;ace DOW =Objid=.-itritEliats'></bu([k,v]>
+
+dyId(`<opy=<urvalue="${kr;}��v.i.ge} ${v.e-hei}fuopy=<u>l �stoborde(c) 1}3e(evalue=(vald)){iats[val]) ?rval : Objid=.keyEliats'
+
+ByI════════════════════════════════════w// COLOR PICKERw// ═══ATEGORY MANAGEMENT�MODAL�═══════════════════════════════════wfunne-hein class=v) 
+@me��Workmcticopym/fddatsdn s[t lie oodal i wopensron _datDraft;=cypdof 
+-acti= v;openCatModal(di px;h oDeep-copymdatsd<ona/draft;soich = nsmme  be�k=',   erp=o datDraft;=cJSON.16);@(JSON.s>ric'ifyliats'-op=o �═�Cative"(>
+
+.<'</butt').--suCn-item =
+)iatoovl'Te d='iive" S,oNaopen'ey:ouur=newwDdseCatCatModal(di px;_datDraft;=cypdof .<'</butt').--suCn-item =
+)iatoovl'Te d='iive" re;l()Naopen'ey:ouur=newwDdapplyAndCeCatCatModal(di px;])z!_datDraft)4}
+=Mathdol��Flu){ asoe le{joiiinput valuesiints;_datDraft .<'</butt').--suCn-item =
+)iatlve"'Te).forEach((b,i)=>binput  if(okey] )s=t.staeeinp=>redi Eliv>
+
+k=inp�siset.tikey, {=inp�siset.tifield';gelren(_datDraft;)){_datDraft[k]) _datDraft[k][f]=inp�value.>rim(
+||_datDraft[k][f][da'}ey:1}
+
+/Guard:료''{<applyiif-draft;somere�nbecame empty lenppdo
+lren(_datDraft;)){sype/fd_datDraft==='objid=@d)){Objid=.keyEl_datDraft)ndocuv>>0/redi Elatsd=d_datDrafthdol}<onsa()CatL�[da'el=doLenis;(
+
+ByIdeCatCatModal(df pa�════nst y=<ur �═�Cative"(>wDdi ()), vc('ss='); el.--suCn-item =
+)iatlve"'T
+ByIdex;ace DOW =''oByI])z!_datDraft)4}
+=MathdolObjid=.-itritEl_datDraft)nst c=docu[k,v]>
+
+{tron l<o!v)4}
+=Matheif(=kiptasoeppdo -itritEedi Eliv>
+
+usedCount=di===rgbDdi ||t.i'�butgoryy
+sk)ndocuv>��rage.getI0pow'ss=');
+)"    nDLcbuttoName='t[da'; powe:space-between'display:flex;aldgn-items:ce단�;gap,8px;5p.':'2:10`gi12px;}`,whrow" "var(--surface2);;cursorr'} ${:10`g'[dons nh oEmoji/i.geiinput�rage.getI0i.geInp'ss=');
+)"    nDLcbuttoNainput@);@mepal.geInp.sype='twee-.Dl.geInp.maxLocuv>=4.Dl.geInp.value=v.i.ge)"acin cpal.geInp.siset.tikey=k;al.geInp.siset.tifield='l.gecin cpal.geInp.:space-between').toF138px;twee-aldgn:ce단�;5p.':'2:5px 3px;}curso:1.5`gi-col${var(--}curso);;cursorr'} ${:7px;font-id=":17px;}`,whrow" "var(--surface);outtlFr"al();cursCn:twee-.n cpal.geInp.S,onMSek vi);gbaw/input@ev>
+
+.ren(_datDraft&&_datDraft[k]) _datDraft[k].i.ge=l.geInp.value||v.i.ge)"a📌'b :t[dons nh oL-heiiinput�rage.getI0lblInp'ss=');
+)"    nDLcbuttoNainput@);@mepalblInp.sype='twee-.DlblInp.value=v.e-hei)"acin cpalblInp.siset.tikey=k;alblInp.siset.tifield='e-heicin cpalblInp.:space-between'flex:1;5p.':'2:7`gi10px;}curso:1.5`gi-col${var(--}curso);;cursorr'} ${:7px;font-id=":13px;font-weight:600;}`,whrow" "var(--surface);outtlFr"al();c 6pxdvar(--twee)'; nullt kUpcla{ e-hei livehDr{lyt{frlard)@m<onoriginal ifiinput i wblaakn cpalblInp.S,onMSek vi);gbaw/input@ev>
+
+.ren(_datDraft&&_datDraft[k]) _datDraft[k].e-hei=lblInp.value.>rim(
+||v.e-hei)"k; })[dyId(lblInp.S,onMSek vi);gbaw/f</bs@ev>
+
+lblInp.:space}cursor=doc='var(--primary>')[dyId(lblInp.S,onMSek vi);gbaw/blur@ev>
+
+lblInp.:space}cursor=doc='var(--}curso)'t[dons nh or=doc paront) (mini)ons ndi ,e=cpWrap=ss=');
+)"    nDLcbuttoName='t[da'; cpWrape:space-between'display:flex;gap,3px;flex-wrap:wrap;max-width:120px'; nullPALs=t.staeec=>redi E
+)di Eliv>t=ss=');
+)"    nDLcbuttoName='t[da'; nDl(t :space-between)width:16px;height:16px;;cursorr'} ${:50%;}`,whrow" " `c};cursCn:He 단�;}curso:2.5`gi-col${ `cy
+sv�=doc?'#333':'trans16)tto'};flex-shrick:0;trans=docuv}curso .1s`[da'; nDl(t ad (L)c[da'; nDl(t S,onMSek vi);gbaw/ clas's(orde(t);@meyI])z!_datDraft[k]) }
+=Mathdolummmmm_datDraft[k].c=doc=c[da'; nDge.getI0p=16);@merec.s`);bo1,3),16),g=16);@merec.s`);bo3,5),16),b=16);@merec.s`);bo5,7),16)hdolummmmm_datDraft[k].bg=`1px 6${rla{ogla{ob},0 r2)`hdolummmmm_�═�Cative"(>
+st m(e-�═�m<onupcla{ w" id=h u �didatorda'; = {t[da'; nD pWrapeSek viegn-iaiot�[da'; }t[dda'; h oDelete 08,"��edi Eliv>
+
+selBtn=ss=');
+)"    nDLcbuttoNa08,"��ct[da'; lelBtn-i Sthrng('ko'✕'[da'; lelBtn-id (L)usedCount?`${usedCount}개의 일정이 있어 삭제할].jo 없습니다`:'카테고리 삭제=op=o =lelBtn-:space-between)width:28px;height:28px;;cursorr'} ${:7px;}curso:al();font-id=":13px;flex-shrick:0;cursCn:${usedCount?'noe-allowee':'He 단�=};}`,whrow" " `usedCount?'#f0f0f0':'#fff0f0'l;x 6pxd:vusedCount?'#ccc':'#e57373'r`[da'; ])z!usedCount)=lelBtn-S,onMSek vi);gbaw/ clas's(orde(t);@me])zObjid=.keyEl_datDraft)ndocuv><=1){aroroNa최소 1개의 카테고리가 필요합니다.'w[��=Math} 체크deletem_datDraft[k];o �═�Cative"(>
+
+.<; }t[dda'; poweSek viegn-ial.geInpt[da'; powe/ H1.4}
+. rgrblInpt[da'; powe/ H1.4}
+. rg pWrapt[da'; powe/ H1.4}
+. rglelBtnt[da'; c(e– ndCrst-(powt[da'}ey:oucur=newwDdaddNewCat/>wDdi ()), vkey=)iat_'+e<on.now().tov>ric',36)hdol_datDraft[key]={e-hei:'새 카테고리',al.ge:a📌',(co(� �'#607d8b',(bg:'1px 696,125,139,0 r2)'}op=o �═�Cative"(>
+
+.<��F</bs lie pac(row(s e-hei input�ra3e1:ou'outuv>
+
+.�rage.getI0inputs=[...'</butt').--suCn-item =
+)iatlve"'Te).forEach((b,i)=>b  if(ofield="e-hei"]'t][da'; ])zinputsndocuv>n0inputs[inputsndocuv>-1]0f</bs()pda'},50s.louch��══════════════════════════════════w// R,25ERw// ════�KEYBOARDch��══════════════════════════════════w// R,25ERw// ═══�'lass="maS,onMSek vi);gbaw/keyde�'st >{trol<oe.key==='Escape'){ceCatModal(dfceCatDetail(d;}trol<oe.key==='E단�=&&'</butt').--suCn-item =
+)oovl'Te d='iive"  thateDs(.open'e){tron l<oss=');
+)""vtab"Lcbutto.tags;tn!);@TEXTAREA=&&'</butt')"vtab"Lcbutto.tags;tn!);@SELECT')dsa()st saw[dyItmet[dd═══════════════════════════════════w// R,25ERw// ════�INITd═══════════════════════════════════w// R,25ERw// ═══�el=doLenis;(
+
+B�═══3e1I단�val(v>
+
+.ren(ryS-==='v>
+
+ct4}
+Svg();l}
+m
+ },60000═wbtuow0S,onMSek vi);gbaw/reid="@ev>
+
+.ren(ryS-==='meif ()abatort,);
+al});@@mems.�ddE="caLis'}ey:</script>:</iffe></html>
