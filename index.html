@@ -183,6 +183,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  /* topbar */
+  .topbar{padding:0 12px;height:52px}
+  .tl{gap:8px}
+  .logo{font-size:15px}
+  .vtabs{padding:2px;gap:1px}
+  .vtab{padding:5px 9px;font-size:12px}
+  .tc{font-size:14px;gap:6px}
+  .abtn .abtn-txt{display:none}
+  .abtn{padding:8px 10px}
+  /* legend */
+  .legbar{padding:6px 12px;gap:8px;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+  #catLeg{flex-wrap:nowrap}
+  /* main */
+  .main{padding:10px 8px}
+  /* month cells */
+  .mcell{min-height:64px;padding:3px}
+  .dnum{font-size:11px;width:20px;height:20px;margin-bottom:2px}
+  .tpill{font-size:10px;padding:1px 3px 1px 2px;touch-action:none}
+  .mdbar{touch-action:none}
+  /* week view – horizontal scroll wrapper */
+  .wcon{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .whrow{display:grid;grid-template-columns:44px repeat(7,minmax(90px,1fr));min-width:674px}
+  .wbody{grid-template-columns:44px repeat(7,minmax(90px,1fr));min-width:674px;max-height:calc(100vh - 160px);overflow-x:unset;overflow-y:auto}
+  .whtimecol{min-width:44px}
+  .whdcol{min-width:90px;padding:8px 4px}
+  .wdname{font-size:10px;letter-spacing:.4px}
+  .wdnum{font-size:16px;width:28px;height:28px}
+  /* kanban */
+  .kboard{grid-template-columns:repeat(2,1fr);gap:10px}
+  .kcolhdr{padding:10px 12px}
+  .kcoltitle{font-size:11px}
+  /* modal */
+  .modal{padding:16px}
+  .mhead{padding:14px 16px 10px}
+  .mdbody{padding:14px 16px;max-height:75vh}
+  .mtitle{font-size:18px}
+}
+@media(max-width:480px){
+  .kboard{grid-template-columns:1fr}
+  .vtab{padding:5px 7px;font-size:11px}
+  .abtn{padding:7px 8px}
+}
 </style>
 </head>
 <body>
@@ -202,7 +247,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <button class="nbtn" onclick="navigate(1)">›</button>
     <button class="tbtn" onclick="goToday()">오늘</button>
   </div>
-  <button class="abtn" onclick="openModal()">＋ 일정 추가</button>
+  <button class="abtn" onclick="openModal()">＋ <span class="abtn-txt">일정 추가</span></button>
 </header>
 
 <div class="legbar">
@@ -326,7 +371,7 @@ const DEFAULT_CATS = {
   personal: {label:'개인', icon:'🏠', color:'#ef5350', bg:'#ffebee'},
   health:   {label:'건강', icon:'💪', color:'#43a047', bg:'#e8f5e9'},
   social:   {label:'소셜', icon:'🤝', color:'#fb8c00', bg:'#fff3e0'},
-  study:    {label:'학습', icon:'📚', color:'#=>88d1', bg:'#e1f5fe'},
+  study:    {label:'학습', icon:'📚', color:'#0288d1', bg:'#e1f5fe'},
 };
 let cats = {};
 function _loadCats() {
@@ -355,7 +400,7 @@ function saveCats() {
 }
 const STATS = {
   planned:    {label:'예정',   color:'#8a8a9a'},
-  inprogress: {label:'진행중', color:'#=>88d1'},
+  inprogress: {label:'진행중', color:'#0288d1'},
   done:       {label:'완료',   color:'#43a047'},
   cancelled:  {label:'취소',   color:'#ef5350'},
   // Legacy backward-compat keys
@@ -367,10 +412,10 @@ const PRIS = {
   medium: {label:'중간', dot:'#fb8c00'},
   low:    {label:'낮음', dot:'#43a047'},
 };
-const PAL = ['#6c63ff','#ef5350','#fb8c00','#43a047','#=>88d1','#e91e63','#9c27b0','#00bcd4','#ff7043','#607d8b','#795548','#ffd600'];
+const PAL = ['#6c63ff','#ef5350','#fb8c00','#43a047','#0288d1','#e91e63','#9c27b0','#00bcd4','#ff7043','#607d8b','#795548','#ffd600'];
 const KCOLS = [
   {id:'planned',    label:'예정',   color:'#8a8a9a', icon:'📅'},
-  {id:'inprogress', label:'진행중', color:'#=>88d1', icon:'🔄'},
+  {id:'inprogress', label:'진행중', color:'#0288d1', icon:'🔄'},
   {id:'done',       label:'완료',   color:'#43a047', icon:'✅'},
   {id:'cancelled',  label:'취소',   color:'#ef5350', icon:'❌'},
 ];
@@ -398,7 +443,7 @@ if (!tasks.length) {
     {id:'t2',title:'런치 미팅',     startDate:a(1),endDate:a(1),  startTime:'12:00',endTime:'13:00',category:'social',  priority:'medium',color:'#fb8c00',note:'',          status:'todo',      completed:false},
     {id:'t3',title:'요가 클래스',   startDate:a(1),endDate:a(1),  startTime:'07:00',endTime:'08:00',category:'health',  priority:'low',   color:'#43a047',note:'',          status:'todo',      completed:false},
     {id:'t4',title:'프로젝트 마감', startDate:a(3),endDate:a(5),  startTime:'17:00',endTime:'18:00',category:'work',    priority:'high',  color:'#ef5350',note:'최종 전달', status:'todo',      completed:false},
-    {id:'t5',title:'React 강의',    startDate:a(2),endDate:a(2),  startTime:'20:00',endTime:'22:00',category:'study',   priority:'medium',color:'#=>88d1',note:'',          status:'inprogress',completed:false},
+    {id:'t5',title:'React 강의',    startDate:a(2),endDate:a(2),  startTime:'20:00',endTime:'22:00',category:'study',   priority:'medium',color:'#0288d1',note:'',          status:'inprogress',completed:false},
     {id:'t6',title:'헬스장',        startDate:a(4),endDate:a(4),  startTime:'06:30',endTime:'07:30',category:'health',  priority:'low',   color:'#43a047',note:'',          status:'todo',      completed:false},
     {id:'t7',title:'친구 생일파티', startDate:a(5),endDate:a(5),  startTime:'18:00',endTime:'21:00',category:'social',  priority:'medium',color:'#e91e63',note:'선물 준비', status:'todo',      completed:false},
   ];
@@ -508,8 +553,8 @@ function render() {
     document.getElementById('hTitle').textContent = cur.toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
   }
   if (view==='month')  renderMonth();
-  if (view==='week')   { renderWeek();   _clearConnSvg(); }
-  if (view==='kanban') { renderKanban(); _clearConnSvg(); }
+  if (view==='week')   { renderWeek();   _clearConnSLg(); }
+  if (view==='kanban') { renderKanban(); _clearConnSLg(); }
 }
 
 // ══════════════════════════════════════════
@@ -821,6 +866,14 @@ function makePill(t) {
     e.stopPropagation();
     startMove(e,t);
   });
+  // pill touchstart → drag move (mobile)
+  pill.addEventListener('touchstart',e=>{
+    if(e.target===dL||e.target===dR||e.target===cb) return;
+    e.stopPropagation();
+    e.preventDefault();
+    const touch=e.touches[0];
+    startMove({clientX:touch.clientX,clientY:touch.clientY,currentTarget:pill,target:e.target,_touch:true},t);
+  },{passive:false});
 
   return pill;
 }
@@ -831,11 +884,29 @@ function makePill(t) {
 function startMove(e, t) {
   // No e.preventDefault() here – body has user-select:none, and preventDefault on
   // mousedown can suppress click events in some browsers which breaks showDetail.
-  const pill=e.currentTarget;
+  const pill=e.currentTarget||e._pill||document.activeElement;
   // Track start position to distinguish click from drag (5px threshold)
   mvState={tid:t.id,task:t,ghost:null,pill,moved:false,sx:e.clientX,sy:e.clientY};
-  document.addEventListener('mousemove',onMoveMove);
-  document.addEventListener('mouseup',onMoveUp);
+  if(e._touch){
+    document.addEventListener('touchmove',onMoveTouchMove,{passive:false});
+    document.addEventListener('touchend',onMoveTouchUp);
+    document.addEventListener('touchcancel',onMoveTouchUp);
+  } else {
+    document.addEventListener('mousemove',onMoveMove);
+    document.addEventListener('mouseup',onMoveUp);
+  }
+}
+function onMoveTouchMove(e){
+  e.preventDefault();
+  const touch=e.touches[0];
+  onMoveMove({clientX:touch.clientX,clientY:touch.clientY});
+}
+function onMoveTouchUp(e){
+  document.removeEventListener('touchmove',onMoveTouchMove);
+  document.removeEventListener('touchend',onMoveTouchUp);
+  document.removeEventListener('touchcancel',onMoveTouchUp);
+  const touch=e.changedTouches[0];
+  onMoveUp({clientX:touch.clientX,clientY:touch.clientY,_fromTouch:true});
 }
 function onMoveMove(e) {
   if(!mvState) return;
@@ -872,6 +943,16 @@ function onMoveUp(e) {
   if(!mvState) return;
   document.removeEventListener('mousemove',onMoveMove);
   document.removeEventListener('mouseup',onMoveUp);
+  // touch: if not actually dragged, open detail on next tap (suppress ghost click)
+  if(e._fromTouch && !mvState.moved){
+    const saved=mvState.task;
+    if(mvState.ghost) mvState.ghost.remove();
+    mvState.pill.classList.remove('dragging');
+    document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('dragover'));
+    mvState=null;
+    showDetail(saved, e);
+    return;
+  }
 
   // Use the date stored during the last onMoveMove (most reliable approach —
   // avoids any post-cleanup DOM state issues)
@@ -922,567 +1003,410 @@ function onCrMove(e) {
   document.querySelectorAll('.mcell').forEach(c=>{
     const d=c.dataset.date;
     const mn=crState.s<=crState.e?crState.s:crState.e;
-    const mx=crState.s<=crState.e?crState.e:crState.s;
-    c.classList.toggle('rangesel', d>=mn&&d<=mx);
-  });
+    const mx=crState.s<=crState.e?crState.e if(!ms||State)dChild(dow);
+
+  // Scroltate)dChild(e.ghost.style.leftnst tLmn&&d<=mxtart →   if(!crState) turn;
+  documetgt=document.elemenner('mousemove',onMoveMove);
+  document.rementListener('mouseupeup',onMoveUp);
+  // touch: if ne(e) {
+ll('.mcell').forEach(c=>c.classList.remove('dragover'));
+
+  if(!mvStayle.leftn).length>0?trState.s:crState.e;
+    const mx=crState.s<=crSte.e?crState.e if(!ms||State)dChild(dow);
+
+  // Scroly(new Dams||Stat
+  document.��══endChild(mmn,t) mv,t) mv,tmxtar��═══════════════════════════════════
+// COLOR PICKER
+// ═══�NNECTION
+// W═══════════════════════════════════
+function cellDown(e, ds) {
+  if(e.ment;��═()+'-'+Stringonnsvg')){
+    const s=document.c { filterCat =  pill.appe nst, t.idult() heruse m onMovgho(R)s in unctio═abDL=documenpendCon.id s:d ld(dment.elemenst touch=e.touches[0];
+  onMent=ment;��═   // Onentument.elementFromPnFra('http://www.w3.org/2000/svg','svg');
+    s.id='connsvg'pa (vi!findFra); rAttritatStastroke288d1','#e9i!findFra); rAttritatStastrokeConten2881.59i!findFra); rAttritatStaty �288     i!findFra); rAttritatStad288M0,e9i! herunction    -hroughdconnece pa (etElemefindFra);px';
+ documenMoves=ction navinnspill.classLisdFraually dr||e.butt mdocumb��abDh�� */on onMrn;;romPo restnnece tail o turn; cancelled=t=||e.button!==0) return;
+  crSe.butt{
+ll('');
+    mvState.dlitt), cancost:null,p, t.id,ndFrat PAL,innstener('mousemove',onCrMove);
+  document.addEveotListener('mouseup',onCrUp);
 }
-function onCrUp(e) {
-  if(!crState) return;
-  document.removeEventListener('mousemove',onCrMove);
-  document.removeEventListener('mouseup',onCrUp);
-  document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('rangesel'));
-  const mn=crState.s<=crState.e?crState.s:crState.e;
-  const mx=crState.s<=crState.e?crState.e:crState.s;
-  const st=crState;
-  crState=null;
-  openModal(mn, null, null, mx);
+function onCrMoveoe) {
+  onths��─ ques.ms.querancordin
+   t firk ev font-slst wreadyncordsSVG cethen fall iwrap=document.cr adius=docu:0filterCat PALPos(nst, t.idult() lement('div'); el.ata-y="${y}"][da('.cdt guarate.-teTa$ll,phile(||e="cancelledmmonlbl[data-y="${y0}"][daove
+t guarate.-teTa$ll,phile(   // Onems.scrollt.classLi   consteldata-y="${y0}"][durn;t guart.id;a$lt.idhile(   // Ote.task;
+    idrontent const ghost=pill.cloneNodh lakip PALs wi (ezero ne)  (psis;w/un-══cr tX,e.cli)ent='✓'rt}px;t    &&dr.appendC=>{ const d= const rteldent const ghost=pill.cloneNodate(part}px;t    &&br.appendC=>{ .scrollt.classLie task to  {x:t.id;=;
+  ?br.docu+4:br.=docu-4, y:br.adi+br.append/2}Listener('mosk to  {x:dr.docu+'rt}px;t/2, y:dr.adi+dr.append/2}List}� try eallleme:rk emakePill(edgeter(t=>{co rteldent const ghost=pill.cloneNe(part}px;t    &&br.appendC=>{ .scrollt.classLisk to  {x:t.id;=;
+  ?br.docu+4:br.=docu-4, y:br.adi+br.append/2}Li  if(!crState)oreturn;
+  const tot=document.elemenry hen fall iwrap=document.cr adius=docu:0,conn.ms.querancord{froeadyncordsouches[0];
+={;
+  if(e._to ch){
+    documen/ drantY=PALPos(tot=doc.nst, tot=doc.t.idu   // OnantYging if moeallleme:rk emMoveMoven;
+sn draw co.ms.queraap=documtask;
+    idrotot=doc.('')ent const ghost=pill.cloneNodantY={x:dr.docu+'rt}px;t/2, y:dr.adi+dr.append/2}List}� t const x=(antY.x+to.x)/2, cancost:n.dFra); rAttritatStad28`M${antY.xisibantY.y} C${cxisibantY.y} ${cxisibto.y} ${to.xisibto.y}` {
+ll('.mcell').forEach(c=>c.clasurn;
+ emove('drd=>der'));
+
+  if(!mvStalitt)), cancost:n.('');
+    mvState.dlitt), canconsth('div'); ov.X,e.clientY)?.closest?.('.mcell');
+  , canconsth('D=t=h('if(tgt?.dataseurn;
+  c(h('if(t    mvSt   || docuurn;
+ ?h(':e.clually druse mote:ldocumLr so thiPALs  wrorrupte.butts  // Oh('D=tconsh('D=taset.tid=t.id;=;
+  consh('D=taset.tid=nsts:dtot=doc.nst)sh('D=ta;
+    mvState.dlitt),   if(!crState)oturn;
+  documetot=document.elemenner('mousemove',onMoveMove);
+  document.remeotListener('mouseupeup',onMoveUp);
+  // touch: if neoe) {
+ll('.mcell').forEach(c=>c.clasurn;
+ emove('drd=>der'));
+
+  if(!mvStalitt)), cancost:n.dFra)classList.renconsth('div'); ov.X,e.clientY)?.closest?.('.mcell');
+  , canconsttd=h('if(tgt?.dataseurn;
+  c(h('if(t    mvSt   || docuurn;
+ ?h(':e.clu||e="cancelledh('if(tgt?.datase('.cdot? .mweek'));
+  conurn;t guart.id;aL"]'u||e="cancelledh('if(tgt?.datasessTextt? .mweek'));
+  conurn;t guart.id;aL"]'u { crStaect' &daset.tid=t.id;=;
+  cons&daset.tid=tidcons&daset.tid=tids:dtot=doc.nst)x=>x.id===mvSoTextdaset.tid=tidoneNodh lult
+ =Movgho(R)s/ontot=doc.nst pilltnn=ument (L)s/onSoTetask;
+    idup='t4'})c))tragoveantY=:dtot=doc.nst&&c.ad?' woTe oldS=t.st!dupts).fi'});
+  save();tot=doc.nst,to:woTe}
+     mvStrender();ncost:nu.classLiskonns);
 }
 
-// ══════════════════════════════════════════
-// CONNECTION DRAW
-// ══════════════════════════════════════════
-function _pillSvg() {
-  return document.getElementById('connsvg');
+/* ── scroll to a mont�══════════════════════════════════
+// DRAG CREATE (date range)
+// W��NNECTION
+LINES═══════════════════════════════════
+function cellDown(e, ds) {
+  if(e.m��════lt() lementent=gonnsvg')){
+    const s=document.c {endConntum('.mnnsp).forEach(c=>c.clasupa (,.carrow,.cordepst ds=wd.dats('mcelclassLis),   if(!crStascroll to��lt() lementent=gonnsvg')){
+    const s=document.c {endConentument.elemen═�═ousedi bodnFram (keep Pefi)ent('.mnnsp).forEach(c=>c.clasupa (,.carrow,.cordepst ds=wd.dats('mcelclassLis), ly druse mequesvisuascrollySeleiwr start// mov=22, O{endCoySel!;
+  if (v||'mscroll')) buildMonthView();
+  else ent.elem ly dr──
+hospPa (:cumetrictdnFram tnn<m| d> ear:nd��oareaconneceycb.t'co leMov.cloument.c/legve
+ t) {
+  rSte.e?cr| dE'div'); el.ata-y="${y}"]['r| d.r| d'(!find()&ll'pIy.apalhosp'!find()&Pefi=nnsp).forEach(c=>tadefi.c {endConPefi){&Pefi='http://www.w3.org/2000/svg','svg');
+    s.id='connsvg'defi.c innspuerySelector(defi,nnspody.insertStrended()&lp=defip).forEach(c=>ta#'+ll'pIyc {endConcpts).p='http://www.w3.org/2000/svg','svg');
+    s.id='connsvg'cospPa (
+    pf(t)ll'pIy;&Pefi// title
+  conpStrende pf(ky DOW h=''! her��═;
+  entReate.gho| dE')x=>x.id===mvmr=o| dE'
+    const ghost=pill.cloneNode(truecr='http://www.w3.org/2000/svg','svg');
+    s.id='connsvg'ntReeck'+(donr); rAttritatStax',vmr.docu    r); rAttritatStay',vmr.adick'+(donr); rAttritatStaonten28vmr.onten    r); rAttritatStaappend28vmr.appendck'+(don.appendChild(wcrt ti=documentc.cdnFram goreaka <g>&ll'ppcr ad ear:nd��obconssouches[0]g='http://www.w3.org/2000/svg','svg');
+    s.id='connsvg't.c {eng); rAttritatSta(t   vg'cordepst;ate.gho| dE')ng); rAttritatSta(tip-pa (v,'url(#'+ll'pIy+')st;atennspill.classLisg)nt.creatn  const dseatn.date;
+ ring thques.ms.querancordin
+   t firhen fall iwrap=document.cr adius=docu:0fll;
+    con1=PALPos(tonneantYild(d, p2=PALPos(tonneto,
+   oldS=t.st!p1||'p2ew Date(ds); sun.setx1=p1.x, y1=p1.y, x2=p2.x, y2=p2.yoneNode(truecx=(x1+x2)/2, caSelector(st bar=documete.tid);
+ 4'||t.id==tonneantYu||{ ══;
+    cona (('http://www.w3.org/2000/svg','svg');
+    s.id='connsvg'pa (vi!fin ona (); rAttritatSta(t   vg'cpa (vi!fin ona (); rAttritatStad28`M${x1isiby1} C${cxisiby1} ${cxisiby2} ${x2isiby2}`i!fin ona (); rAttritatStastroke28fc||8d1','#e9i!fin ona (); rAttritatStastrokeConten2881.59i!fin ona (); rAttritatStaty �288     i!fin ona ();px';
+ documenMoves=cstroke2!fin ona ();px';
+cursonte docume2!fin ona ()��무 숁�릭하면stener( 삭제2!fin ona ()e=>{e.stopPropagation();s(lor(t);
+      ns='t4'})tDate||ago!(veantY=:dtonneantY&&c.ad?' tonneto)loneNodat   mvStrscroll to��endChild(ov);
+spill.classLisna (══;
+entcrrowment  docuhan 5ntnnece ment (LiPAL)═;
+    coangrHeighet.n2(y2-y1,x2-xdTimal=7, caSelectorarr('http://www.w3.org/2000/svg','svg');
+    s.id='connsvg'pa (vi!fin oarr); rAttritatSta(t   vg'carrowvi!fin oarr); rAttritatStad28`M${x2isiby2} L${x2-al*Heighcos(ang-.45)isiby2-al*Heighsin(ang-.45)i M${x2isiby2} L${x2-al*Heighcos(ang+.45)isiby2-al*Heighsin(ang+.45)i`i!fin oarr); rAttritatStastroke28fc||8d1','#e9i!fin oarr); rAttritatStastrokeConten2881.59i!fin oarr); rAttritatStaty �288     i!fin oarr);px';
+ documenMoves=ction navi;
+spill.classLisarrtart →   nt�══════════════════════════════════
+// DRAG CREATE (date range)
+WEEKNITE ═══════════════════════════════════
+function cellDown(e, ds) {
+  if(e.ent.getEle(wDilt() lement(d.getDate((wDi,rEac=dcell=docu,tHours(0,0,0,0)t;aten7);
+  const fdate(d); s en* ── appcrrayeantY({onclic:7},(_nt.cresun.setxd.getDate()+i); x;
+  const first=_weekHai      t.stx; →   if(!crStanSLg(); }
+  lt() lementcument.getElementById)), vis=getVisible();
+  conById)), vi TRACK_H=22, OVERL() lementchr=gonnsvg')){
+    const s=dwhrowvi!finwhrf(ky DOW h='olor?' sel':whfdatcol
+functio'+wkv clasent.createElement(.getDay()=Move task to lColor?' sel':whdcol${WE?' weekendt.date=}"tem" oncolor?' sel':wdname}</dDAYS[i]}
+functem" oncolor?' sel':wdnum}</d fdate(d); }
+functem" ounctionart �kColor(c) {() lementcbd=gonnsvg')){
+    const s=dw
+  [...finwbdf(ky DOW h=''!yId)), vis'div'); el.className='mmonlbl';
+ t?' done':cance cons+${dayHOURS const dshcresun.set('div'); el.className='mmonlbl';
+  el.dataset.y=tstFulleDateString('ko-t    ?'':eric',mhing(d.getDate()).pa:#e9
+ t?'ill.classLisel);ild(ov)wbdfght conn dot
+l) {() wkvt c=documendt.createElement(.getDay()=Move tae(trueco'div'); el.className='mmonlbl';
+ co'l.dataset.y=wt.daove taHOURS const dshcresun.set'div'); ms.id='mscroll'; ms.classsl.dataset.y=tssl dR.dsation();o(lorendChild(m);,eric',mhing(d.getDate()).pa:#e9;
+ co'l Height: fill t  ══;
+startDate||t.d(  const diff=(new D))=>(a.stst MAX=3;
+)=t.startDate||t.datae(true[sh,sm]=tst MAX=3;
+.spli; m:')v claNumbernt.createElemen[eh,em]=();
+  =3;
+   23:59anbapli; m:')v claNumbernt.createElemenst bar=document.createElemen  docsh*60+sm)/60*56ate(dropDate)-nurrHeight-s.((eh*60+em)-csh*60+sm))/60,.5nt.createElementlkdiv');
+      bDR.className='cdot'; bDR.lkl.dataset.y=wt;
 }
-function startConn(e, tid, side) {
-  // Only the tail (R) can initiate a connection
-  if(side !== 'R') return;
-  e.preventDefault();
-  const svg=_pillSvg();
-  if(!svg) return;
-  const line=document.createElementNS('http://www.w3.org/2000/svg','path');
-  line.setAttribute('stroke','#fb8c00');
-  line.setAttribute('stroke-width','1.5');
-  line.setAttribute('fill','none');
-  line.setAttribute('d','M0,0'); // initial non-empty d so the path exists
-  line.style.pointerEvents='none';
-  svg.appendChild(line);
-  // e.target might be a child of the dot; walk up to the actual .cdot
-  const dot=e.target.closest('.cdot')||e.target;
-  dot.classList.add('lit');
-  coState={tid, side, line, dot, svg};
-  document.addEventListener('mousemove',onCoMove);
-  document.addEventListener('mouseup',onCoUp);
+fu+ ═ompletll.datompletllcssText='flex.lklle.cssText};wid,`backgter-ev';
+    /d ur*56r-ev`,
+        `border-lef5)iolor:${c};-`xt='flex.lkl(ky DOW h=Color?' sel':wt��무}</d═ompletll.d<s>ate=} ${t)��무}/d═ompletll.d</s>ate=}unctioolor?' sel':wt��m�}</d�t MAX=3;
+} fi/d�
+  =3;
+   =}unctio`xt='flex.lkltion();openModal(ds);}; cell.app pill mousedown �t.createEl'l Height: fil.lk�endChild(oent='✓'E?' wee)esun.setn'div'); el.className='mmonlbl';
+ n'l.dataset.y=nownFra';sun.setn='month' &&  n'l'px';
+  do`${(irst=replac)*60+irst=MinutEle))/60*56,.16
+ co'l Height: filnlStrendev)wbdfght conn dotco'tart → dr);
+ 3;
+outment.q)wbdftAnimation7*56a },50��   nt�══════════════════════════════════
+// DRAG CREATE (date range)
+KANBANNITE ═══════════════════════════════════
+function cellDown(e, ds) {
+  if(e.nSLg(); }
 }
-// Returns raw viewport coordinates – used directly as SVG coords since #connsvg is position:fixed top:0 left:0
-function dotPos(tid, side) {
-  const el=document.querySelector(`.tpill[data-task-id="${tid}"]`)||
-           document.querySelector(`.mdbar[data-task-id="${tid}"]`);
-  if(!el) return null;
-  const d=el.querySelector(`.cdot[data-side="${side}"]`);
-  if(d){
-    const dr=d.getBoundingClientRect();
-    // Skip dots with zero size (hidden/un-rendered elements)
-    if(dr.width===0&&dr.height===0){
-      const br=el.getBoundingClientRect();
-      if(br.width===0&&br.height===0) return null;
-      return {x:side==='L'?br.left+4:br.right-4, y:br.top+br.height/2};
-    }
-    return {x:dr.left+dr.width/2, y:dr.top+dr.height/2};
+
+/lt() lement TRACK_H=22, OVERLAY_TOP=3bd=gonnsvg')){
+    const s=dkboardText='bdf(ky DOW h=''!yIdKCOLS const dskt.date;
+    conco'Tt.startDate||t.d_normost:us(  con:us   plaky dTe?' kc.i=Move tae(trueco'div'); el.className='mmonlbl';
+ co'l.dataset.y=kt.daove taco'l(ky DOW h=Color?' sel':kt.dhdr">olor?' sel':kt.d��무}onclick=lor:${c}kc.lor:$}}</dkc.ie(t} ${kc.'');
+}
+funct<titl?' sel':ktnt}</dco'Tt.onclic}
+ftitl>unctio`xt='fleElement('div'); body.className='mbody'; body.id='contbodykt.d;
+  grid.appset.tid=ton:us kc.i=��═;
+  'Tt.t.startDate||t.datae(truest bar=document.createElemencat=_){
+Cat ═lasgorynt.createElemenpri=PRIS[t.priority]||PRIS.mediumt.createElemencarddiv');
+      bDR.className='cdot'; bDRElemenkd=_isCancelled(t)k;
+  pill.className='tpill'+(d bDREardid='contbodyktardT+(kdone) ctompletllcsk);
+  pill.dataset.taskId=t.id; bDREardi'px';
+cc:${cLeft/ ══id; bDREardierySeoidstate.pREardieR.title='꼬리 – 연Eardi(ky DOW h=Ce="cancelolor?' sel':kthdr">e="cancelleolor?' sel':kt��무${kcaset.tas||kdone) cstru
+func'}}</d╗�무}
+functem" oncelleolor?' sel':ktbox${kdone) cb.textCo}}</dkdone) enerte=}unctioe="cancelonctioe="cancelolor?' sel':ktm mo">e="cancelleotitl?' sel':ktag}onclick=`,
+        `border-lef2)iolor:${c};-}</dcat.ie(t} ${cat.'');
+}
+ftitl>e="cancelleotitl?' sel':ktag}onclick=`,
+        `borderpri.(''lef)iolor:${c}pri.(''-}<● c}pri.'');
+}
+ftitl>e="cancelleotitl?' sel':kcew D">📅 /d�t MAX diff=(new D   =}untitl>e="cancelonctioe="cancel/d�note?Color?' sel':ktnote">📝l/d�note}unctio`te=}e="canc` – 연Eardi.mweek'));
+  conktbox')ve=>{e.stopPropagation();toggleDone(t.id);});
+        bar.appendChild(bCb);
+ Eardie=>{e.stopPropagation();toggl/ One|e.button!==0) retktbox')) // mdbar mousedown → drEardie=>{e.stopPropagaterySet===dL||e.kdost:null,pill,miolardid='co mvState.dkerySelectoreieR.tTransfer.eff);
+Allowe='msent.down → drEardie=>{e.stopPropagateryScumenent.qlardid='co mvStf(!mvStakerySelectorkdost:nu.clas(bDR);
+       pill.classLislard�endChild(oent='    pi=>{e.stopPropagaterySoved)toggleD touch=e.touches[ody.id='co mvState.dkeate=tgt}_buildWeekDii=>{e.stopPropagaterySleant.rent.ody.id='co mvStf(!mvStake;
+    showDeteekDii=>{e.stopPropagateropt===bDL||e.taeD touch=e.touches[ ody.id='co mvStf(!mvStake;
+    oneNodate(pkdost:n)esun.setState.tid);
+    if(t){
+kdost:nonst ot.startd=ton:us d.appset.tid=ton:usot.sta=ton:us =='b.tex;
+  tompletlltate.pR   mvSt═══}ll;
+  re)ove taco'lppendChild(grid);
+ bdfght conn dotco'tart →   nt�══════════════════════════════════
+// DRAG CREATE (date range)
+TOGGLE COMPLETE═══════════════════════════════════
+function cellDown(e, ds) {
+  if(e.    bar.appeid Date()), vistate.tid);
+    if(t){
+nst ot.st!toved){
+    // OCancelled()x=>x.ia=ton:us  plaky dT;
+  tompletlltEvent.addEventListenera=ton:us  b.tex;
+  tompletlltate.pnder();   mvStr═══════════════════════════════════════
+// DRAG CREATE (date range)
+/ETAIL POPUP═══════════════════════════════════
+function startMove(e, t) {
+  // No // mdbar mou n;
+  doeDone(t.id);});
+    ressText=`backgElemencat=_){
+Cat ═lasgorynt.crElemenpri=PRIS[t.priority]||PRIS.mediumt.cry(new Dat=STATS[_normost:us(  con:us)]||STATS.plaky dackgElemenct bar=document.cumentPredecessounctios:nctios whosnMovgho(R)s docusstnnecisnctio'sument (L).crElemenpreds='t4'})tDate||an=>cn.ad?' wndChv claan=>ate.tid);
+    if(t){
+cneantYu))tDate||Boo  co), ly drSuccessounctios:nctios ecisnctio'suovgho(R)s docusstntCal.topDatccs='t4'})tDate||an=>cn.antY=:dwndChv claan=>ate.tid);
+    if(t){
+cneto)l)tDate||Boo  co), 
+('hTitle').textContent=new dtte(y,mo,1).toLocaleld(ti);
+
+  hTitle').textContent=new dm mo,mo(ky DOW h=Ce="caotitl?nclick=lor:${c}c}if(bDow;
+    700}<■ /dcat.ie(t} ${cat.'');
+}
+ftitl>e="caotitl>📅 /d�t MAX diff=(new D}/d�
+   dif.sts
+   dif!==(  const diff=(new D)) cpill'+ts
+   dif: =}untitl>e="ca/d�t MAX=3;
+?Cotitl>🕐a/d�t MAX=3;
+}/d�
+  =3;
+) cp��l'+ts
+  =3;
+: =}untitl>`te=}e="caotitl?nclick=lor:${c}pri.(''-}<● c}pri.'');
+} 우선순위
+ftitl>e="caotitl?nclick=lor:${c}t M.lor:$}}<◉ c}t M.'');
+}
+ftitl>e="ca/d�note?Cotitl>📝l/d�note}untitl>`te=}e="cac}preds.onclic?Cotitlonclick=`c:${c},`ba1color:${cvar(--`c:${c); ].join(,`ba5pxolor:${var(--primaryntf(bDow;
+    700}<⬅��트';
+  piluntitl>c}preds. clap=>Cotitlonclick=px':'2px'}`,`8pxolor:${/d�bar=docump)}}<•ac}p���무}
+ftitl>`�kColor(c)}`te=}e="cac}atccs.onclic?Cotitlonclick=`c:${c},`ba1color:${cvar(--`c:${c); ].join(,`ba5pxolor:${d1','#etf(bDow;
+    700}<➡�여 연결';untitl>c}atccs. clas=>Cotitlonclick=px':'2px'}`,`8pxolor:${/d�bar=docums)}}<•ac}s���무}
+ftitl>`�kColor(c)}`te=}e="`ssLi   consthTitle').textContent=new tess gh'(!find()&y=e.clientY+14, y  if(Math.a20   // Ox+280>oundingClienWnten &y=e.clientY-290   // Oy+200>oundingClienek();
+) y oundingClientRect()220   /d)+'px';
+  mvxAreaH+'dl'px';
+  doyAreaH+'dl'px';
+display=';
+}
+fu�   if(!crStan!==0mdbar m.dathTitle').textContent=new tess gh'(l'px';
+display='tion nressTex.clas   if(!crStaediientYmdbar m.dat)), vistate.tid);
+    if(t){
+essTe;
+ c!==0mdbar m.ot.star�endChild(m) mv,) mv,t)s   if(!crStadeletlentYmdbar m.da{endConPesTe;ved){
+    /ate.ttate.tid)ate||t.dwndC!{
+essTe;
+
+     ns='t4'})tDate||agoveantY!{
+essTe&&c.ad!{
+essTe;
+
+     mvStrc!==0mdbar m.ot════('mouseup',onCrUp);
+}
+function();togglyId('mscroll')) buildMonthViewtess gh'(l   || doce|e.butt))rc!==0mdbar m.otld(oe��══════════════════════════════════
+// DRAG CREATE (date range)
+MODAL═══════════════════════════════════
+function startMove(e, t) {
+  // NoendChild(msde nsmpe nte.u nd Date(ediiTextte.?tte.ndC:.classLimscroll')) buildMonthView(ild(ate(y,mo,1).toLocalette.?'일정l.app��':'새 일정'
+
+  hTitle').textContent=new delBtn'(l'px';
+display=tte.?'innFra-xt-o':ction navihTitle').textContent=new iate(y,movalue=tte.?���무   =navihTitle').textContent=new iS dif,movalue=tte.?�const diff=(te.?�ew D  sd||tVisible();
+  conByIdhTitle').textContent=new iE dif,movalue=tte.?�&e===s;})as||hTitle').textContent=new iS dif,movaluenavihTitle').textContent=new iS=3;
+,movalue=tte.?�const=3;
+  t3;
+   09:#e9
+yIdhTitle').textContent=new iE=3;
+,movalue=tte.?�
+  =3;
+  (t3;
+?(eric',mHeightlor,1);
+    t3;
+)+1,23)ing(d.getDate()).pa:'+t3;
+.sll.ap3)i:'10:#e9i!fin });
+ Catk'));
+(tte.?��lasgorynt.crhTitle').textContent=new iSon:us,movalue=_normost:us( te.?�con:us)   plaky dTemen═�n task hd.touch: expll.it    let bCbfield ouns;howChle()ctios d.touch ate. (sc',les en*sLi   con_sd=tte.?�const diff=(te.?�ew D  sd||tVisible();
+  conById   con_ed=tte.?�&e===s;})as||_sdt.crhTitle').textContent=new iet bC'(l t bCed=type/onSte.?�c  let bC =='boo  co'?tte.nc  let bC:(_sd===_ednt.crhTitle').textContent=new iPri,movalue=tte.?�priority   medium9
+yIdhTitle').textContent=new iNoif,movalue=tte.?�note   =navi});
+ CP(tte.?��docu||PAL[0]nt.cumentSowChpredecessoun/DatccessounDL=document opeediihan tlotElemmost te.ckgElemenci=gonnsvg')){
+    const s=documInfo'u { crState.d(x=>x.id===mvpreds='t4'})tDate||an=>cn.ad?' wte.ndChv claan=>ate.tid);
+    if(t){
+cneantYu))tDate||Boo  co), lyCal.topDatccs='t4'})tDate||an=>cn.antY=:dwte.ndChv claan=>ate.tid);
+    if(t){
+cneto)l)tDate||Boo  co), odate(ppreds.onclic  stccs.onclic const d= il'px';
+display='xt-o';onst d= il'px';
+xt-oDont-smen=doclumn';onst d= il'px';
+gap='6po';onst d= il'px';
+xoLoSize='    ';onst d= il'px';
+`,
+       ='var(--surface2)';onst d= il'px';
+`c:${cR} ${i='9  ';onst d= il'px';
+px':'2p=' 0col    ';onst d= il(ky DOW h=e="cancel(preds.onclic?Color?nclick=f(bDow;
+    700olor:${var(--primaryn}<⬅��트';
+  pilunctio`+preds. clap=>Color?nclick=px':'2px'}`,` 0coolor:${/d�bar=docump)}}<•ac}p���무}
+fctio`�kColor(c)Id=te="cancel+(atccs.onclic?Color?nclick=f(bDow;
+    700olor:${d1','#etmargin-,`backpreds.onclic?4:0}px}<➡�여 연결';unctio`+atccs. clas=>Color?nclick=px':'2px'}`,` 0coolor:${/d�bar=docums)}}<•ac}s���무}
+fctio`�kColor(c)Id=tn → drag ment.g ocumInfo 5ntnnySeleso 5;
+snn depsis;w );
+wChece foldneNodat ;
+ 3;
+outment. il'ent.g   otCal({document.getEleme,;
+}
+f:cteaumet'}),15(_buildWEventLis= il'px';
+display='tion nr}
+dWEventLis= il'px';
+display='tion nr}
+sLimscroll')) buildMonthView(ivh'(l ='co mvState.dendC'�� dr);
+ 3;
+outment.hTitle').textContent=new iate(y,mofTits(),100)�   if(!crStan!==0hild(m.dathTitle').textContent=new (ivh'(l ='co mvStf(!mvStaendC'��(ediiTex.clas   if(!crStan!==0hild(Outmt.datt===dR||e.targeTitle').textContent=new (ivh'()an!==0hild(m.s   if(!crSta   m    
+/lt() lement��무 hTitle').textContent=new iate(y,movalue.ricmes[0];
+  onMesthTitle').textContent=new iS dif,movaluenavi.st!tte(y){ihTitle').textContent=new iate(y,mo'px';
+`c:${c/ ═�'#ef535e9
+ hTitle').textContent=new iate(y,mofTits()     t.storAll('.mcell'textContent=new iate(y,mo'px';
+`c:${c/ ═�''!yId)), vis   =.targetd:ediiTe||gid(),tte(y,ouch.clien dif:sde 
+   dif:hTitle').textContent=new iE dif,movalue  sd,  con:sdeouch.clien=3;
+:hTitle').textContent=new iS=3;
+,movalueeouch.
+  =3;
+:hTitle').textContent=new iE=3;
+,movalueeouch.�lasgory:hTitle').textContent=new iCat,movalueeouch.con:us:hTitle').textContent=new iSon:us,movalueeouch.priority:hTitle').textContent=new iPri,movalue,ve taco'nt.sel/ ═,ve tanote:hTitle').textContent=new iNoif,movalue.ricmes,;
+    retet bC:hTitle').textContent=new iet bC'(l t bCed,ve tacompletll:hTitle').textContent=new iSon:us,movalue =='b.tex,ve cument.addiiTe)/ate.ttate.ti cla4'||t.id==ddiiTe?ved:fa);
   }
-  // Fallback: use element edges
-  const br=el.getBoundingClientRect();
-  if(br.width===0&&br.height===0) return null;
-  return {x:side==='L'?br.left+4:br.right-4, y:br.top+br.height/2};
+ ate.ti;
+  sate.d
+
+     mvStrc!==0hild(m.s ════if(!crStadeletl    
+/lt() / OnediiTe)/ed){
+    /ate.ttate.tid)ate||t.dwndC!{
+ediiTe)
+
+     ns='t4'})tDate||agoveantY!{
+ediiTe&&c.ad!{
+ediiTe)
+
+     mvStrc!==0hild(m.s ═══════════════════════════════════════
+// COLOR PICKER
+// ═══�ATEGORY SELECT HELPERnt�══════════════════════════════════
+// DRAG CREATE (date range)
+Wheecer aropDat reuld howChahen task hme='t = howC, Eventn=um.iduge)
+Expll.it    let bCbfield ouns;hlegacyfrom leme:rsc',les en)ctios hadhen task  {
+  if(e.mdocument.createlt() / Otype/onS�c  let bC =='boo  co' .scrolltS�c  let bC[0];
+  onMeendDate||s;return s== e2ds&&e===s;}).s── apps ==e2; dL=dogacyfd.touch
+  ontNormale)  dogacyfcon:us values {
+  if(e.mnormost:us(t('.tpill's =='todo' .scrollt plaky dTemenll's ==';
 }
-function onCoMove(e) {
-  if(!coState) return;
-  // #connsvg is position:fixed top:0 left:0, so viewport coords = SVG coords
-  const to={x:e.clientX, y:e.clientY};
-  let from=dotPos(coState.tid, coState.side);
-  if(!from){
-    // Fallback: use stored dot's current viewport position
-    const dr=coState.dot.getBoundingClientRect();
-    from={x:dr.left+dr.width/2, y:dr.top+dr.height/2};
-  }
-  const cx=(from.x+to.x)/2;
-  coState.line.setAttribute('d',`M${from.x},${from.y} C${cx},${from.y} ${cx},${to.y} ${to.x},${to.y}`);
-  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('lit'));
-  coState.dot.classList.add('lit');
-  const hov=document.elementFromPoint(e.clientX,e.clientY);
-  const hovDot=hov?.closest?.('.cdot')||(hov?.classList.contains('cdot')?hov:null);
-  // Only highlight L (head) dots as valid targets
-  if(hovDot && hovDot.dataset.side==='L' && hovDot.dataset.tid!==coState.tid) hovDot.classList.add('lit');
+f dTe.scrollt taset.tasks── apps   plaky dTem  ontVge:
+  // 예helpers {
+  if(e.mancelled(eNodat{�─ app_normost:us(  con:us) =='b.texeturtompletllt=tate.pR} {
+  if(e.mansName='tpillt{�─ app_normost:us(  con:us) =='taset.tasksR} {
+  if(e.manStru
+fif(_tasillt{�─ app_ancelled(||_assName='tpill' {
+  if(!docu });
+ Catk'));
+(v=ms.t() lemente('div'); el.textContent=new iCat,m� dr);'l(ky DOW h=Obj;poitenriElematshv cla([k,v]nt.ve ta`<op!docuvalue "${k-}</dv.ie(t} ${v.'');
 }
-function onCoUp(e) {
-  if(!coState) return;
-  document.removeEventListener('mousemove',onCoMove);
-  document.removeEventListener('mouseup',onCoUp);
-  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('lit'));
-  coState.line.remove();
-  const hov=document.elementFromPoint(e.clientX,e.clientY);
-  const td=hov?.closest?.('.cdot')||(hov?.classList.contains('cdot')?hov:null)||
-           hov?.closest?.('.tpill')?.querySelector('.cdot[data-side="L"]')||
-           hov?.closest?.('.mdbar')?.querySelector('.cdot[data-side="L"]');
-  if(td && td.dataset.side==='L' && td.dataset.tid && td.dataset.tid!==coState.tid){
-    const toId=td.dataset.tid;
-    // from = tail (R) of coState.tid → to = head (L) of toId
-    const dup=conns.some(c=>c.from===coState.tid&&c.to===toId);
-    if(!dup){ conns.push({from:coState.tid,to:toId}); save(); }
-  }
-  coState=null;
-  requestAnimationFrame(drawConns);
-}
-
-// ══════════════════════════════════════════
-// DRAW CONNECTION LINES
-// ══════════════════════════════════════════
-function _clearConnSvg() {
-  const svg=document.getElementById('connsvg');
-  if(svg) [...svg.querySelectorAll('.cpath,.carrow,.cgroup')].forEach(el=>el.remove());
-}
-function drawConns() {
-  const svg=document.getElementById('connsvg');
-  if(!svg) return;
-  // Clear previous lines (keep defs)
-  [...svg.querySelectorAll('.cpath,.carrow,.cgroup')].forEach(el=>el.remove());
-  // Only draw when month view is active and visible
-  if(view!=='month'||!document.getElementById('mscroll')) return;
-
-  // ── ClipPath: restrict lines to <main> calendar area so they don't bleed into header/legbar ──
-  const mainEl=document.querySelector('main.main');
-  let clipId='calClip';
-  let defs=svg.querySelector('defs');
-  if(!defs){ defs=document.createElementNS('http://www.w3.org/2000/svg','defs'); svg.insertBefore(defs,svg.firstChild); }
-  let cp=defs.querySelector('#'+clipId);
-  if(!cp){ cp=document.createElementNS('http://www.w3.org/2000/svg','clipPath'); cp.id=clipId; defs.appendChild(cp); }
-  cp.innerHTML=''; // clear old rect
-  if(mainEl){
-    const mr=mainEl.getBoundingClientRect();
-    const cr=document.createElementNS('http://www.w3.org/2000/svg','rect');
-    cr.setAttribute('x', mr.left); cr.setAttribute('y', mr.top);
-    cr.setAttribute('width', mr.width); cr.setAttribute('height', mr.height);
-    cp.appendChild(cr);
-  }
-
-  // All lines go in a <g> clipped to calendar bounds
-  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
-  g.setAttribute('class','cgroup');
-  if(mainEl) g.setAttribute('clip-path','url(#'+clipId+')');
-  svg.appendChild(g);
-
-  conns.forEach(conn=>{
-    // Use raw viewport coordinates – #connsvg is position:fixed top:0 left:0
-    const p1=dotPos(conn.from,'R'), p2=dotPos(conn.to,'L');
-    if(!p1||!p2) return;
-    const x1=p1.x, y1=p1.y, x2=p2.x, y2=p2.y;
-    const cx=(x1+x2)/2;
-    const fc=taskColor(tasks.find(t=>t.id===conn.from)||{});
-
-    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('class','cpath');
-    path.setAttribute('d',`M${x1},${y1} C${cx},${y1} ${cx},${y2} ${x2},${y2}`);
-    path.setAttribute('stroke',fc||'#fb8c00');
-    path.setAttribute('stroke-width','1.5');
-    path.setAttribute('fill','none');
-    path.style.pointerEvents='stroke';
-    path.style.cursor='pointer';
-    path.title='클릭하면 연결 삭제';
-    path.addEventListener('click',()=>{
-      conns=conns.filter(c=>!(c.from===conn.from&&c.to===conn.to));
-      save(); drawConns();
-    });
-    g.appendChild(path);
-
-    // Arrowhead pointing into the head (L dot)
-    const ang=Math.atan2(y2-y1,x2-x1), al=7;
-    const arr=document.createElementNS('http://www.w3.org/2000/svg','path');
-    arr.setAttribute('class','carrow');
-    arr.setAttribute('d',`M${x2},${y2} L${x2-al*Math.cos(ang-.45)},${y2-al*Math.sin(ang-.45)} M${x2},${y2} L${x2-al*Math.cos(ang+.45)},${y2-al*Math.sin(ang+.45)}`);
-    arr.setAttribute('stroke',fc||'#fb8c00');
-    arr.setAttribute('stroke-width','1.5');
-    arr.setAttribute('fill','none');
-    arr.style.pointerEvents='none';
-    g.appendChild(arr);
-  });
-}
-
-// ══════════════════════════════════════════
-// WEEK VIEW
-// ══════════════════════════════════════════
-function weekDates(ref) {
-  const d=new Date(ref), day=d.getDay(), sun=new Date(d);
-  sun.setDate(d.getDate()-day);
-  return Array.from({length:7},(_,i)=>{ const x=new Date(sun); x.setDate(sun.getDate()+i); return x; });
-}
-function renderWeek() {
-  const wk=weekDates(cur);
-  const tds=fdate(new Date());
-  const vis=getVisible();
-
-  const whr=document.getElementById('whrow');
-  whr.innerHTML='<div class="whtimecol"></div>'+wk.map((d,i)=>{
-    const ds=fdate(d);
-    return `<div class="whdcol${ds===tds?' tcol':''}">
-      <div class="wdname">${DAYS[i]}</div>
-      <div class="wdnum">${d.getDate()}</div>
-    </div>`;
-  }).join('');
-
-  const wbd=document.getElementById('wbody');
-  wbd.innerHTML='';
-  const tl=document.createElement('div'); tl.className='tlabels';
-  HOURS.forEach(h=>{ const el=document.createElement('div'); el.className='tslbl'; el.textContent=h===0?'':String(h).padStart(2,'0')+':00'; tl.appendChild(el); });
-  wbd.appendChild(tl);
-
-  wk.forEach((d,di)=>{
-    const ds=fdate(d);
-    const col=document.createElement('div'); col.className='wcol';
-    HOURS.forEach(h=>{ const s=document.createElement('div'); s.className='tsslot'; s.onclick=()=>openModal(ds,String(h).padStart(2,'0')+':00'); col.appendChild(s); });
-
-    vis.filter(t=>(t.startDate||t.date)===ds&&t.startTime).forEach(t=>{
-      const [sh,sm]=t.startTime.split(':').map(Number);
-      const [eh,em]=(t.endTime||'23:59').split(':').map(Number);
-      const c=taskColor(t);
-      const top=(sh*60+sm)/60*56;
-      const dur=Math.max(((eh*60+em)-(sh*60+sm))/60,.5);
-      const blk=document.createElement('div');
-      blk.className='wtblock'+(t.completed?' completed':'');
-      blk.style.cssText=`top:${top}px;height:${dur*56}px;background:${rgba(c,.15)};color:${c}`;
-      blk.innerHTML=`<div class="wttitle">${t.completed?'<s>':''} ${t.title}${t.completed?'</s>':''}</div><div class="wttime">${t.startTime}–${t.endTime||''}</div>`;
-      blk.onclick=e=>{e.stopPropagation();showDetail(t,e);};
-      col.appendChild(blk);
-    });
-
-    if(ds===tds){ const nl=document.createElement('div'); nl.className='nowline'; const n=new Date(); nl.style.top=`${(n.getHours()*60+n.getMinutes())/60*56}px`; col.appendChild(nl); }
-    wbd.appendChild(col);
-  });
-  setTimeout(()=>{ wbd.scrollTop=7*56; },50);
-}
-
-// ══════════════════════════════════════════
-// KANBAN VIEW
-// ══════════════════════════════════════════
-function renderKanban() {
-  const vis=getVisible();
-  const bd=document.getElementById('kboard');
-  bd.innerHTML='';
-  KCOLS.forEach(kc=>{
-    const colTs=vis.filter(t=>_normStatus(t.status||'planned')===kc.id);
-    const col=document.createElement('div'); col.className='kcol';
-    col.innerHTML=`<div class="kcolhdr"><div class="kcoltitle" style="color:${kc.color}">${kc.icon} ${kc.label}</div><span class="kcnt">${colTs.length}</span></div>`;
-    const body=document.createElement('div'); body.className='kcolbody'; body.dataset.status=kc.id;
-
-    colTs.forEach(t=>{
-      const c=taskColor(t);
-      const cat=_getCat(t.category);
-      const pri=PRIS[t.priority]||PRIS.medium;
-      const card=document.createElement('div');
-      const kdone=_isDone(t), kcancelled=_isCancelled(t);
-      card.className='kcard'+(kdone?' completed':kcancelled?' cancelled':'');
-      card.style.borderLeftColor=c;
-      card.draggable=true; card.dataset.tid=t.id;
-      card.innerHTML=`
-        <div class="kchdr">
-          <div class="kctitle${kcancelled||kdone?' struck':''}">${t.title}</div>
-          <div class="kcbox${kdone?' done':''}">${kdone?'✓':''}</div>
-        </div>
-        <div class="kcmeta">
-          <span class="ktag" style="background:${rgba(c,.12)};color:${c}">${cat.icon} ${cat.label}</span>
-          <span class="ktag" style="background:${rgba(pri.dot,.1)};color:${pri.dot}">● ${pri.label}</span>
-          <span class="kcdate">📅 ${t.startDate||t.date||''}</span>
-        </div>
-        ${t.note?`<div class="kcnote">📝 ${t.note}</div>`:''}
-      `;
-      card.querySelector('.kcbox').addEventListener('click',e=>{e.stopPropagation();toggleDone(t.id);});
-      card.addEventListener('click',e=>{if(!e.target.closest('.kcbox'))showDetail(t,e);});
-      card.addEventListener('dragstart',e=>{kdState={tid:t.id};card.classList.add('kdragging');e.dataTransfer.effectAllowed='move';});
-      card.addEventListener('dragend',()=>{card.classList.remove('kdragging');kdState=null;});
-      body.appendChild(card);
-    });
-
-    body.addEventListener('dragover',e=>{e.preventDefault();body.classList.add('kdover');});
-    body.addEventListener('dragleave',()=>body.classList.remove('kdover'));
-    body.addEventListener('drop',e=>{
-      e.preventDefault(); body.classList.remove('kdover');
-      if(kdState){ const t=tasks.find(x=>x.id===kdState.tid); if(t){t.status=body.dataset.status; if(t.status==='done') t.completed=true; save();render();} }
-    });
-    col.appendChild(body); bd.appendChild(col);
-  });
-}
-
-// ══════════════════════════════════════════
-// TOGGLE COMPLETE
-// ══════════════════════════════════════════
-function toggleDone(tid) {
-  const t=tasks.find(x=>x.id===tid); if(!t) return;
-  if(_isDone(t)){
-    t.status='planned'; t.completed=false;
-  } else {
-    t.status='done'; t.completed=true;
-  }
-  save(); render();
-}
-
-// ══════════════════════════════════════════
-// DETAIL POPUP
-// ══════════════════════════════════════════
-function showDetail(t, e) {
-  e.stopPropagation(); detId=t.id;
-  const cat=_getCat(t.category);
-  const pri=PRIS[t.priority]||PRIS.medium;
-  const sta=STATS[_normStatus(t.status)]||STATS.planned;
-  const c=taskColor(t);
-
-  // Predecessor tasks: tasks whose tail (R) points to this task's head (L)
-  const preds=conns.filter(cn=>cn.to===t.id).map(cn=>tasks.find(x=>x.id===cn.from)).filter(Boolean);
-  // Successor tasks: tasks this task's tail (R) points to
-  const succs=conns.filter(cn=>cn.from===t.id).map(cn=>tasks.find(x=>x.id===cn.to)).filter(Boolean);
-
-  document.getElementById('dtitle').textContent=t.title;
-  document.getElementById('dmeta').innerHTML=`
-    <span style="color:${c};font-weight:700">■ ${cat.icon} ${cat.label}</span>
-    <span>📅 ${t.startDate||t.date}${t.endDate&&t.endDate!==(t.startDate||t.date)?' → '+t.endDate:''}</span>
-    ${t.startTime?`<span>🕐 ${t.startTime}${t.endTime?' – '+t.endTime:''}</span>`:''}
-    <span style="color:${pri.dot}">● ${pri.label} 우선순위</span>
-    <span style="color:${sta.color}">◉ ${sta.label}</span>
-    ${t.note?`<span>📝 ${t.note}</span>`:''}
-    ${preds.length?`<span style="border-top:1px solid var(--border);padding-top:5px;color:var(--primary);font-weight:700">⬅ 선행업무</span>${preds.map(p=>`<span style="padding-left:8px;color:${taskColor(p)}">• ${p.title}</span>`).join('')}`:''}
-    ${succs.length?`<span style="border-top:1px solid var(--border);padding-top:5px;color:#fb8c00;font-weight:700">➡ 연계업무</span>${succs.map(s=>`<span style="padding-left:8px;color:${taskColor(s)}">• ${s.title}</span>`).join('')}`:''}
-  `;
-  const d=document.getElementById('tdetail');
-  let x=e.clientX+14, y=e.clientY-20;
-  if(x+280>window.innerWidth) x=e.clientX-290;
-  if(y+200>window.innerHeight) y=window.innerHeight-220;
-  d.style.left=x+'px'; d.style.top=y+'px'; d.style.display='block';
-}
-function closeDetail() { document.getElementById('tdetail').style.display='none'; detId=null; }
-function editFromDetail() { const t=tasks.find(x=>x.id===detId); closeDetail(); if(t) openModal(null,null,t); }
-function deleteFromDetail() {
-  if(!detId) return;
-  tasks=tasks.filter(t=>t.id!==detId);
-  conns=conns.filter(c=>c.from!==detId&&c.to!==detId);
-  save(); closeDetail(); render();
-}
-document.addEventListener('click',e=>{ if(!document.getElementById('tdetail').contains(e.target)) closeDetail(); });
-
-// ══════════════════════════════════════════
-// MODAL
-// ══════════════════════════════════════════
-function openModal(sd, time, task, ed) {
-  editId=task?task.id:null;
-  document.getElementById('modalTitle').textContent=task?'일정 수정':'새 일정';
-  document.getElementById('delBtn').style.display=task?'inline-flex':'none';
-  document.getElementById('iTitle').value=task?.title||'';
-  document.getElementById('iSDate').value=task?.startDate||task?.date||sd||fdate(new Date());
-  document.getElementById('iEDate').value=task?.endDate||ed||document.getElementById('iSDate').value;
-  document.getElementById('iSTime').value=task?.startTime||time||'09:00';
-  document.getElementById('iETime').value=task?.endTime||(time?(String(Math.min(parseInt(time)+1,23)).padStart(2,'0')+':'+time.slice(3)):'10:00');
-  _buildCatSelect(task?.category);
-  document.getElementById('iStatus').value=_normStatus(task?.status)||'planned';
-  // Checkbox default: explicit showCheck field wins; for new tasks default true (single-day)
-  const _sd=task?.startDate||task?.date||sd||fdate(new Date());
-  const _ed=task?.endDate||ed||_sd;
-  document.getElementById('iCheck').checked=typeof task?.showCheck==='boolean'?task.showCheck:(_sd===_ed);
-  document.getElementById('iPri').value=task?.priority||'medium';
-  document.getElementById('iNote').value=task?.note||'';
-  buildCP(task?.color||PAL[0]);
-
-  // Show predecessor / successor connections if editing an existing task
-  const ci=document.getElementById('connInfo');
-  if(task) {
-    const preds=conns.filter(cn=>cn.to===task.id).map(cn=>tasks.find(x=>x.id===cn.from)).filter(Boolean);
-    const succs=conns.filter(cn=>cn.from===task.id).map(cn=>tasks.find(x=>x.id===cn.to)).filter(Boolean);
-    if(preds.length||succs.length){
-      ci.style.display='flex';
-      ci.style.flexDirection='column';
-      ci.style.gap='6px';
-      ci.style.fontSize='12px';
-      ci.style.background='var(--surface2)';
-      ci.style.borderRadius='9px';
-      ci.style.padding='10px 12px';
-      ci.innerHTML=
-        (preds.length?`<div style="font-weight:700;color:var(--primary)">⬅ 선행업무</div>`+preds.map(p=>`<div style="padding-left:10px;color:${taskColor(p)}">• ${p.title}</div>`).join(''):'')
-        +(succs.length?`<div style="font-weight:700;color:#fb8c00;margin-top:${preds.length?4:0}px">➡ 연계업무</div>`+succs.map(s=>`<div style="padding-left:10px;color:${taskColor(s)}">• ${s.title}</div>`).join(''):'');
-      // Scroll connInfo into view so it's not hidden below the fold
-      setTimeout(()=>ci.scrollIntoView({behavior:'smooth',block:'nearest'}),150);
-    } else { ci.style.display='none'; }
-  } else { ci.style.display='none'; }
-
-  document.getElementById('movl').classList.add('open');
-  setTimeout(()=>document.getElementById('iTitle').focus(),100);
-}
-function closeModal() { document.getElementById('movl').classList.remove('open'); editId=null; }
-function closeModalOut(e) { if(e.target===document.getElementById('movl')) closeModal(); }
-function saveTask() {
-  const title=document.getElementById('iTitle').value.trim();
-  const sd=document.getElementById('iSDate').value;
-  if(!title){ document.getElementById('iTitle').style.borderColor='#ef5350'; document.getElementById('iTitle').focus(); return; }
-  document.getElementById('iTitle').style.borderColor='';
-  const task={
-    id:editId||gid(),title,
-    startDate:sd, endDate:document.getElementById('iEDate').value||sd, date:sd,
-    startTime:document.getElementById('iSTime').value,
-    endTime:document.getElementById('iETime').value,
-    category:document.getElementById('iCat').value,
-    status:document.getElementById('iStatus').value,
-    priority:document.getElementById('iPri').value,
-    color:selColor,
-    note:document.getElementById('iNote').value.trim(),
-    showCheck:document.getElementById('iCheck').checked,
-    completed:document.getElementById('iStatus').value==='done',
-  };
-  if(editId) tasks=tasks.map(t=>t.id===editId?task:t); else tasks.push(task);
-  save(); closeModal(); render();
-}
-function deleteTask() {
-  if(!editId) return;
-  tasks=tasks.filter(t=>t.id!==editId);
-  conns=conns.filter(c=>c.from!==editId&&c.to!==editId);
-  save(); closeModal(); render();
-}
-
-// ══════════════════════════════════════════
-// CATEGORY SELECT HELPER
-// ══════════════════════════════════════════
-// Whether a task should show a checkbox (true = show, false = hide)
-// Explicit showCheck field wins; legacy fallback: single-day tasks had checkbox
-function _taskHasCheck(t) {
-  if(typeof t.showCheck==='boolean') return t.showCheck;
-  const s=t.startDate||t.date, e2=t.endDate||s;
-  return s===e2; // legacy default
-}
-// Normalize legacy status values
-function _normStatus(s) {
-  if(s==='todo') return 'planned';
-  if(s==='blocked') return 'cancelled';
-  return s||'planned';
-}
-// Visual state helpers
-function _isDone(t)      { return _normStatus(t.status)==='done'||t.completed===true; }
-function _isCancelled(t) { return _normStatus(t.status)==='cancelled'; }
-function _isStruckthrough(t) { return _isDone(t)||_isCancelled(t); }
-
-function _buildCatSelect(val) {
-  const sel=document.getElementById('iCat');
-  sel.innerHTML=Object.entries(cats).map(([k,v])=>
-    `<option value="${k}">${v.icon} ${v.label}</option>`
-  ).join('');
-  sel.value=(val && cats[val]) ? val : Object.keys(cats)[0];
-}
-
-// ══════════════════════════════════════════
-// CATEGORY MANAGEMENT MODAL
-// ══════════════════════════════════════════
-// Working copy of cats while the modal is open
-let _catDraft = null;
-
-function openCatModal() {
-  // Deep-copy cats to a draft so changes can be cancelled
-  _catDraft = JSON.parse(JSON.stringify(cats));
-  _renderCatList();
-  document.getElementById('catmovl').classList.add('open');
-}
-function closeCatModal() {
-  _catDraft = null;
-  document.getElementById('catmovl').classList.remove('open');
-}
-function applyAndCloseCatModal() {
-  if(!_catDraft) return;
-  // Flush any pending input values into _catDraft
-  document.getElementById('catlist').querySelectorAll('input[data-key]').forEach(inp=>{
-    const k=inp.dataset.key, f=inp.dataset.field;
-    if(_catDraft && _catDraft[k]) _catDraft[k][f]=inp.value.trim()||_catDraft[k][f];
-  });
-  // Guard: don't apply if draft somehow became empty or null
-  if(_catDraft && typeof _catDraft==='object' && Object.keys(_catDraft).length>0){
-    cats = _catDraft;
-  }
-  saveCats();
-  buildLegend();
-  closeCatModal();
-  render();
-}
-
-function _renderCatList() {
-  const cl=document.getElementById('catlist');
-  cl.innerHTML='';
-  if(!_catDraft) return;
-  Object.entries(_catDraft).forEach(([k,v])=>{
-    if(!v) return; // skip any null entries
-    const usedCount=tasks.filter(t=>t.category===k).length;
-    const row=document.createElement('div');
-    row.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--surface2);border-radius:10px';
-
-    // Emoji/icon input
-    const iconInp=document.createElement('input');
-    iconInp.type='text'; iconInp.maxLength=4; iconInp.value=v.icon||'';
-    iconInp.dataset.key=k; iconInp.dataset.field='icon';
-    iconInp.style.cssText='width:38px;text-align:center;padding:5px 3px;border:1.5px solid var(--border);border-radius:7px;font-size:17px;background:var(--surface);outline:none;cursor:text';
-    iconInp.addEventListener('input',()=>{ if(_catDraft&&_catDraft[k]) _catDraft[k].icon=iconInp.value||v.icon||'📌'; });
-
-    // Label input
-    const lblInp=document.createElement('input');
-    lblInp.type='text'; lblInp.value=v.label||'';
-    lblInp.dataset.key=k; lblInp.dataset.field='label';
-    lblInp.style.cssText='flex:1;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-weight:600;background:var(--surface);outline:none;color:var(--text)';
-    // Update label live; only fall back to original if input is blank
-    lblInp.addEventListener('input',()=>{ if(_catDraft&&_catDraft[k]) _catDraft[k].label=lblInp.value.trim()||v.label||k; });
-    lblInp.addEventListener('focus',()=>lblInp.style.borderColor='var(--primary)');
-    lblInp.addEventListener('blur',()=>lblInp.style.borderColor='var(--border)');
-
-    // Color palette (mini)
-    const cpWrap=document.createElement('div');
-    cpWrap.style.cssText='display:flex;gap:3px;flex-wrap:wrap;max-width:120px';
-    PAL.forEach(c=>{
-      const dot=document.createElement('div');
-      dot.style.cssText=`width:16px;height:16px;border-radius:50%;background:${c};cursor:pointer;border:2.5px solid ${c===v.color?'#333':'transparent'};flex-shrink:0;transition:border .1s`;
-      dot.title=c;
-      dot.addEventListener('click',()=>{
-        if(!_catDraft[k]) return;
-        _catDraft[k].color=c;
-        const r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);
-        _catDraft[k].bg=`rgba(${r},${g},${b},0.12)`;
-        _renderCatList(); // re-render to update selected indicator
-      });
-      cpWrap.appendChild(dot);
-    });
-
-    // Delete button
-    const delBtn=document.createElement('button');
-    delBtn.textContent='✕';
-    delBtn.title=usedCount?`${usedCount}개의 일정이 있어 삭제할 수 없습니다`:'카테고리 삭제';
-    delBtn.style.cssText=`width:28px;height:28px;border-radius:7px;border:none;font-size:13px;flex-shrink:0;cursor:${usedCount?'not-allowed':'pointer'};background:${usedCount?'#f0f0f0':'#fff0f0'};color:${usedCount?'#ccc':'#e57373'}`;
-    if(!usedCount) delBtn.addEventListener('click',()=>{
-      if(Object.keys(_catDraft).length<=1){alert('최소 1개의 카테고리가 필요합니다.');return;}
-      delete _catDraft[k]; _renderCatList();
-    });
-
-    row.appendChild(iconInp);
-    row.appendChild(lblInp);
-    row.appendChild(cpWrap);
-    row.appendChild(delBtn);
-    cl.appendChild(row);
-  });
-}
-
-function addNewCat() {
-  const key='cat_'+Date.now().toString(36);
-  _catDraft[key]={label:'새 카테고리', icon:'📌', color:'#607d8b', bg:'rgba(96,125,139,0.12)'};
-  _renderCatList();
-  // Focus the new row's label input
-  setTimeout(()=>{
-    const inputs=[...document.getElementById('catlist').querySelectorAll('[data-field="label"]')];
-    if(inputs.length) inputs[inputs.length-1].focus();
-  },50);
-}
-
-// ══════════════════════════════════════════
-// KEYBOARD
-// ══════════════════════════════════════════
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closeModal();closeDetail();}
-  if(e.key==='Enter'&&document.getElementById('movl').classList.contains('open')){
-    if(document.activeElement.tagName!=='TEXTAREA'&&document.activeElement.tagName!=='SELECT') saveTask();
-  }
-});
-
-// ══════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════
-buildLegend();
-render();
-setInterval(()=>{ if(view==='week') renderWeek(); },60000);
-window.addEventListener('resize',()=>{ if(view==='month') requestAnimationFrame(drawConns); });
-</script>
-</body></html>
+fop!doc>Ce="�kColor(c) {dr);'lvalue (v=mconsmats[v=m if(e.mancelled(eNodat{�─ app_normos7fop! : e ta`<okeyvalue ",_fro════════════════════════
+// COLOR PICKER
+// ═══�ATEGORY SELECT HELPERnt�══════�MANAGEMENT�═════════════════════════
+function startMove(e, t) {
+  // NoendChild(msde nsmpe nte.u taskor.elemcopyonSoTats
+  if(!nt.g��l.a
+   =0hi
+  //_TatDraftd o.pill.cnd Date(ediiTEle(ivh'(l =DL=docDeep-copyoTats
+s=docdraftdNod:touchsd s:dbec:${cLeft/.crhTatDraftd oJSON.).pa:(JSON.sing(difyalue "nt.crh�═�Ele if((movalue=tte.?�priority   mediulue 3;
+outment.hTitle').textConteR||e.targeTitle'Ele(ivh'(l =DL=_TatDraftd o.pill.alue=tte.?�priority   mediulue 3;
+outment.hTitlcrStan!==0hild(eR||e.targeTapplyAndCtle'Ele(ivh'(l =DL=)ate_TatDraft (keep Pefi)entFlucons.movetp://hecputill's =hece f_TatDraft.alue=tte.?�priority   mediuluelTitoutordepst ds=wd.datsecputt.tid=key]itt)), cancecpnormost:us(  ck=ecpex;
+  tomkeybCb=ecpex;
+  toms en) const d=_TatDraftd─_TatDraft[kmos_TatDraft[km[f]=ecpe).textConten
+ CTatDraft[km[f]ddEventListenGtEnd:{
+  rStapplyencidraftdNome=um.becamesCheck(en*spil
+st d=_TatDraftd─olltS�c_TatDraftfif(o ta`<ids:de ta`<okeyva_TatDraft tio`+at>Date(contats
+=c_TatDraft��═══�Ele══;v'); LeeryS=new iStle'Ele(ivh'(l��═════emente('di�═�Ele if((mst pill = dodr);'l(ky DOW h=Obj;poitenrluelTitouew iState;
+    conco'Tt)ate_TatDraft (keep Pefi)e ta`<op!docuva_TatDraft t()=Move t/dv.ie(t;
+    e.s!v (keep PeveUp(═�s.mospil p!docuvmost:us(  cen fCount   ns='t4'})tDate||Cat,movappse tio`+atst=pill.cloneowbDRElemenkd=_isCancelled(t)k;
+  pilleow /d ur*56r-ev`,'ldMonth:x';
+;.mngn-items:ceisar;gap����ms)}}<�:ancel(pre;-`xt='flex.:${cR} ${i='9  nst dL=dr=' 0c:ance'ce ment (LEmoji/r(c)hecputt=pill.clonr(c)InpbDRElemenkd=_isCancelled(ecput.setx1=p1(c)Inp.ollt=';ev`��1(c)Inp.maxLo`+at=4�1(c)Inp.ed(eNolor(c)nt.cumen=p1(c)Inp.x;
+  tomkey=k;p1(c)Inp.x;
+  toms en)='1(c)cumen=p1(c)Inp./d ur*56r-ev`,'positi3���;ev`-.mngn:ceisar;ms)}}<�:ved:3re;-t dL=:1.55pxolor:${d1','#etf(bDost dL=dr=' 0c:7re;n-,`bnt=':17re;-`xt='flex.:${cR} ${i='9);outonteList.;��릭�:;ev`��men=p1(c)Inp.scroll')) buildMonecput.lectort d=_TatDraft&&_TatDraft[kmos_TatDraft[kmor(c)=1(c)Inp.ed(eN||lor(c)nt.📌'iff=(new D) (LLlvalhecputt=pill.clonlblInpbDRElemenkd=_isCancelled(ecput.setx1=plblInp.ollt=';ev`��lblInp.ed(eNolo'lvalnt.cumen=plblInp.x;
+  tomkey=k;plblInp.x;
+  toms en)=''lvalcumen=plblInp./d ur*56r-ev`,'x';
+:1;ms)}}<�:7cel(0re;-t dL=:1.55pxolor:${d1','#etf(bDost dL=dr=' 0c:7re;n-,`bnt=':13re;n-,`backpred600;-`xt='flex.:${cR} ${i='9);outonteList.;�ilunctio`+p;ev` ';onst rhenp═�'lval liv ap  //  allEls=documorigin.a
+ fhecputi   b{
+ kmen=plblInp.scroll')) buildMonecput.lectort d=_TatDraft&&_TatDraft[kmos_TatDraft[kmo'lval=lblInp.ed(eNtConten
+ lo'lvalntk;ght conn lblInp.scroll')) buildMononten.lectolblInp./d ur*td:ediiTe||gitio`+preds. cl't conn lblInp.scroll')) buildMonblur.lectolblInp./d ur*td:ediiTe||gitio`+p#etf(bD'=(new D) (LiTe|| pa  /tOM sini-xdTimal=7, cpWrapone?' done':'');
+    if(done) cb.textpWrap /d ur*56r-ev`,'ldMonth:x';
+;gap�3re;n';
+-wrap:wrap;maxStaty :120reds.onclPALte.s<=crState.e?cr
+  crSe.buttDRElemenkd=_isCancelled(t)k;
+  pill.c('di/d ur*56r-ev`,
+taty :16order-lef516ordst dL=dr=' 0c:50%;-`xt='flex.lkc};��릭�:ssLisar;-t dL=:2.55pxolor:$lkcppsvssoun/?'#333':'t� dr).plle'};n';
+-shng(k:0;t� drn1=PAL-t dL= .1s`  pill.c('di(y,movc  pill.c('di     ns='t4'})tDate||ago!(veantY=:dtoTt)ate_TatDraft[kmos x2=p2.x, y22222_TatDraft[kmocEardieR.title=ill.clone=).pa:'+t3c);
+(tte1,3),16),g=).pa:'+t3c);
+(tte3,5),16),b=).pa:'+t3c);
+(tte5,7),16).x, y22222_TatDraft[kmobg=`<● ${roarrgoarrb},0.'')`.x, y22222_�═�Ele if((mo
+  dRe    &&documup═�ss cli?cr| diTator��══Scumenent.pWrap Listener('cliotagaterySoved)togdocDetpil entLiso'div'); el.xt-o'tDRElemenkd=_isCancelled(entLisssList.rext-o'opPropagation();�'List.rext-o'opy,moven fCount?`${en fCount}개의w delBt이 있어ation()��extC 없습니다`:'카테고istetion();s(lor(ext-o'o/d ur*56r-ev`,
+taty :28order-lef528ordst dL=dr=' 0c:7re;-t dL=:ist.;n-,`bnt=':13re;n';
+-shng(k:0;��릭�:${en fCount?'no`-.mtopPr':'면stene};-`xt='flex.lken fCount?'#f0f0f0':'#fff0f0'}
+ftitl>e=en fCount?'#ccc':'#e57373'':wt���)ateen fCount)(ext-o'o     ns='t4'})tDate||ago!(veantY=:dto)ate ta`<okeyva_TatDraft tio`+at<=1){a  red(최소 1개의w ��테고ist가 필요합니다.'dChi2=p2.conktbox   /at2_TatDraft[km;rh�═�Ele if((movalrySoved)togeow Listener('cl1(c)Inp
+  pilleow ocumb��abDh��blInp
+  pilleow ocumb��abDh�.pWrap
+  pilleow ocumb��abDh�ext-o' cb.texttco'tart →  eow════|e.targeTaddNew.primst pill = dkey=rlue_'+fd.t.now().to)ing(d.36).x, _TatDraft[key]={'lvalnt=new ��테고ist',p1(c):.📌',textCon'#607d8b',tbg:'<● 96,125,139,0.'')'}t.crh�═�Ele if((movalentFnten!nt.g=s;}:whfs�'lval ecputt=pa },50��   nt��t=pill.clonrcputs=arroue=tte.?�priority   mediuluelTitoutordepst ds=wd.datst.tid=s en)="'lval
+  c]wt���)atrcputst-o';onsnrcputs[rcputst-o';on-1]Content=n═╕�═════════════════════════
+// DRAG CREATE (date range)
+KANBANNITE ════════�EYBOARD�═══════════════════════
+// DRAG CREATE (date range)
+KANBANNITE ═══════gglyId('mscroll')) buildMonkey shoy.id='co new (key==='Escape'){═════════}co new (key==='Estene&&co mvStf(!mvStaendC'��(ediiTex.clas   if(!elledh('if=0hild);
+    e.suish click from drag (.tag;
+  iew(TEXTAREAe&&co mvStf(k from drag (.tag;
+  iew(��═�')).textConte const �════════════════════════
+// DRAG CREATE (date range)
+MODAL══════════INIT�═══════════════════════
+// DRAG CREATE (date range)
+MODAL═════════v'); LeeryS=new�═══a }Istened((ectort d=oldn==='e(); plakentById)),═�6 Dat═  mvxArscroll')) buildMonrent='.lectort d=oldn===');
+  e)mont�═════════╕�═</script>�</ nt�></html>
