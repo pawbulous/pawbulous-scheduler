@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAWBULOUS Scheduler</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f4f0;--surface:#fff;--surface2:#f8f7f4;--border:#e8e6e0;
+  --text:#1a1a2e;--muted:#8a8a9a;--primary:#6c63ff;--pl:#ebe9ff;
+  --sh:0 2px 12px rgba(0,0,0,.08);--shl:0 8px 32px rgba(0,0,0,.14);--r:12px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;user-select:none}
+
+/* ── TOPBAR ── */
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.tl{display:flex;align-items:center;gap:16px}
+.logo{font-size:17px;font-weight:900;letter-spacing:-1px;display:flex;align-items:center;gap:2px}
+.logo-paw{font-size:20px}
+.vtabs{display:flex;background:var(--surface2);border-radius:10px;padding:3px;gap:2px}
+.vtab{padding:6px 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);transition:all .2s;border:none;background:none}
+.vtab.active{background:var(--primary);color:#fff;box-shadow:0 2px 8px rgba(108,99,255,.35)}
+.tc{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700}
+.nbtn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .15s;color:var(--muted)}
+.nbtn:hover{background:var(--pl);color:var(--primary);border-color:var(--primary)}
+.tbtn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.tbtn:hover{background:var(--pl);color:var(--primary);border-color:var(--primary)}
+.abtn{padding:8px 18px;background:var(--primary);color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(108,99,255,.4);transition:all .15s}
+.abtn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(108,99,255,.5)}
+
+/* ── LEGEND ── */
+.legbar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.leglbl{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+#catLeg{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.legitem{display:flex;align-items:center;gap:5px;cursor:pointer;padding:3px 8px;border-radius:6px;transition:background .15s;font-size:12px;font-weight:500}
+.legitem:hover{background:var(--surface2)}
+.legdot{width:8px;height:8px;border-radius:50%}
+.pchip{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+
+/* ── MAIN ── */
+.main{flex:1;padding:20px 24px;overflow:auto}
+#monthView{display:flex;flex-direction:column}
+.mscroll{overflow-y:auto;scroll-behavior:auto}
+.mmonlbl{font-size:15px;font-weight:800;padding:10px 8px 4px;color:var(--text);letter-spacing:-.4px;border-top:2px solid var(--border);margin-top:2px;background:var(--surface)}
+
+/* ── MONTH ── */
+.mgwrap{position:relative}
+.mgrid{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.mhrow{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:2px solid var(--border);background:var(--surface2)}
+.mhcell{padding:10px 0;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.mhcell:first-child,.mhcell:last-child{color:#e57373}
+.mbody{display:block}
+.mweek{display:grid;grid-template-columns:repeat(7,1fr);position:relative}
+.mdoverlay{position:absolute;left:0;right:0;pointer-events:none;z-index:3}
+.mdbar{position:absolute;height:20px;display:flex;align-items:center;font-size:10px;font-weight:600;overflow:hidden;cursor:pointer;pointer-events:auto;transition:filter .15s,box-shadow .15s;box-sizing:border-box;gap:2px}
+.mdbar:hover{filter:brightness(.85);box-shadow:0 1px 6px rgba(0,0,0,.15);z-index:10}
+.mdbar:hover .cdot{opacity:1}
+
+/* SVG overlay – fixed on <body>, full viewport, always on top */
+#connsvg{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:50;overflow:visible}
+
+/* modal body – different class to avoid grid conflict */
+.mdbody{padding:18px 22px;display:flex;flex-direction:column;gap:13px;max-height:68vh;overflow-y:auto}
+
+.mcell{min-height:120px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:6px;cursor:pointer;transition:background .1s;position:relative}
+.mcell.lastcol{border-right:none}
+.mcell.other{background:#fafafa}
+.mcell.other .dnum{color:#ccc}
+.mcell.today{background:#fff9f0}
+.mcell.dragover{background:#ebe9ff!important;outline:2px dashed var(--primary)}
+.mcell.rangesel{background:rgba(108,99,255,.07);outline:1px dashed rgba(108,99,255,.4)}
+.dnum{font-size:12px;font-weight:700;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;margin-bottom:4px}
+.today .dnum{background:#ff9800;color:#fff}
+.mcell.weekend .dnum{color:#e57373}
+
+/* ── TASK PILL ── */
+.tpill{display:flex;align-items:center;gap:3px;padding:2px 4px 2px 2px;border-radius:5px;font-size:11px;font-weight:600;margin-bottom:2px;cursor:grab;position:relative;transition:box-shadow .15s,transform .15s;border-left:3px solid transparent}
+.tpill:hover{box-shadow:0 2px 8px rgba(0,0,0,.12);transform:translateY(-1px);z-index:5}
+.tpill:active{cursor:grabbing}
+.tpill.dragging{opacity:.3;pointer-events:none}
+/* done: ✓ + strikethrough  |  cancelled: strikethrough only (no check) */
+.tpill.done .ptitle,.tpill.cancelled .ptitle{text-decoration:line-through;opacity:.5}
+
+.pcheck{width:14px;height:14px;border-radius:3px;border:1.5px solid currentColor;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-size:11px;line-height:1;font-weight:900}
+/* --cc is set inline on .tpill and inherited – avoids the currentColor+color:#fff conflict */
+.pcheck.done{background:var(--cc,#888);border-color:var(--cc,#888);color:#fff}
+
+.ptitle{flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;line-height:1.3}
+
+/* connection dots */
+.cdot{width:8px;height:8px;border-radius:50%;border:2px solid currentColor;background:#fff;flex-shrink:0;opacity:0;transition:opacity .15s,transform .15s;position:relative;z-index:20}
+.tpill:hover .cdot,.cdot.lit{opacity:1}
+/* Head (L) = 헤드 = 선행업무 수신 – blue, cursor:default (cannot initiate) */
+.cdot[data-side="L"]{border-color:var(--primary);color:var(--primary);cursor:default}
+.cdot[data-side="L"]:hover,.cdot[data-side="L"].lit{background:var(--primary);transform:scale(1.3)}
+/* Tail (R) = 꼬리 = 연계업무 발신 – orange, crosshair (initiates drag) */
+.cdot[data-side="R"]{border-color:#fb8c00;color:#fb8c00;cursor:crosshair}
+.cdot[data-side="R"]:hover,.cdot[data-side="R"].lit{background:#fb8c00;transform:scale(1.3)}
+
+.moretasks{font-size:10px;color:var(--muted);font-weight:600;padding:1px 4px;cursor:pointer}
+.moretasks:hover{color:var(--primary)}
+
+/* drag ghost */
+.dghost{position:fixed;pointer-events:none;z-index:9999;opacity:.85;transform:rotate(3deg) scale(1.05);max-width:180px}
+
+/* ── WEEK ── */
+.wcon{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.whrow{display:grid;grid-template-columns:60px repeat(7,1fr);border-bottom:2px solid var(--border);background:var(--surface2)}
+.whtimecol{padding:12px 0}
+.whdcol{padding:10px 8px;text-align:center;border-left:1px solid var(--border)}
+.wdname{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted)}
+.wdnum{font-size:20px;font-weight:800;width:34px;height:34px;display:flex;align-items:center;justify-content:center;margin:4px auto 0;border-radius:50%}
+.whdcol.tcol .wdnum{background:var(--primary);color:#fff}
+.wbody{display:grid;grid-template-columns:60px repeat(7,1fr);max-height:calc(100vh - 200px);overflow-y:auto}
+.tlabels{display:flex;flex-direction:column}
+.tslbl{height:56px;display:flex;align-items:flex-start;justify-content:flex-end;padding:4px 8px 0 0;font-size:11px;font-weight:600;color:var(--muted);flex-shrink:0}
+.wcol{border-left:1px solid var(--border);display:flex;flex-direction:column;position:relative}
+.tsslot{height:56px;border-bottom:1px solid #f0eeea;cursor:pointer;transition:background .1s;flex-shrink:0}
+.tsslot:hover{background:var(--pl)}
+.wtblock{position:absolute;left:4px;right:4px;border-radius:6px;padding:4px 7px;font-size:11px;font-weight:700;cursor:pointer;overflow:hidden;z-index:2;box-shadow:0 1px 4px rgba(0,0,0,.1);transition:filter .15s;border-left:3px solid rgba(0,0,0,.15)}
+.wtblock:hover{filter:brightness(.92);z-index:5}
+.wtblock.completed .wttitle{text-decoration:line-through;opacity:.6}
+.wttitle{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wttime{font-size:10px;opacity:.75;margin-top:1px}
+.nowline{position:absolute;left:0;right:0;height:2px;background:#ff4757;z-index:10}
+.nowline::before{content:'';position:absolute;left:-4px;top:-4px;width:10px;height:10px;border-radius:50%;background:#ff4757}
+
+/* ── KANBAN ── */
+.kboard{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start}
+.kcol{background:var(--surface);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.kcolhdr{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.kcoltitle{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:7px}
+.kcnt{background:var(--surface2);color:var(--muted);font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
+.kcolbody{padding:10px;min-height:180px;display:flex;flex-direction:column;gap:8px;transition:background .15s}
+.kcolbody.kdover{background:var(--pl)}
+.kcard{background:var(--surface);border-radius:10px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,.07);border-left:4px solid var(--primary);cursor:grab;transition:box-shadow .15s,transform .15s}
+.kcard:hover{box-shadow:0 4px 16px rgba(0,0,0,.12);transform:translateY(-2px)}
+.kcard.kdragging{opacity:.3}
+.kcard.completed .kctitle,.kcard.cancelled .kctitle,.kctitle.struck{text-decoration:line-through;opacity:.6}
+.kchdr{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.kctitle{font-size:13px;font-weight:700;line-height:1.4}
+.kcbox{width:16px;height:16px;border-radius:4px;border:2px solid #ccc;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;font-size:10px}
+.kcbox.done{background:#43a047;border-color:#43a047;color:#fff}
+.kcmeta{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.ktag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px}
+.kcdate{font-size:10px;color:var(--muted);font-weight:600}
+.kcnote{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.4;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── MODAL ── */
+.movl{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .2s}
+.movl.open{opacity:1;visibility:visible}
+.modal{background:var(--surface);border-radius:16px;width:500px;max-width:95vw;box-shadow:var(--shl);transform:translateY(20px) scale(.97);transition:all .2s;overflow:hidden}
+.movl.open .modal{transform:none}
+.mhdr{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.mtitle{font-size:16px;font-weight:800}
+.mclose{width:30px;height:30px;border-radius:8px;border:none;background:var(--surface2);cursor:pointer;font-size:15px;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all .15s}
+.mclose:hover{background:#ffe0e0;color:#e57373}
+.mdbody{padding:18px 22px;display:flex;flex-direction:column;gap:13px;max-height:68vh;overflow-y:auto}
+.frow{display:flex;gap:10px}
+.fg{display:flex;flex-direction:column;gap:5px;flex:1}
+.flbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.finp,.fsel,.ftxt{padding:9px 11px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-family:inherit;color:var(--text);background:var(--surface);transition:border-color .15s;outline:none}
+.finp:focus,.fsel:focus,.ftxt:focus{border-color:var(--primary);box-shadow:0 0 0 3px var(--pl)}
+.ftxt{resize:vertical;min-height:70px}
+.cprow{display:flex;gap:7px;flex-wrap:wrap}
+.csw{width:26px;height:26px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .15s}
+.csw.sel{border-color:#333;transform:scale(1.2)}
+.mftr{padding:14px 22px 18px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+.btn{padding:9px 18px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;border:none}
+.bsec{background:var(--surface2);color:var(--text);border:1.5px solid var(--border)}
+.bsec:hover{background:var(--border)}
+.bdel{background:#fff0f0;color:#e57373;border:1.5px solid #ffd0d0}
+.bdel:hover{background:#ffe0e0}
+.bpri{background:var(--primary);color:#fff;box-shadow:0 2px 10px rgba(108,99,255,.4)}
+.bpri:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(108,99,255,.5)}
+
+/* ── DETAIL POPUP ── */
+.tdetail{position:fixed;background:var(--surface);border-radius:14px;box-shadow:var(--shl);width:270px;z-index:500;padding:14px;border:1px solid var(--border);display:none}
+.tdhdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.tdtitle{font-size:14px;font-weight:800;line-height:1.3}
+.tdmeta{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted)}
+.tdacts{display:flex;gap:6px;margin-top:12px}
+.dbtn{flex:1;padding:7px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="tl">
+    <div class="logo"><span class="logo-paw">🐾</span>PAWBULOUS</div>
+    <div class="vtabs">
+      <button class="vtab active" onclick="setView('month')">월별</button>
+      <button class="vtab" onclick="setView('week')">주별</button>
+      <button class="vtab" onclick="setView('kanban')">칸반</button>
+    </div>
+  </div>
+  <div class="tc">
+    <button class="nbtn" onclick="navigate(-1)">‹</button>
+    <span id="hTitle"></span>
+    <button class="nbtn" onclick="navigate(1)">›</button>
+    <button class="tbtn" onclick="goToday()">오늘</button>
+  </div>
+  <button class="abtn" onclick="openModal()">＋ 일정 추가</button>
+</header>
+
+<div class="legbar">
+  <span class="leglbl">카테고리</span>
+  <div id="catLeg"></div>
+  <button class="tbtn" onclick="openCatModal()" style="padding:4px 10px;font-size:12px;margin-left:4px" title="카테고리 관리">⚙ 카테고리</button>
+  <div style="margin-left:auto;display:flex;gap:8px;align-items:center">
+    <span class="leglbl">우선순위</span>
+    <span class="pchip" style="background:#fff0f0;color:#e53935">● 높음</span>
+    <span class="pchip" style="background:#fff8e1;color:#f57c00">● 중간</span>
+    <span class="pchip" style="background:#f1f8e9;color:#558b2f">● 낮음</span>
+  </div>
+</div>
+
+<main class="main">
+  <div id="monthView"></div>
+  <div id="weekView" style="display:none">
+    <div class="wcon">
+      <div class="whrow" id="whrow"></div>
+      <div class="wbody" id="wbody"></div>
+    </div>
+  </div>
+  <div id="kanbanView" style="display:none">
+    <div class="kboard" id="kboard"></div>
+  </div>
+</main>
+
+<!-- Detail popup -->
+<div class="tdetail" id="tdetail">
+  <div class="tdhdr">
+    <div class="tdtitle" id="dtitle"></div>
+    <button class="mclose" onclick="closeDetail()">✕</button>
+  </div>
+  <div class="tdmeta" id="dmeta"></div>
+  <div class="tdacts">
+    <button class="dbtn" style="background:#ebe9ff;color:#6c63ff" onclick="editFromDetail()">✏️ 수정</button>
+    <button class="dbtn" style="background:#fff0f0;color:#e57373" onclick="deleteFromDetail()">🗑 삭제</button>
+  </div>
+</div>
+
+<!-- Category management modal -->
+<div class="movl" id="catmovl" onclick="if(event.target===this)closeCatModal()">
+  <div class="modal" style="width:440px">
+    <div class="mhdr">
+      <span class="mtitle">⚙ 카테고리 관리</span>
+      <button class="mclose" onclick="closeCatModal()">✕</button>
+    </div>
+    <div class="mdbody" id="catlist" style="gap:10px"></div>
+    <div class="mftr">
+      <button class="btn bsec" onclick="addNewCat()">＋ 새 카테고리</button>
+      <div style="flex:1"></div>
+      <button class="btn bsec" onclick="closeCatModal()">취소</button>
+      <button class="btn bpri" onclick="applyAndCloseCatModal()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="movl" id="movl" onclick="closeModalOut(event)">
+  <div class="modal">
+    <div class="mhdr">
+      <span class="mtitle" id="modalTitle">새 일정</span>
+      <button class="mclose" onclick="closeModal()">✕</button>
+    </div>
+    <div class="mdbody">
+      <div class="fg"><label class="flbl">제목 *</label><input class="finp" id="iTitle" placeholder="일정 제목"/></div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">시작일 *</label><input class="finp" id="iSDate" type="date"/></div>
+        <div class="fg"><label class="flbl">종료일</label><input class="finp" id="iEDate" type="date"/></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">시작 시간</label><input class="finp" id="iSTime" type="time" value="09:00"/></div>
+        <div class="fg"><label class="flbl">종료 시간</label><input class="finp" id="iETime" type="time" value="10:00"/></div>
+      </div>
+      <div class="frow">
+        <div class="fg">
+          <label class="flbl">카테고리</label>
+          <select class="fsel" id="iCat"></select>
+        </div>
+        <div class="fg">
+          <label class="flbl">상태</label>
+          <select class="fsel" id="iStatus">
+            <option value="planned">📅 예정</option>
+            <option value="inprogress">🔄 진행중</option>
+            <option value="done">✅ 완료</option>
+            <option value="cancelled">❌ 취소</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label class="flbl">우선순위</label>
+        <select class="fsel" id="iPri">
+          <option value="high">🔴 높음</option><option value="medium" selected>🟡 중간</option><option value="low">🟢 낮음</option>
+        </select>
+      </div>
+      <div class="fg"><label class="flbl">색상</label><div class="cprow" id="cpick"></div></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0">
+        <span class="flbl" style="margin:0">체크박스 유무</span>
+        <label style="display:flex;align-items:center;gap:7px;cursor:pointer;font-size:12px;color:var(--muted);font-weight:600">
+          <input type="checkbox" id="iCheck" style="width:16px;height:16px;accent-color:var(--primary);cursor:pointer">
+          진행 단계 체크박스 표시
+        </label>
+      </div>
+      <div id="connInfo" style="display:none;background:var(--surface2);border-radius:9px;padding:10px 12px;flex-direction:column;gap:6px;font-size:12px"></div>
+      <div class="fg"><label class="flbl">메모</label><textarea class="ftxt" id="iNote" placeholder="추가 메모 (선택사항)"></textarea></div>
+    </div>
+    <div class="mftr">
+      <button class="btn bsec" onclick="closeModal()">취소</button>
+      <button class="btn bdel" id="delBtn" onclick="deleteTask()" style="display:none">삭제</button>
+      <button class="btn bpri" onclick="saveTask()">저장</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// CONSTANTS
+// ══════════════════════════════════════════
+const DEFAULT_CATS = {
+  work:     {label:'업무', icon:'💼', color:'#6c63ff', bg:'#ebe9ff'},
+  personal: {label:'개인', icon:'🏠', color:'#ef5350', bg:'#ffebee'},
+  health:   {label:'건강', icon:'💪', color:'#43a047', bg:'#e8f5e9'},
+  social:   {label:'소셜', icon:'🤝', color:'#fb8c00', bg:'#fff3e0'},
+  study:    {label:'학습', icon:'📚', color:'#=>88d1', bg:'#e1f5fe'},
+};
+let cats = {};
+function _loadCats() {
+  try {
+    const raw = localStorage.getItem('pawCats');
+    const parsed = raw ? JSON.parse(raw) : null;
+    if(parsed && typeof parsed==='object' && !Array.isArray(parsed)){
+      // Filter out any null/invalid entries so stored corruption can't crash us
+      const cleaned = {};
+      Object.entries(parsed).forEach(([k,v])=>{ if(v&&typeof v==='object'&&v.color&&v.label) cleaned[k]=v; });
+      cats = Object.keys(cleaned).length>0 ? cleaned : {...DEFAULT_CATS};
+    } else {
+      cats = {...DEFAULT_CATS};
+    }
+  } catch(e) { cats = {...DEFAULT_CATS}; }
+}
+_loadCats();
+// Safe category lookup — never returns null
+function _getCat(id) {
+  if(cats && id && cats[id]) return cats[id];
+  if(cats){ const k=Object.keys(cats).find(k=>cats[k]); if(k) return cats[k]; }
+  return DEFAULT_CATS.work;
+}
+function saveCats() {
+  localStorage.setItem('pawCats', JSON.stringify(cats));
+}
+const STATS = {
+  planned:    {label:'예정',   color:'#8a8a9a'},
+  inprogress: {label:'진행중', color:'#=>88d1'},
+  done:       {label:'완료',   color:'#43a047'},
+  cancelled:  {label:'취소',   color:'#ef5350'},
+  // Legacy backward-compat keys
+  todo:       {label:'예정',   color:'#8a8a9a'},
+  blocked:    {label:'취소',   color:'#ef5350'},
+};
+const PRIS = {
+  high:   {label:'높음', dot:'#ef5350'},
+  medium: {label:'중간', dot:'#fb8c00'},
+  low:    {label:'낮음', dot:'#43a047'},
+};
+const PAL = ['#6c63ff','#ef5350','#fb8c00','#43a047','#=>88d1','#e91e63','#9c27b0','#00bcd4','#ff7043','#607d8b','#795548','#ffd600'];
+const KCOLS = [
+  {id:'planned',    label:'예정',   color:'#8a8a9a', icon:'📅'},
+  {id:'inprogress', label:'진행중', color:'#=>88d1', icon:'🔄'},
+  {id:'done',       label:'완료',   color:'#43a047', icon:'✅'},
+  {id:'cancelled',  label:'취소',   color:'#ef5350', icon:'❌'},
+];
+const DAYS = ['일','월','화','수','목','금','토'];
+const HOURS = Array.from({length:24},(_,i)=>i);
+
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+let tasks = JSON.parse(localStorage.getItem('pawTasks')||'[]');
+let conns  = JSON.parse(localStorage.getItem('pawConns')||'[]');
+
+function save() {
+  localStorage.setItem('pawTasks', JSON.stringify(tasks));
+  localStorage.setItem('pawConns',  JSON.stringify(conns));
+}
+function gid() { return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+// ── sample data ──
+if (!tasks.length) {
+  const td = new Date();
+  const a = n => { const d=new Date(td); d.setDate(d.getDate()+n); return fdate(d); };
+  tasks = [
+    {id:'t1',title:'팀 주간 회의',  startDate:a(0),endDate:a(0),  startTime:'10:00',endTime:'11:00',category:'work',    priority:'high',  color:'#6c63ff',note:'정기 미팅', status:'inprogress',completed:false},
+    {id:'t2',title:'런치 미팅',     startDate:a(1),endDate:a(1),  startTime:'12:00',endTime:'13:00',category:'social',  priority:'medium',color:'#fb8c00',note:'',          status:'todo',      completed:false},
+    {id:'t3',title:'요가 클래스',   startDate:a(1),endDate:a(1),  startTime:'07:00',endTime:'08:00',category:'health',  priority:'low',   color:'#43a047',note:'',          status:'todo',      completed:false},
+    {id:'t4',title:'프로젝트 마감', startDate:a(3),endDate:a(5),  startTime:'17:00',endTime:'18:00',category:'work',    priority:'high',  color:'#ef5350',note:'최종 전달', status:'todo',      completed:false},
+    {id:'t5',title:'React 강의',    startDate:a(2),endDate:a(2),  startTime:'20:00',endTime:'22:00',category:'study',   priority:'medium',color:'#=>88d1',note:'',          status:'inprogress',completed:false},
+    {id:'t6',title:'헬스장',        startDate:a(4),endDate:a(4),  startTime:'06:30',endTime:'07:30',category:'health',  priority:'low',   color:'#43a047',note:'',          status:'todo',      completed:false},
+    {id:'t7',title:'친구 생일파티', startDate:a(5),endDate:a(5),  startTime:'18:00',endTime:'21:00',category:'social',  priority:'medium',color:'#e91e63',note:'선물 준비', status:'todo',      completed:false},
+  ];
+  conns = [{from:'t1',to:'t4'},{from:'t5',to:'t4'}];
+  save();
+} else if (!conns.length && tasks.some(t=>t.id==='t1'||t.id==='t4'||t.id==='t5')) {
+  // Re-apply sample connections if sample tasks exist but conns were lost
+  const ids=tasks.map(t=>t.id);
+  if(ids.includes('t1')&&ids.includes('t4')) conns.push({from:'t1',to:'t4'});
+  if(ids.includes('t5')&&ids.includes('t4')) conns.push({from:'t5',to:'t4'});
+  save();
+}
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+let view = 'month';
+let cur  = new Date();
+let editId = null;
+let detId  = null;
+let selColor = PAL[0];
+let filterCat = 'all';
+
+// drag states
+let mvState  = null;   // task drag-move
+let crState  = null;   // date-range create
+let coState  = null;   // connection draw
+let kdState  = null;   // kanban drag
+
+// ══════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════
+// local-time date string → "YYYY-MM-DD" (no timezone shift)
+function fdate(d) {
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function rgba(hex, a) {
+  const r=parseInt(hex.slice(1,3),16), g=parseInt(hex.slice(3,5),16), b=parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+function getVisible() {
+  return filterCat==='all' ? tasks : tasks.filter(t=>t.category===filterCat);
+}
+function taskColor(t) { return t.color || _getCat(t.category).color; }
+
+// ══════════════════════════════════════════
+// LEGEND
+// ══════════════════════════════════════════
+function buildLegend() {
+  document.getElementById('catLeg').innerHTML = Object.entries(cats||DEFAULT_CATS)
+    .filter(([k,v])=>v&&v.color&&v.label)
+    .map(([k,v])=>
+      `<div class="legitem" onclick="setFilter('${k}')">${v.icon||''} ${v.label}</div>`
+    ).join('');
+}
+function setFilter(c) { filterCat = filterCat===c?'all':c; render(); }
+
+// ══════════════════════════════════════════
+// COLOR PICKER
+// ══════════════════════════════════════════
+function buildCP(sel) {
+  selColor = sel||PAL[0];
+  document.getElementById('cpick').innerHTML = PAL.map(c=>
+    `<div class="csw${c===selColor?' sel':''}" style="background:${c}" onclick="pickColor('${c}')"></div>`
+  ).join('');
+}
+function pickColor(c) { selColor=c; buildCP(c); }
+
+// ══════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════
+function setView(v) {
+  view = v;
+  document.querySelectorAll('.vtab').forEach((b,i)=>b.classList.toggle('active',['month','week','kanban'][i]===v));
+  document.getElementById('monthView').style.display  = v==='month'  ?'flex':'none';
+  document.getElementById('weekView').style.display   = v==='week'   ?'block':'none';
+  document.getElementById('kanbanView').style.display = v==='kanban' ?'block':'none';
+  render();
+}
+function navigate(d) {
+  if (view==='week') { cur.setDate(cur.getDate()+d*7); render(); return; }
+  if (view==='month') {
+    cur = new Date(cur.getFullYear(), cur.getMonth()+d, 1);
+    if (document.getElementById('mscroll')) { scrollToMonth(cur.getFullYear(), cur.getMonth()); return; }
+  }
+  render();
+}
+function goToday() {
+  cur=new Date();
+  if (view==='month' && document.getElementById('mscroll')) {
+    scrollToMonth(cur.getFullYear(), cur.getMonth()); return;
+  }
+  render();
+}
+
+// ══════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════
+function render() {
+  const y=cur.getFullYear(), m=cur.getMonth();
+  if (view==='week') {
+    const wk=weekDates(cur);
+    document.getElementById('hTitle').textContent =
+      wk[0].toLocaleDateString('ko-KR',{month:'short',day:'numeric'})+'–'+
+      wk[6].toLocaleDateString('ko-KR',{month:'short',day:'numeric'});
+  } else {
+    document.getElementById('hTitle').textContent = cur.toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
+  }
+  if (view==='month')  renderMonth();
+  if (view==='week')   { renderWeek();   _clearConnSvg(); }
+  if (view==='kanban') { renderKanban(); _clearConnSvg(); }
+}
+
+// ══════════════════════════════════════════
+// MONTH VIEW – CONTINUOUS INFINITE CALENDAR
+// ══════════════════════════════════════════
+let contCal = null; // { topDate: Date(Sun), botDate: Date(Sun) }
+
+function _prevSunday(d){const r=new Date(d);r.setDate(r.getDate()-r.getDay());r.setHours(0,0,0,0);return r;}
+
+/* ── initial build ── */
+function buildMonthView() {
+  const mv = document.getElementById('monthView');
+  mv.innerHTML = '';
+
+  // Sticky DOW header
+  const dow = document.createElement('div');
+  dow.className='mhrow';
+  dow.style.cssText='position:sticky;top:0;z-index:20;border-radius:12px 12px 0 0;flex-shrink:0';
+  ['일','월','화','수','목','금','토'].forEach((d,i)=>{
+    const c=document.createElement('div'); c.className='mhcell';
+    if(i===0||i===6) c.style.color='#e57373';
+    c.textContent=d; dow.appendChild(c);
+  });
+  mv.appendChild(dow);
+
+  // Scroll container
+  const ms=document.createElement('div'); ms.id='mscroll'; ms.className='mscroll';
+  mv.appendChild(ms);
+
+  // One continuous grid – SVG lives on body as position:fixed
+  const wrap=document.createElement('div'); wrap.className='mgwrap';
+  const grid=document.createElement('div'); grid.className='mgrid';
+  const body=document.createElement('div'); body.className='mbody'; body.id='contbody';
+  grid.appendChild(body); wrap.appendChild(grid);
+  ms.appendChild(wrap);
+  // Create the single fixed connection SVG on body (reuse if already exists)
+  if(!document.getElementById('connsvg')){
+    const s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    s.id='connsvg'; document.body.appendChild(s);
+  }
+
+  // Height: fill to bottom of viewport
+  const setH=()=>{
+    const s=document.getElementById('mscroll'); if(!s) return;
+    s.style.height=Math.max(300,window.innerHeight-s.getBoundingClientRect().top-20)+'px';
+  };
+  requestAnimationFrame(setH);
+  window.addEventListener('resize',setH);
+
+  // Start 2 weeks before current month
+  const y0=cur.getFullYear(), mo0=cur.getMonth();
+  const startSun=_prevSunday(new Date(y0,mo0,1));
+  startSun.setDate(startSun.getDate()-14);
+  contCal={topDate:new Date(startSun), botDate:new Date(startSun)};
+  contCal.botDate.setDate(contCal.botDate.getDate()-7); // _appendContWeek will advance by 7
+
+  // Render ~14 weeks (~3 months)
+  for(let i=0;i<14;i++) _appendContWeek();
+
+  // Scroll to current month label, then draw connection lines
+  requestAnimationFrame(()=>{
+    const lbl=document.querySelector(`.mmonlbl[data-y="${y0}"][data-mo="${mo0}"]`);
+    if(lbl) ms.scrollTop=lbl.offsetTop;
+    // Double rAF ensures layout/scroll is fully settled before drawing lines
+    requestAnimationFrame(drawConns);
+  });
+
+  ms.addEventListener('scroll',onMScroll);
+}
+
+/* ── month label row ── */
+function _buildMonlbl(d){
+  const el=document.createElement('div'); el.className='mmonlbl';
+  el.dataset.y=d.getFullYear(); el.dataset.mo=d.getMonth();
+  el.textContent=d.toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
+  return el;
+}
+
+/* ── does week Sun→Sat contain the 1st? returns that Date or null ── */
+function _weekHas1st(sun){
+  for(let i=0;i<7;i++){const d=new Date(sun);d.setDate(d.getDate()+i);if(d.getDate()===1)return d;}
+  return null;
+}
+
+/* ── build one week row div ── */
+function _buildWeekDiv(sun) {
+  const tds=fdate(new Date()), vis=getVisible();
+  const TRACK_H=22, OVERLAY_TOP=34;
+
+  const dates=[];
+  for(let i=0;i<7;i++){const d=new Date(sun);d.setDate(d.getDate()+i);d.setHours(0,0,0,0);dates.push(d);}
+  const wStart=fdate(dates[0]), wEnd=fdate(dates[6]);
+
+  // Multi-day bars
+  const mdTasks=vis.filter(t=>{const s=t.startDate||t.date,e=t.endDate||s;return e>s;});
+  const weekMD=mdTasks.filter(t=>{const s=t.startDate||t.date,e=t.endDate||s;return s<=wEnd&&e>=wStart;});
+  const tracks=[], placed=[];
+  weekMD.forEach(t=>{
+    const s=t.startDate||t.date,e=t.endDate||s;
+    const bs=s<wStart?wStart:s, be=e>wEnd?wEnd:e;
+    let sc=dates.findIndex(d=>fdate(d)===bs), ec=dates.findIndex(d=>fdate(d)===be);
+    if(sc===-1)sc=0; if(ec===-1)ec=6;
+    let track=0;
+    while(tracks[track]&&tracks[track].some(r=>r.sc<=ec&&r.ec>=sc))track++;
+    if(!tracks[track])tracks[track]=[];
+    tracks[track].push({sc,ec});
+    placed.push({t,track,sc,ec,isStart:s>=wStart,isEnd:e<=wEnd});
+  });
+  const mdAreaH=tracks.length>0?tracks.length*TRACK_H+2:0;
+
+  const weekDiv=document.createElement('div'); weekDiv.className='mweek';
+  weekDiv.dataset.weekDate=wStart; // store for refresh
+
+  if(placed.length>0){
+    const ov=document.createElement('div'); ov.className='mdoverlay';
+    ov.style.top=OVERLAY_TOP+'px'; ov.style.height=mdAreaH+'px';
+    placed.forEach(({t,track,sc,ec,isStart,isEnd})=>{
+      const c=taskColor(t);
+      const bar=document.createElement('div'); bar.className='mdbar';
+      bar.style.cssText=[
+        `left:${(sc/7*100).toFixed(3)}%`,`width:${((ec-sc+1)/7*100).toFixed(3)}%`,
+        `top:${track*TRACK_H+1}px`,`background:${rgba(c,.16)}`,
+        `border-left:${isStart?`3px solid ${c}`:'none'}`,`color:${c}`,
+        `border-radius:${isStart?'4px':'0'} ${isEnd?'4px':'0'} ${isEnd?'4px':'0'} ${isStart?'4px':'0'}`,
+        `padding-left:${isStart?'5px':'2px'}`,`padding-right:4px`,
+      ].join(';');
+      bar.title=t.title; bar.dataset.taskId=t.id;
+      bar.style.cssText=bar.style.cssText+`;--cc:${c}`;
+      // L dot (head) – shown on hover so this bar can receive connections
+      const bDL=document.createElement('div');
+      bDL.className='cdot'; bDL.dataset.side='L'; bDL.dataset.tid=t.id;
+      bDL.title='헤드 – 선행업무 수신 포인트';
+      bar.appendChild(bDL);
+      // mini checkbox for multi-day bars (if showCheck is enabled)
+      let bCb=null;
+      if(_taskHasCheck(t)){
+        const bDone=_isDone(t);
+        bCb=document.createElement('div');
+        bCb.className='pcheck'+(bDone?' done':'');
+        bCb.style.cssText='flex-shrink:0;width:12px;height:12px;font-size:9px';
+        if(bDone) bCb.textContent='✓';
+        bCb.addEventListener('click',e=>{e.stopPropagation();toggleDone(t.id);});
+        bar.appendChild(bCb);
+      }
+      // title text span
+      const bTi=document.createElement('span');
+      bTi.style.cssText='flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0';
+      bTi.textContent=isStart?t.title:'';
+      bar.appendChild(bTi);
+      // R dot (tail) – drag to connect
+      const bDR=document.createElement('div');
+      bDR.className='cdot'; bDR.dataset.side='R'; bDR.dataset.tid=t.id;
+      bDR.title='꼬리 – 연계업무 드래그하여 연결';
+      bDR.addEventListener('mousedown',e=>{e.stopPropagation();startConn(e,t.id,'R');});
+      bar.appendChild(bDR);
+      bar.addEventListener('click',e=>{e.stopPropagation();showDetail(t,e);});
+      // mdbar mousedown → drag move
+      bar.addEventListener('mousedown',e=>{
+        if(e.target===bDL||e.target===bDR||e.target===bCb) return;
+        e.stopPropagation();
+        startMove(e,t);
+      });
+      ov.appendChild(bar);
+    });
+    weekDiv.appendChild(ov);
+  }
+
+  dates.forEach((date,ci)=>{
+    const ds=fdate(date), isWE=date.getDay()===0||date.getDay()===6;
+    const cell=document.createElement('div');
+    cell.className='mcell'+(ds===tds?' today':'')+(isWE?' weekend':'')+(ci===6?' lastcol':'');
+    cell.dataset.date=ds;
+    const dn=document.createElement('div'); dn.className='dnum'; dn.textContent=date.getDate();
+    cell.appendChild(dn);
+    if(mdAreaH>0){const sp=document.createElement('div');sp.style.height=mdAreaH+'px';cell.appendChild(sp);}
+    const dayTasks=vis.filter(t=>{const s=t.startDate||t.date,e=t.endDate||s;return s===ds&&e===s;}).sort((a,b)=>(a.startTime||'').localeCompare(b.startTime||''));
+    const MAX=3;
+    dayTasks.slice(0,MAX).forEach(t=>cell.appendChild(makePill(t)));
+    if(dayTasks.length>MAX){
+      const m=document.createElement('div'); m.className='moretasks';
+      m.textContent=`+${dayTasks.length-MAX}개`;
+      m.onclick=e=>{e.stopPropagation();openModal(ds);}; cell.appendChild(m);
+    }
+    cell.addEventListener('mousedown',e=>cellDown(e,ds));
+    weekDiv.appendChild(cell);
+  });
+  return weekDiv;
+}
+
+/* ── append one week to bottom ── */
+function _appendContWeek(){
+  const body=document.getElementById('contbody'); if(!body) return;
+  const sun=new Date(contCal.botDate); sun.setDate(sun.getDate()+7);
+  const first=_weekHas1st(sun); if(first) body.appendChild(_buildMonlbl(new Date(first)));
+  body.appendChild(_buildWeekDiv(sun));
+  contCal.botDate=sun;
+}
+
+/* ── prepend one week to top ── */
+function _prependContWeek(){
+  const body=document.getElementById('contbody'); if(!body) return;
+  const sun=new Date(contCal.topDate); sun.setDate(sun.getDate()-7);
+  const wDiv=_buildWeekDiv(sun);
+  const first=_weekHas1st(sun);
+  const ref=body.firstChild;
+  if(first) body.insertBefore(_buildMonlbl(new Date(first)),ref);
+  body.insertBefore(wDiv, body.querySelector('.mmonlbl, .mweek'));
+  contCal.topDate=sun;
+}
+
+/* ── scroll handler ── */
+function onMScroll(){
+  const ms=document.getElementById('mscroll'); if(!ms||!contCal) return;
+  const {scrollTop,scrollHeight,clientHeight}=ms;
+  // Title: last label at/above viewport
+  const lbls=[...ms.querySelectorAll('.mmonlbl')];
+  let best=lbls[0];
+  for(const l of lbls){ if(l.offsetTop<=scrollTop+70) best=l; else break; }
+  if(best){
+    cur=new Date(parseInt(best.dataset.y),parseInt(best.dataset.mo),1);
+    document.getElementById('hTitle').textContent=cur.toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
+  }
+  if(scrollTop+clientHeight>scrollHeight-600) _appendContWeek();
+  if(scrollTop<400) _prependContWeek();
+  requestAnimationFrame(drawConns);
+}
+
+/* ── scroll to a month ── */
+function scrollToMonth(y,mo){
+  const ms=document.getElementById('mscroll'); if(!ms){render();return;}
+  const find=()=>ms.querySelector(`.mmonlbl[data-y="${y}"][data-mo="${mo}"]`);
+  let guard=0;
+  while(!find()&&guard++<200){
+    const target=new Date(y,mo,1);
+    const botEnd=new Date(contCal.botDate); botEnd.setDate(botEnd.getDate()+6);
+    if(target>botEnd) _appendContWeek(); else _prependContWeek();
+  }
+  const lbl=find();
+  if(lbl){
+    ms.scrollTo({top:lbl.offsetTop,behavior:'smooth'});
+    document.getElementById('hTitle').textContent=new Date(y,mo,1).toLocaleDateString('ko-KR',{year:'numeric',month:'long'});
+  }
+}
+
+/* ── refresh after task change ── */
+function refreshContCal(){
+  const ms=document.getElementById('mscroll'); if(!ms||!contCal) return;
+  const saved=ms.scrollTop;
+  const body=document.getElementById('contbody'); if(!body) return;
+  [...body.querySelectorAll('.mweek')].forEach(wd=>{
+    const ds=wd.dataset.weekDate; if(!ds) return;
+    const sun=new Date(ds); sun.setHours(0,0,0,0);
+    body.replaceChild(_buildWeekDiv(sun),wd);
+  });
+  ms.scrollTop=saved;
+  requestAnimationFrame(drawConns);
+}
+
+function renderMonth(){
+  if(!document.getElementById('mscroll')) buildMonthView();
+  else refreshContCal();
+}
+
+// ── make pill element ──
+function makePill(t) {
+  const c = taskColor(t);
+  const bg = rgba(c,.12);
+  const pill = document.createElement('div');
+  const done=_isDone(t), cancelled=_isCancelled(t);
+  pill.className='tpill'+(done?' done':cancelled?' cancelled':'');
+  pill.dataset.taskId=t.id;
+  pill.style.cssText=`background:${bg};color:${c};border-left-color:${c};--cc:${c}`;
+
+  // left conn dot
+  const dL=document.createElement('div');
+  dL.className='cdot'; dL.dataset.side='L'; dL.dataset.tid=t.id;
+  dL.title='헤드 – 선행업무 수신 포인트';
+  pill.appendChild(dL);
+
+  // checkbox — show only when task has showCheck; visual state driven by stage:
+  // 예정/진행중 → empty □  |  완료 → ✓ filled  |  취소 → empty □ + title strikethrough
+  let cb=null;
+  if(_taskHasCheck(t)){
+    cb=document.createElement('div');
+    cb.className='pcheck'+(done?' done':'');
+    if(done) cb.textContent='✓';
+    cb.addEventListener('click',e=>{e.stopPropagation();toggleDone(t.id);});
+    pill.appendChild(cb);
+  }
+
+  // title
+  const ti=document.createElement('span');
+  ti.className='ptitle'; ti.textContent=t.title;
+  pill.appendChild(ti);
+
+  // right conn dot
+  const dR=document.createElement('div');
+  dR.className='cdot'; dR.dataset.side='R'; dR.dataset.tid=t.id;
+  dR.title='꼬리 – 연계업무 드래그하여 연결';
+  dR.addEventListener('mousedown',e=>{e.stopPropagation();startConn(e,t.id,'R');});
+  pill.appendChild(dR);
+
+  // pill click → detail
+  pill.addEventListener('click',e=>{e.stopPropagation();showDetail(t,e);});
+
+  // pill mousedown → drag move
+  pill.addEventListener('mousedown',e=>{
+    if(e.target===dL||e.target===dR||e.target===cb) return;
+    e.stopPropagation();
+    startMove(e,t);
+  });
+
+  return pill;
+}
+
+// ══════════════════════════════════════════
+// DRAG MOVE TASK
+// ══════════════════════════════════════════
+function startMove(e, t) {
+  // No e.preventDefault() here – body has user-select:none, and preventDefault on
+  // mousedown can suppress click events in some browsers which breaks showDetail.
+  const pill=e.currentTarget;
+  // Track start position to distinguish click from drag (5px threshold)
+  mvState={tid:t.id,task:t,ghost:null,pill,moved:false,sx:e.clientX,sy:e.clientY};
+  document.addEventListener('mousemove',onMoveMove);
+  document.addEventListener('mouseup',onMoveUp);
+}
+function onMoveMove(e) {
+  if(!mvState) return;
+  if(!mvState.moved){
+    // Only start dragging if mouse moved more than 5px
+    const dx=e.clientX-mvState.sx, dy=e.clientY-mvState.sy;
+    if(Math.abs(dx)<5&&Math.abs(dy)<5) return;
+    // Threshold exceeded: activate drag ghost
+    mvState.moved=true;
+    const pill=mvState.pill;
+    const rect=pill.getBoundingClientRect();
+    const ghost=pill.cloneNode(true);
+    ghost.className='tpill dghost';
+    ghost.style.cssText=`${pill.style.cssText};width:${rect.width}px;left:${rect.left}px;top:${rect.top}px;position:fixed;pointer-events:none`;
+    document.body.appendChild(ghost);
+    pill.classList.add('dragging');
+    mvState.ghost=ghost;
+  }
+  mvState.ghost.style.left=(e.clientX-90)+'px';
+  mvState.ghost.style.top=(e.clientY-12)+'px';
+  document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('dragover'));
+  // Find target cell – try elementsFromPoint first (pierces #connsvg overlay),
+  // then fall back to walking up from elementFromPoint result
+  const allEls=document.elementsFromPoint(e.clientX,e.clientY);
+  const tgt=allEls.find(el=>el.classList?.contains('mcell'))
+         || document.elementFromPoint(e.clientX,e.clientY)?.closest?.('.mcell')
+         || null;
+  if(tgt) {
+    tgt.classList.add('dragover');
+    mvState.dropDate=tgt.dataset.date; // store while we're sure of the target
+  }
+}
+function onMoveUp(e) {
+  if(!mvState) return;
+  document.removeEventListener('mousemove',onMoveMove);
+  document.removeEventListener('mouseup',onMoveUp);
+
+  // Use the date stored during the last onMoveMove (most reliable approach —
+  // avoids any post-cleanup DOM state issues)
+  const dropDate = mvState.moved ? (mvState.dropDate||null) : null;
+
+  if(mvState.ghost) mvState.ghost.remove();
+  mvState.pill.classList.remove('dragging');
+  document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('dragover'));
+
+  if(!mvState.moved) {
+    const saved=mvState.task;
+    mvState=null;
+    showDetail(saved, e);
+    return;
+  }
+
+  // Move task to drop date
+  if(dropDate) {
+    const t=tasks.find(x=>x.id===mvState.tid);
+    if(t){
+      const oldS=t.startDate||t.date;
+      const diff=(new Date(dropDate)-new Date(oldS))/86400000;
+      if(diff!==0){
+        const sh=ds=>{ const d=new Date(ds); d.setDate(d.getDate()+diff); return fdate(d); };
+        t.startDate=sh(oldS); t.date=t.startDate;
+        if(t.endDate) t.endDate=sh(t.endDate);
+        save();
+      }
+    }
+  }
+  mvState=null;
+  render();
+}
+
+// ══════════════════════════════════════════
+// DRAG CREATE (date range)
+// ══════════════════════════════════════════
+function cellDown(e, ds) {
+  if(e.target.closest('.tpill')||e.target.closest('.cdot')||e.button!==0) return;
+  crState={s:ds, e:ds};
+  document.addEventListener('mousemove',onCrMove);
+  document.addEventListener('mouseup',onCrUp);
+}
+function onCrMove(e) {
+  if(!crState) return;
+  const tgt=document.elementFromPoint(e.clientX,e.clientY)?.closest?.('.mcell');
+  if(tgt?.dataset.date) { crState.e=tgt.dataset.date; }
+  document.querySelectorAll('.mcell').forEach(c=>{
+    const d=c.dataset.date;
+    const mn=crState.s<=crState.e?crState.s:crState.e;
+    const mx=crState.s<=crState.e?crState.e:crState.s;
+    c.classList.toggle('rangesel', d>=mn&&d<=mx);
+  });
+}
+function onCrUp(e) {
+  if(!crState) return;
+  document.removeEventListener('mousemove',onCrMove);
+  document.removeEventListener('mouseup',onCrUp);
+  document.querySelectorAll('.mcell').forEach(c=>c.classList.remove('rangesel'));
+  const mn=crState.s<=crState.e?crState.s:crState.e;
+  const mx=crState.s<=crState.e?crState.e:crState.s;
+  const st=crState;
+  crState=null;
+  openModal(mn, null, null, mx);
+}
+
+// ══════════════════════════════════════════
+// CONNECTION DRAW
+// ══════════════════════════════════════════
+function _pillSvg() {
+  return document.getElementById('connsvg');
+}
+function startConn(e, tid, side) {
+  // Only the tail (R) can initiate a connection
+  if(side !== 'R') return;
+  e.preventDefault();
+  const svg=_pillSvg();
+  if(!svg) return;
+  const line=document.createElementNS('http://www.w3.org/2000/svg','path');
+  line.setAttribute('stroke','#fb8c00');
+  line.setAttribute('stroke-width','1.5');
+  line.setAttribute('fill','none');
+  line.setAttribute('d','M0,0'); // initial non-empty d so the path exists
+  line.style.pointerEvents='none';
+  svg.appendChild(line);
+  // e.target might be a child of the dot; walk up to the actual .cdot
+  const dot=e.target.closest('.cdot')||e.target;
+  dot.classList.add('lit');
+  coState={tid, side, line, dot, svg};
+  document.addEventListener('mousemove',onCoMove);
+  document.addEventListener('mouseup',onCoUp);
+}
+// Returns raw viewport coordinates – used directly as SVG coords since #connsvg is position:fixed top:0 left:0
+function dotPos(tid, side) {
+  const el=document.querySelector(`.tpill[data-task-id="${tid}"]`)||
+           document.querySelector(`.mdbar[data-task-id="${tid}"]`);
+  if(!el) return null;
+  const d=el.querySelector(`.cdot[data-side="${side}"]`);
+  if(d){
+    const dr=d.getBoundingClientRect();
+    // Skip dots with zero size (hidden/un-rendered elements)
+    if(dr.width===0&&dr.height===0){
+      const br=el.getBoundingClientRect();
+      if(br.width===0&&br.height===0) return null;
+      return {x:side==='L'?br.left+4:br.right-4, y:br.top+br.height/2};
+    }
+    return {x:dr.left+dr.width/2, y:dr.top+dr.height/2};
+  }
+  // Fallback: use element edges
+  const br=el.getBoundingClientRect();
+  if(br.width===0&&br.height===0) return null;
+  return {x:side==='L'?br.left+4:br.right-4, y:br.top+br.height/2};
+}
+function onCoMove(e) {
+  if(!coState) return;
+  // #connsvg is position:fixed top:0 left:0, so viewport coords = SVG coords
+  const to={x:e.clientX, y:e.clientY};
+  let from=dotPos(coState.tid, coState.side);
+  if(!from){
+    // Fallback: use stored dot's current viewport position
+    const dr=coState.dot.getBoundingClientRect();
+    from={x:dr.left+dr.width/2, y:dr.top+dr.height/2};
+  }
+  const cx=(from.x+to.x)/2;
+  coState.line.setAttribute('d',`M${from.x},${from.y} C${cx},${from.y} ${cx},${to.y} ${to.x},${to.y}`);
+  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('lit'));
+  coState.dot.classList.add('lit');
+  const hov=document.elementFromPoint(e.clientX,e.clientY);
+  const hovDot=hov?.closest?.('.cdot')||(hov?.classList.contains('cdot')?hov:null);
+  // Only highlight L (head) dots as valid targets
+  if(hovDot && hovDot.dataset.side==='L' && hovDot.dataset.tid!==coState.tid) hovDot.classList.add('lit');
+}
+function onCoUp(e) {
+  if(!coState) return;
+  document.removeEventListener('mousemove',onCoMove);
+  document.removeEventListener('mouseup',onCoUp);
+  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('lit'));
+  coState.line.remove();
+  const hov=document.elementFromPoint(e.clientX,e.clientY);
+  const td=hov?.closest?.('.cdot')||(hov?.classList.contains('cdot')?hov:null)||
+           hov?.closest?.('.tpill')?.querySelector('.cdot[data-side="L"]')||
+           hov?.closest?.('.mdbar')?.querySelector('.cdot[data-side="L"]');
+  if(td && td.dataset.side==='L' && td.dataset.tid && td.dataset.tid!==coState.tid){
+    const toId=td.dataset.tid;
+    // from = tail (R) of coState.tid → to = head (L) of toId
+    const dup=conns.some(c=>c.from===coState.tid&&c.to===toId);
+    if(!dup){ conns.push({from:coState.tid,to:toId}); save(); }
+  }
+  coState=null;
+  requestAnimationFrame(drawConns);
+}
+
+// ══════════════════════════════════════════
+// DRAW CONNECTION LINES
+// ══════════════════════════════════════════
+function _clearConnSvg() {
+  const svg=document.getElementById('connsvg');
+  if(svg) [...svg.querySelectorAll('.cpath,.carrow,.cgroup')].forEach(el=>el.remove());
+}
+function drawConns() {
+  const svg=document.getElementById('connsvg');
+  if(!svg) return;
+  // Clear previous lines (keep defs)
+  [...svg.querySelectorAll('.cpath,.carrow,.cgroup')].forEach(el=>el.remove());
+  // Only draw when month view is active and visible
+  if(view!=='month'||!document.getElementById('mscroll')) return;
+
+  // ── ClipPath: restrict lines to <main> calendar area so they don't bleed into header/legbar ──
+  const mainEl=document.querySelector('main.main');
+  let clipId='calClip';
+  let defs=svg.querySelector('defs');
+  if(!defs){ defs=document.createElementNS('http://www.w3.org/2000/svg','defs'); svg.insertBefore(defs,svg.firstChild); }
+  let cp=defs.querySelector('#'+clipId);
+  if(!cp){ cp=document.createElementNS('http://www.w3.org/2000/svg','clipPath'); cp.id=clipId; defs.appendChild(cp); }
+  cp.innerHTML=''; // clear old rect
+  if(mainEl){
+    const mr=mainEl.getBoundingClientRect();
+    const cr=document.createElementNS('http://www.w3.org/2000/svg','rect');
+    cr.setAttribute('x', mr.left); cr.setAttribute('y', mr.top);
+    cr.setAttribute('width', mr.width); cr.setAttribute('height', mr.height);
+    cp.appendChild(cr);
+  }
+
+  // All lines go in a <g> clipped to calendar bounds
+  const g=document.createElementNS('http://www.w3.org/2000/svg','g');
+  g.setAttribute('class','cgroup');
+  if(mainEl) g.setAttribute('clip-path','url(#'+clipId+')');
+  svg.appendChild(g);
+
+  conns.forEach(conn=>{
+    // Use raw viewport coordinates – #connsvg is position:fixed top:0 left:0
+    const p1=dotPos(conn.from,'R'), p2=dotPos(conn.to,'L');
+    if(!p1||!p2) return;
+    const x1=p1.x, y1=p1.y, x2=p2.x, y2=p2.y;
+    const cx=(x1+x2)/2;
+    const fc=taskColor(tasks.find(t=>t.id===conn.from)||{});
+
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('class','cpath');
+    path.setAttribute('d',`M${x1},${y1} C${cx},${y1} ${cx},${y2} ${x2},${y2}`);
+    path.setAttribute('stroke',fc||'#fb8c00');
+    path.setAttribute('stroke-width','1.5');
+    path.setAttribute('fill','none');
+    path.style.pointerEvents='stroke';
+    path.style.cursor='pointer';
+    path.title='클릭하면 연결 삭제';
+    path.addEventListener('click',()=>{
+      conns=conns.filter(c=>!(c.from===conn.from&&c.to===conn.to));
+      save(); drawConns();
+    });
+    g.appendChild(path);
+
+    // Arrowhead pointing into the head (L dot)
+    const ang=Math.atan2(y2-y1,x2-x1), al=7;
+    const arr=document.createElementNS('http://www.w3.org/2000/svg','path');
+    arr.setAttribute('class','carrow');
+    arr.setAttribute('d',`M${x2},${y2} L${x2-al*Math.cos(ang-.45)},${y2-al*Math.sin(ang-.45)} M${x2},${y2} L${x2-al*Math.cos(ang+.45)},${y2-al*Math.sin(ang+.45)}`);
+    arr.setAttribute('stroke',fc||'#fb8c00');
+    arr.setAttribute('stroke-width','1.5');
+    arr.setAttribute('fill','none');
+    arr.style.pointerEvents='none';
+    g.appendChild(arr);
+  });
+}
+
+// ══════════════════════════════════════════
+// WEEK VIEW
+// ══════════════════════════════════════════
+function weekDates(ref) {
+  const d=new Date(ref), day=d.getDay(), sun=new Date(d);
+  sun.setDate(d.getDate()-day);
+  return Array.from({length:7},(_,i)=>{ const x=new Date(sun); x.setDate(sun.getDate()+i); return x; });
+}
+function renderWeek() {
+  const wk=weekDates(cur);
+  const tds=fdate(new Date());
+  const vis=getVisible();
+
+  const whr=document.getElementById('whrow');
+  whr.innerHTML='<div class="whtimecol"></div>'+wk.map((d,i)=>{
+    const ds=fdate(d);
+    return `<div class="whdcol${ds===tds?' tcol':''}">
+      <div class="wdname">${DAYS[i]}</div>
+      <div class="wdnum">${d.getDate()}</div>
+    </div>`;
+  }).join('');
+
+  const wbd=document.getElementById('wbody');
+  wbd.innerHTML='';
+  const tl=document.createElement('div'); tl.className='tlabels';
+  HOURS.forEach(h=>{ const el=document.createElement('div'); el.className='tslbl'; el.textContent=h===0?'':String(h).padStart(2,'0')+':00'; tl.appendChild(el); });
+  wbd.appendChild(tl);
+
+  wk.forEach((d,di)=>{
+    const ds=fdate(d);
+    const col=document.createElement('div'); col.className='wcol';
+    HOURS.forEach(h=>{ const s=document.createElement('div'); s.className='tsslot'; s.onclick=()=>openModal(ds,String(h).padStart(2,'0')+':00'); col.appendChild(s); });
+
+    vis.filter(t=>(t.startDate||t.date)===ds&&t.startTime).forEach(t=>{
+      const [sh,sm]=t.startTime.split(':').map(Number);
+      const [eh,em]=(t.endTime||'23:59').split(':').map(Number);
+      const c=taskColor(t);
+      const top=(sh*60+sm)/60*56;
+      const dur=Math.max(((eh*60+em)-(sh*60+sm))/60,.5);
+      const blk=document.createElement('div');
+      blk.className='wtblock'+(t.completed?' completed':'');
+      blk.style.cssText=`top:${top}px;height:${dur*56}px;background:${rgba(c,.15)};color:${c}`;
+      blk.innerHTML=`<div class="wttitle">${t.completed?'<s>':''} ${t.title}${t.completed?'</s>':''}</div><div class="wttime">${t.startTime}–${t.endTime||''}</div>`;
+      blk.onclick=e=>{e.stopPropagation();showDetail(t,e);};
+      col.appendChild(blk);
+    });
+
+    if(ds===tds){ const nl=document.createElement('div'); nl.className='nowline'; const n=new Date(); nl.style.top=`${(n.getHours()*60+n.getMinutes())/60*56}px`; col.appendChild(nl); }
+    wbd.appendChild(col);
+  });
+  setTimeout(()=>{ wbd.scrollTop=7*56; },50);
+}
+
+// ══════════════════════════════════════════
+// KANBAN VIEW
+// ══════════════════════════════════════════
+function renderKanban() {
+  const vis=getVisible();
+  const bd=document.getElementById('kboard');
+  bd.innerHTML='';
+  KCOLS.forEach(kc=>{
+    const colTs=vis.filter(t=>_normStatus(t.status||'planned')===kc.id);
+    const col=document.createElement('div'); col.className='kcol';
+    col.innerHTML=`<div class="kcolhdr"><div class="kcoltitle" style="color:${kc.color}">${kc.icon} ${kc.label}</div><span class="kcnt">${colTs.length}</span></div>`;
+    const body=document.createElement('div'); body.className='kcolbody'; body.dataset.status=kc.id;
+
+    colTs.forEach(t=>{
+      const c=taskColor(t);
+      const cat=_getCat(t.category);
+      const pri=PRIS[t.priority]||PRIS.medium;
+      const card=document.createElement('div');
+      const kdone=_isDone(t), kcancelled=_isCancelled(t);
+      card.className='kcard'+(kdone?' completed':kcancelled?' cancelled':'');
+      card.style.borderLeftColor=c;
+      card.draggable=true; card.dataset.tid=t.id;
+      card.innerHTML=`
+        <div class="kchdr">
+          <div class="kctitle${kcancelled||kdone?' struck':''}">${t.title}</div>
+          <div class="kcbox${kdone?' done':''}">${kdone?'✓':''}</div>
+        </div>
+        <div class="kcmeta">
+          <span class="ktag" style="background:${rgba(c,.12)};color:${c}">${cat.icon} ${cat.label}</span>
+          <span class="ktag" style="background:${rgba(pri.dot,.1)};color:${pri.dot}">● ${pri.label}</span>
+          <span class="kcdate">📅 ${t.startDate||t.date||''}</span>
+        </div>
+        ${t.note?`<div class="kcnote">📝 ${t.note}</div>`:''}
+      `;
+      card.querySelector('.kcbox').addEventListener('click',e=>{e.stopPropagation();toggleDone(t.id);});
+      card.addEventListener('click',e=>{if(!e.target.closest('.kcbox'))showDetail(t,e);});
+      card.addEventListener('dragstart',e=>{kdState={tid:t.id};card.classList.add('kdragging');e.dataTransfer.effectAllowed='move';});
+      card.addEventListener('dragend',()=>{card.classList.remove('kdragging');kdState=null;});
+      body.appendChild(card);
+    });
+
+    body.addEventListener('dragover',e=>{e.preventDefault();body.classList.add('kdover');});
+    body.addEventListener('dragleave',()=>body.classList.remove('kdover'));
+    body.addEventListener('drop',e=>{
+      e.preventDefault(); body.classList.remove('kdover');
+      if(kdState){ const t=tasks.find(x=>x.id===kdState.tid); if(t){t.status=body.dataset.status; if(t.status==='done') t.completed=true; save();render();} }
+    });
+    col.appendChild(body); bd.appendChild(col);
+  });
+}
+
+// ══════════════════════════════════════════
+// TOGGLE COMPLETE
+// ══════════════════════════════════════════
+function toggleDone(tid) {
+  const t=tasks.find(x=>x.id===tid); if(!t) return;
+  if(_isDone(t)){
+    t.status='planned'; t.completed=false;
+  } else {
+    t.status='done'; t.completed=true;
+  }
+  save(); render();
+}
+
+// ══════════════════════════════════════════
+// DETAIL POPUP
+// ══════════════════════════════════════════
+function showDetail(t, e) {
+  e.stopPropagation(); detId=t.id;
+  const cat=_getCat(t.category);
+  const pri=PRIS[t.priority]||PRIS.medium;
+  const sta=STATS[_normStatus(t.status)]||STATS.planned;
+  const c=taskColor(t);
+
+  // Predecessor tasks: tasks whose tail (R) points to this task's head (L)
+  const preds=conns.filter(cn=>cn.to===t.id).map(cn=>tasks.find(x=>x.id===cn.from)).filter(Boolean);
+  // Successor tasks: tasks this task's tail (R) points to
+  const succs=conns.filter(cn=>cn.from===t.id).map(cn=>tasks.find(x=>x.id===cn.to)).filter(Boolean);
+
+  document.getElementById('dtitle').textContent=t.title;
+  document.getElementById('dmeta').innerHTML=`
+    <span style="color:${c};font-weight:700">■ ${cat.icon} ${cat.label}</span>
+    <span>📅 ${t.startDate||t.date}${t.endDate&&t.endDate!==(t.startDate||t.date)?' → '+t.endDate:''}</span>
+    ${t.startTime?`<span>🕐 ${t.startTime}${t.endTime?' – '+t.endTime:''}</span>`:''}
+    <span style="color:${pri.dot}">● ${pri.label} 우선순위</span>
+    <span style="color:${sta.color}">◉ ${sta.label}</span>
+    ${t.note?`<span>📝 ${t.note}</span>`:''}
+    ${preds.length?`<span style="border-top:1px solid var(--border);padding-top:5px;color:var(--primary);font-weight:700">⬅ 선행업무</span>${preds.map(p=>`<span style="padding-left:8px;color:${taskColor(p)}">• ${p.title}</span>`).join('')}`:''}
+    ${succs.length?`<span style="border-top:1px solid var(--border);padding-top:5px;color:#fb8c00;font-weight:700">➡ 연계업무</span>${succs.map(s=>`<span style="padding-left:8px;color:${taskColor(s)}">• ${s.title}</span>`).join('')}`:''}
+  `;
+  const d=document.getElementById('tdetail');
+  let x=e.clientX+14, y=e.clientY-20;
+  if(x+280>window.innerWidth) x=e.clientX-290;
+  if(y+200>window.innerHeight) y=window.innerHeight-220;
+  d.style.left=x+'px'; d.style.top=y+'px'; d.style.display='block';
+}
+function closeDetail() { document.getElementById('tdetail').style.display='none'; detId=null; }
+function editFromDetail() { const t=tasks.find(x=>x.id===detId); closeDetail(); if(t) openModal(null,null,t); }
+function deleteFromDetail() {
+  if(!detId) return;
+  tasks=tasks.filter(t=>t.id!==detId);
+  conns=conns.filter(c=>c.from!==detId&&c.to!==detId);
+  save(); closeDetail(); render();
+}
+document.addEventListener('click',e=>{ if(!document.getElementById('tdetail').contains(e.target)) closeDetail(); });
+
+// ══════════════════════════════════════════
+// MODAL
+// ══════════════════════════════════════════
+function openModal(sd, time, task, ed) {
+  editId=task?task.id:null;
+  document.getElementById('modalTitle').textContent=task?'일정 수정':'새 일정';
+  document.getElementById('delBtn').style.display=task?'inline-flex':'none';
+  document.getElementById('iTitle').value=task?.title||'';
+  document.getElementById('iSDate').value=task?.startDate||task?.date||sd||fdate(new Date());
+  document.getElementById('iEDate').value=task?.endDate||ed||document.getElementById('iSDate').value;
+  document.getElementById('iSTime').value=task?.startTime||time||'09:00';
+  document.getElementById('iETime').value=task?.endTime||(time?(String(Math.min(parseInt(time)+1,23)).padStart(2,'0')+':'+time.slice(3)):'10:00');
+  _buildCatSelect(task?.category);
+  document.getElementById('iStatus').value=_normStatus(task?.status)||'planned';
+  // Checkbox default: explicit showCheck field wins; for new tasks default true (single-day)
+  const _sd=task?.startDate||task?.date||sd||fdate(new Date());
+  const _ed=task?.endDate||ed||_sd;
+  document.getElementById('iCheck').checked=typeof task?.showCheck==='boolean'?task.showCheck:(_sd===_ed);
+  document.getElementById('iPri').value=task?.priority||'medium';
+  document.getElementById('iNote').value=task?.note||'';
+  buildCP(task?.color||PAL[0]);
+
+  // Show predecessor / successor connections if editing an existing task
+  const ci=document.getElementById('connInfo');
+  if(task) {
+    const preds=conns.filter(cn=>cn.to===task.id).map(cn=>tasks.find(x=>x.id===cn.from)).filter(Boolean);
+    const succs=conns.filter(cn=>cn.from===task.id).map(cn=>tasks.find(x=>x.id===cn.to)).filter(Boolean);
+    if(preds.length||succs.length){
+      ci.style.display='flex';
+      ci.style.flexDirection='column';
+      ci.style.gap='6px';
+      ci.style.fontSize='12px';
+      ci.style.background='var(--surface2)';
+      ci.style.borderRadius='9px';
+      ci.style.padding='10px 12px';
+      ci.innerHTML=
+        (preds.length?`<div style="font-weight:700;color:var(--primary)">⬅ 선행업무</div>`+preds.map(p=>`<div style="padding-left:10px;color:${taskColor(p)}">• ${p.title}</div>`).join(''):'')
+        +(succs.length?`<div style="font-weight:700;color:#fb8c00;margin-top:${preds.length?4:0}px">➡ 연계업무</div>`+succs.map(s=>`<div style="padding-left:10px;color:${taskColor(s)}">• ${s.title}</div>`).join(''):'');
+      // Scroll connInfo into view so it's not hidden below the fold
+      setTimeout(()=>ci.scrollIntoView({behavior:'smooth',block:'nearest'}),150);
+    } else { ci.style.display='none'; }
+  } else { ci.style.display='none'; }
+
+  document.getElementById('movl').classList.add('open');
+  setTimeout(()=>document.getElementById('iTitle').focus(),100);
+}
+function closeModal() { document.getElementById('movl').classList.remove('open'); editId=null; }
+function closeModalOut(e) { if(e.target===document.getElementById('movl')) closeModal(); }
+function saveTask() {
+  const title=document.getElementById('iTitle').value.trim();
+  const sd=document.getElementById('iSDate').value;
+  if(!title){ document.getElementById('iTitle').style.borderColor='#ef5350'; document.getElementById('iTitle').focus(); return; }
+  document.getElementById('iTitle').style.borderColor='';
+  const task={
+    id:editId||gid(),title,
+    startDate:sd, endDate:document.getElementById('iEDate').value||sd, date:sd,
+    startTime:document.getElementById('iSTime').value,
+    endTime:document.getElementById('iETime').value,
+    category:document.getElementById('iCat').value,
+    status:document.getElementById('iStatus').value,
+    priority:document.getElementById('iPri').value,
+    color:selColor,
+    note:document.getElementById('iNote').value.trim(),
+    showCheck:document.getElementById('iCheck').checked,
+    completed:document.getElementById('iStatus').value==='done',
+  };
+  if(editId) tasks=tasks.map(t=>t.id===editId?task:t); else tasks.push(task);
+  save(); closeModal(); render();
+}
+function deleteTask() {
+  if(!editId) return;
+  tasks=tasks.filter(t=>t.id!==editId);
+  conns=conns.filter(c=>c.from!==editId&&c.to!==editId);
+  save(); closeModal(); render();
+}
+
+// ══════════════════════════════════════════
+// CATEGORY SELECT HELPER
+// ══════════════════════════════════════════
+// Whether a task should show a checkbox (true = show, false = hide)
+// Explicit showCheck field wins; legacy fallback: single-day tasks had checkbox
+function _taskHasCheck(t) {
+  if(typeof t.showCheck==='boolean') return t.showCheck;
+  const s=t.startDate||t.date, e2=t.endDate||s;
+  return s===e2; // legacy default
+}
+// Normalize legacy status values
+function _normStatus(s) {
+  if(s==='todo') return 'planned';
+  if(s==='blocked') return 'cancelled';
+  return s||'planned';
+}
+// Visual state helpers
+function _isDone(t)      { return _normStatus(t.status)==='done'||t.completed===true; }
+function _isCancelled(t) { return _normStatus(t.status)==='cancelled'; }
+function _isStruckthrough(t) { return _isDone(t)||_isCancelled(t); }
+
+function _buildCatSelect(val) {
+  const sel=document.getElementById('iCat');
+  sel.innerHTML=Object.entries(cats).map(([k,v])=>
+    `<option value="${k}">${v.icon} ${v.label}</option>`
+  ).join('');
+  sel.value=(val && cats[val]) ? val : Object.keys(cats)[0];
+}
+
+// ══════════════════════════════════════════
+// CATEGORY MANAGEMENT MODAL
+// ══════════════════════════════════════════
+// Working copy of cats while the modal is open
+let _catDraft = null;
+
+function openCatModal() {
+  // Deep-copy cats to a draft so changes can be cancelled
+  _catDraft = JSON.parse(JSON.stringify(cats));
+  _renderCatList();
+  document.getElementById('catmovl').classList.add('open');
+}
+function closeCatModal() {
+  _catDraft = null;
+  document.getElementById('catmovl').classList.remove('open');
+}
+function applyAndCloseCatModal() {
+  if(!_catDraft) return;
+  // Flush any pending input values into _catDraft
+  document.getElementById('catlist').querySelectorAll('input[data-key]').forEach(inp=>{
+    const k=inp.dataset.key, f=inp.dataset.field;
+    if(_catDraft && _catDraft[k]) _catDraft[k][f]=inp.value.trim()||_catDraft[k][f];
+  });
+  // Guard: don't apply if draft somehow became empty or null
+  if(_catDraft && typeof _catDraft==='object' && Object.keys(_catDraft).length>0){
+    cats = _catDraft;
+  }
+  saveCats();
+  buildLegend();
+  closeCatModal();
+  render();
+}
+
+function _renderCatList() {
+  const cl=document.getElementById('catlist');
+  cl.innerHTML='';
+  if(!_catDraft) return;
+  Object.entries(_catDraft).forEach(([k,v])=>{
+    if(!v) return; // skip any null entries
+    const usedCount=tasks.filter(t=>t.category===k).length;
+    const row=document.createElement('div');
+    row.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--surface2);border-radius:10px';
+
+    // Emoji/icon input
+    const iconInp=document.createElement('input');
+    iconInp.type='text'; iconInp.maxLength=4; iconInp.value=v.icon||'';
+    iconInp.dataset.key=k; iconInp.dataset.field='icon';
+    iconInp.style.cssText='width:38px;text-align:center;padding:5px 3px;border:1.5px solid var(--border);border-radius:7px;font-size:17px;background:var(--surface);outline:none;cursor:text';
+    iconInp.addEventListener('input',()=>{ if(_catDraft&&_catDraft[k]) _catDraft[k].icon=iconInp.value||v.icon||'📌'; });
+
+    // Label input
+    const lblInp=document.createElement('input');
+    lblInp.type='text'; lblInp.value=v.label||'';
+    lblInp.dataset.key=k; lblInp.dataset.field='label';
+    lblInp.style.cssText='flex:1;padding:7px 10px;border:1.5px solid var(--border);border-radius:7px;font-size:13px;font-weight:600;background:var(--surface);outline:none;color:var(--text)';
+    // Update label live; only fall back to original if input is blank
+    lblInp.addEventListener('input',()=>{ if(_catDraft&&_catDraft[k]) _catDraft[k].label=lblInp.value.trim()||v.label||k; });
+    lblInp.addEventListener('focus',()=>lblInp.style.borderColor='var(--primary)');
+    lblInp.addEventListener('blur',()=>lblInp.style.borderColor='var(--border)');
+
+    // Color palette (mini)
+    const cpWrap=document.createElement('div');
+    cpWrap.style.cssText='display:flex;gap:3px;flex-wrap:wrap;max-width:120px';
+    PAL.forEach(c=>{
+      const dot=document.createElement('div');
+      dot.style.cssText=`width:16px;height:16px;border-radius:50%;background:${c};cursor:pointer;border:2.5px solid ${c===v.color?'#333':'transparent'};flex-shrink:0;transition:border .1s`;
+      dot.title=c;
+      dot.addEventListener('click',()=>{
+        if(!_catDraft[k]) return;
+        _catDraft[k].color=c;
+        const r=parseInt(c.slice(1,3),16),g=parseInt(c.slice(3,5),16),b=parseInt(c.slice(5,7),16);
+        _catDraft[k].bg=`rgba(${r},${g},${b},0.12)`;
+        _renderCatList(); // re-render to update selected indicator
+      });
+      cpWrap.appendChild(dot);
+    });
+
+    // Delete button
+    const delBtn=document.createElement('button');
+    delBtn.textContent='✕';
+    delBtn.title=usedCount?`${usedCount}개의 일정이 있어 삭제할 수 없습니다`:'카테고리 삭제';
+    delBtn.style.cssText=`width:28px;height:28px;border-radius:7px;border:none;font-size:13px;flex-shrink:0;cursor:${usedCount?'not-allowed':'pointer'};background:${usedCount?'#f0f0f0':'#fff0f0'};color:${usedCount?'#ccc':'#e57373'}`;
+    if(!usedCount) delBtn.addEventListener('click',()=>{
+      if(Object.keys(_catDraft).length<=1){alert('최소 1개의 카테고리가 필요합니다.');return;}
+      delete _catDraft[k]; _renderCatList();
+    });
+
+    row.appendChild(iconInp);
+    row.appendChild(lblInp);
+    row.appendChild(cpWrap);
+    row.appendChild(delBtn);
+    cl.appendChild(row);
+  });
+}
+
+function addNewCat() {
+  const key='cat_'+Date.now().toString(36);
+  _catDraft[key]={label:'새 카테고리', icon:'📌', color:'#607d8b', bg:'rgba(96,125,139,0.12)'};
+  _renderCatList();
+  // Focus the new row's label input
+  setTimeout(()=>{
+    const inputs=[...document.getElementById('catlist').querySelectorAll('[data-field="label"]')];
+    if(inputs.length) inputs[inputs.length-1].focus();
+  },50);
+}
+
+// ══════════════════════════════════════════
+// KEYBOARD
+// ══════════════════════════════════════════
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeModal();closeDetail();}
+  if(e.key==='Enter'&&document.getElementById('movl').classList.contains('open')){
+    if(document.activeElement.tagName!=='TEXTAREA'&&document.activeElement.tagName!=='SELECT') saveTask();
+  }
+});
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+buildLegend();
+render();
+setInterval(()=>{ if(view==='week') renderWeek(); },60000);
+window.addEventListener('resize',()=>{ if(view==='month') requestAnimationFrame(drawConns); });
+</script>
+</body></html>
